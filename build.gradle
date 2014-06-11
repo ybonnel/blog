@@ -15,3 +15,8 @@ buildscript {
 }
 
 apply plugin: 'jbake'
+
+task publish(type: GradleBuild) {           
+    buildFile = 'publish.gradle'
+    tasks = ['publishGhPages']
+}
