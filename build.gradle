@@ -11,12 +11,25 @@ buildscript {
 
     // optional, if you use freemarker template engine
     classpath 'org.freemarker:freemarker:2.3.19'
+
+    // watch plugin
+    classpath 'com.bluepapa32:gradle-watch-plugin:0.1.3'
   }
 }
 
 apply plugin: 'jbake'
 
+apply plugin: 'watch'
+
 task publish(type: GradleBuild) {           
     buildFile = 'publish.gradle'
     tasks = ['publishGhPages']
+}
+
+watch {
+
+    jbake {
+        files files('src/jbake')
+        tasks 'jbake'
+    }
 }
