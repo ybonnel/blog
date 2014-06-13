@@ -9,6 +9,7 @@
                 <div class="col-xs-12 col-md-8"><h1>JustAnOtherDevBlog</h1></div>
             </div>
 	</div>
+    <#assign count=0>
 	<#list posts as post>
   		<#if (post.status == "published")>
   			<a href="/${post.uri}"><h1>${post.title}</h1></a>
@@ -20,7 +21,13 @@
 
   			<p>${post.body}</p>
                         <p><a href="/${post.uri}#disqus_thread">Commentaires</a></p>
+            <#assign count= count + 1 >
   		</#if>
+
+        <#if (count >= 5)>
+            <#break >
+        </#if>
+
   	</#list>
 	
 	<hr />

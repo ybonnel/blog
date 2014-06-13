@@ -1,6 +1,7 @@
 buildscript {
   repositories {
       jcenter()
+      mavenCentral()
       maven { url 'http://dl.bintray.com/content/aalmiray/kordamp' }
   }
 
@@ -27,6 +28,17 @@ apply plugin: 'watch'
 
 apply plugin: 'livereload'
 
+apply plugin: 'java'
+
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'com.rometools:rome-fetcher:1.5.0'
+}
+
 task publish(type: GradleBuild) {           
     buildFile = 'publish.gradle'
     tasks = ['publishGhPages']
@@ -36,7 +48,7 @@ watch {
 
     jbake {
         files files('src/jbake')
-        tasks 'jbake'
+        tasks ['jbake']
     }
 }
 
