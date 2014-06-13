@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Java dans le hard(ware) - Retour de Devoxx France : deuxième journée</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">    
+
+    <!-- Le styles -->
+    <link href="/css/yeti/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/asciidoctor.css" rel="stylesheet">
+    <link href="/css/base.css" rel="stylesheet">
+    <!-- link href="/css/bootstrap-theme.min.css" rel="stylesheet" -->
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.1.0/css/font-awesome.min.css">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="favicon.ico">
+  </head>
+  <body>
+    <div id="wrap">
+	
+      <!-- Fixed navbar -->
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">JustAnOtherDevBlog</a>
+          </div>
+          <div class="collapse navbar-collapse" id="navbar-menu">
+            <ul class="nav navbar-nav">
+              <li><a href="https://github.com/ybonnel" target="github:ybonnel">Github</a></li>
+              <li><a href="feeds/posts/default">Flux RSS</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+      <div class="container">
+	
+	<div class="page-header">
+		<h1>Retour de Devoxx France : deuxième journée</h1>
+	</div>
+
+	<p><em>01 mai 2012</em></p>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2012/05/retour-de-devoxx-france-deuxieme.html" data-via="ybonnel" data-text="Retour de Devoxx France : deuxième journée" data-lang="fr">Tweeter</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2012/05/retour-de-devoxx-france-deuxieme.html"></div>
+
+	<p>Après mon retour sur la première journée à Devoxx France (billet <a href="http://www.ybonnel.fr/2012/04/retour-de-devoxx-france-premiere.html">ici</a>), voici celui de la deuxième.   <h1>Les keynotes</h1> Après le deuxième petit dèj, voici le temps des keynotes. La salle était impressionnante (950 places).<br/> <div class="separator" style="clear: both; text-align: center;"><a href="http://2.bp.blogspot.com/-pig8MItE0ks/T6kEVPfGT7I/AAAAAAAAIjE/iuzxYj9vVsU/s1600/pano-fond-all-perspective2_small.png" imageanchor="1" style="margin-left:1em; margin-right:1em"><img border="0" height="120" width="400" src="http://2.bp.blogspot.com/-pig8MItE0ks/T6kEVPfGT7I/AAAAAAAAIjE/iuzxYj9vVsU/s400/pano-fond-all-perspective2_small.png" /></a></div>    <br/><h2>Fier d'être développeur?</h2>Pierre Pezzardi, co-fondateur d'OCTO, nous fait part des raisons pour lesquelles, selon lui, le métier de développeur est mal vu. Le développeur, c'est le gars qui crée des logiciels trop compliqués, qui ne plaisent pas aux utilisateurs, et sans jamais demander leurs avis. Il faut donc prendre le temps de comprendre un peu plus la finalité des fonctionnalités que l'on développe. Il est possible que prendre 5 minutes pour déplacer un bouton est bien plus d'impact pour les utilisateurs que de mettre des mois à développer des fonctionnalités obscures sans vraiment comprendre à quoi ça sert.<br/><br/> <h2>This could be Heaveb or this could be Hell</h2>Bon, je l'avais évité jusque là, mais ça y est, voici le moment de ma première conf en anglais...<br/>Deux développeurs du London JUG nous donnent la vision angélique et diabolique de l'avenir de Java. Ça manquait pas d'humour, et ils ont pensé à ceux, qui comme moi, ont du mal avec l'anglais en mettant des traductions de leur slide en français :). Je n'ai pas appris grand chose, mais on s'est bien marré pendant cette keynote.<br/><br/> <h1>Manipulation de bytecode : démocratisons la magie noire</h1>Je me suis promis qu'un jour je jouerai avec le bytecode, je suis donc allé voir cette conf afin de me donner des pistes. Les speakers nous ont pointé un usage auquel je n'aurais pas pensé : les tests. Injecter du bytecode peux permettre de tester des cas compliqués type filesystem full. J'ai également retenu deux outils à aller voir de plus près : byteman et javassist.<br/><br/>  <h1>Le déjeuner</h1>À l'image de celui du premier jour, celui-ci était bien sans être exceptionnel. Il fut encore plus compliqué de trouver une place pour manger :)<br/><br/> <h1>Code Story</h1>Ne trouvant pas de conf qui me donne envie, je décide d'aller faire un tour à Code Story. Il s'agit donc de quatre développeurs qui codent en pair programming avec des itérations d'une heure, et ce pendant 2 jours. Un des deux groupes prend le temps d'expliquer ce qu'il fait tandis que l'autre code plus vite. Au bout d'une demi heure, deux développeurs changent de paire.<br/>C'est donc l'occasion de découvrir des outils et manières de développer pour être plus productif. Ils développent sous IntelliJ (pour ceux qui n'ont jamais essayé cet IDE, je vous conseille fortement de le faire). Les tests sont toujours développés en premier en utilisant Infinitest pour vérifier l'état en permanence. Autre idée, le build incassable, ils utilisent un script pour effectuer le push, ce script lance les TUs, et si certains ne passent pas, pas de push.<br/>Comme sur tout les projets, ils ont rencontré des difficultés (problème de syntaxe en css par exemple), ce qui a permis de les rendre plus humain :)<br/>La salle de Code Story était pleine à chaque fois, ce qui prouve que ce genre d'exercice a largement sa place dans une conf.<br/><br/> <h1>Kanban pour les nuls</h1>Cette conf était très intéressante, Kanban est une méthode agile qui m'attire énormément. Si vous vous intéressez aux méthodes agiles, je ne peux que vous conseiller de regarder Kanban de près. Cette méthode est beaucoup moins contrainte que Scrum et se base énormément sur les fameux post-it sur un paper board. Mais ce n'est pas aussi simple que ça, l'ajout de workload sur les états permet de contraindre le flux et d'introduire le "flux tiré". Le principe est qu'une fonctionnalité ne rentre dans le flux qu'une fois qu'une fonctionnalité en est sortie. Cela est bien entendu un peu plus complexe que ça, mais j'aurais du mal à tout vous expliquer :).<br/>Une seule question me taraude l'esprit, c'est comment appliquer ce genre de méthode lorsque le périmètre et les jalons sont imposés!<br/><br/> <h1>Code Story again</h1>Comme vous vous en doutez, le principe m'a plu, du coup j'y retourne :)<br/><br/> <h1>Introduction à Ceylon</h1>Ceylon, pour ceux qui n'en ont pas entendu parler, c'est un nouveau langage. Le but de ce langage : faire le langage idéal pour les javaistes si on pouvait partir de la feuille blanche (pas de rétro-compatibilité à gérer). Emmanuel Bernard et Stephane Epardaud nous présentent donc ce nouveaux langage, avec du code qui compile! Au niveau road map, l'interopabilité avec Java vient d'être introduite, on va donc pouvoir commencer à faire des choses intéressantes.<br/>Au delà du sujet, le fait que ce soit présenté par Emmanuel m'a bien plu. Pour ceux qui ne le connaissent pas, c'est un des castcodeurs (podcast à écouter d'urgence). Donc le voir en vrai était plutôt sympa, c'est en plus un très bon speaker.<br/><br/><br/> À bientôt pour la troisième journée :).
+</p>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            var disqus_shortname = 'ybonnel';
+            var disqus_identifier = 'retour-de-devoxx-france-deuxieme';
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+
+	<hr>
+	
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted credit">L'ensemble des posts de ce blog sont publiés sous licence <em>Creative Commons by-nc-sa</em>. <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"/></a></p>
+        <p class="text-muted credit">&copy; 2013 | Mixed with <a href="http://twitter.github.com/bootstrap/">Bootstrap v3.0.2</a> | Baked with <a href="http://jbake.org">JBake v2.3.0</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- script src="/js/jquery-1.10.2.min.js"></script -->
+    <!-- script src="/js/bootstrap.min.js"></script -->
+    <script src="/js/run_prettify.js"></script>
+
+    <script type="text/javascript">
+        window.___gcfg = {lang: 'fr'};
+
+        (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/platform.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+    </script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-28563381-1', 'www.ybonnel.fr');
+      ga('send', 'pageview');
+
+    </script>
+    
+  </body>
+</html>

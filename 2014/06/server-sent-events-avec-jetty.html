@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Java dans le hard(ware)</title>
+    <title>Java dans le hard(ware) - Server Sent Events avec Jetty</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -30,7 +30,7 @@
   </head>
   <body>
     <div id="wrap">
-
+	
       <!-- Fixed navbar -->
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container-fluid">
@@ -54,95 +54,29 @@
       <div class="container">
 	
 	<div class="page-header">
-		<h1>Blog Archive</h1>
+		<h1>Server Sent Events avec Jetty</h1>
 	</div>
-	
-	<!--<ul>-->
-			<h4>juin 2014</h4>
-			<ul>
-		
-		<li>11 - <a href="/2014/06/websocket-et-simpleweb4j.html">WebSocket et SimpleWeb4j</a></li>
-		
-		<li>06 - <a href="/2014/06/la-fin-dun-article-par-jour.html">La fin d'un article par jour</a></li>
-		
-		<li>05 - <a href="/2014/06/server-sent-events-et-cote-client.html">Server Sent Events, et côté client?</a></li>
-		
-		<li>04 - <a href="/2014/06/server-sent-events-reactifs-avec.html">Server Sent Events réactifs avec SimpleWeb4j</a></li>
-		
-		<li>03 - <a href="/2014/06/server-sent-events-avec-simpleweb4j.html">Server Sent Events avec SimpleWeb4j</a></li>
-		
-		<li>02 - <a href="/2014/06/server-sent-events-avec-jetty.html">Server Sent Events avec Jetty</a></li>
-				</ul>
-				<h4>mai 2014</h4>
-				<ul>
-		
-		<li>30 - <a href="/2014/05/services-rest-avec-simpleweb4j.html">Services REST avec SimpleWeb4J</a></li>
-		
-		<li>29 - <a href="/2014/05/concurrenthashmap-et-longadder.html">ConcurrentHashMap et LongAdder</a></li>
-		
-		<li>28 - <a href="/2014/05/simpleweb4j-quick-start.html">SimpleWeb4J - quick start</a></li>
-		
-		<li>27 - <a href="/2014/05/scheduler-en-java.html">Scheduler en Java</a></li>
-		
-		<li>26 - <a href="/2014/05/un-cache-en-java.html">Un cache en java</a></li>
-				</ul>
-				<h4>mai 2013</h4>
-				<ul>
-		
-		<li>28 - <a href="/2013/05/mes-premiers-pas-avec-couchbase.html">Mes premiers pas avec CouchBase</a></li>
-				</ul>
-				<h4>mars 2013</h4>
-				<ul>
-		
-		<li>28 - <a href="/2013/03/devoxx-france-2013-ma-premiere-journee.html">Devoxx France 2013 : ma première journée</a></li>
-				</ul>
-				<h4>février 2013</h4>
-				<ul>
-		
-		<li>25 - <a href="/2013/02/code-story-la-selection-finale.html">Code Story : la sélection finale</a></li>
-		
-		<li>05 - <a href="/2013/02/code-story-en-java-jajascript-et-les.html">Code Story en java : Jajascript et les performances</a></li>
-		
-		<li>04 - <a href="/2013/02/codestory-en-java-scalaskel-et-la.html">CodeStory en java : Scalaskel et la calculette</a></li>
-		
-		<li>03 - <a href="/2013/02/ma-participation-codestory-en-java-intro.html">Ma participation à CodeStory en java : Intro</a></li>
-				</ul>
-				<h4>janvier 2013</h4>
-				<ul>
-		
-		<li>08 - <a href="/2013/01/marre-du-cloud-et-du-jee-vive-lauto.html">Marre du cloud et du JEE -> vive l'auto-hébergement et les main.</a></li>
-				</ul>
-				<h4>août 2012</h4>
-				<ul>
-		
-		<li>23 - <a href="/2012/08/comparaison-des-parseurs-csv.html">Comparaison des parseurs CSV</a></li>
-				</ul>
-				<h4>mai 2012</h4>
-				<ul>
-		
-		<li>08 - <a href="/2012/05/retour-de-devoxx-france-troisieme.html">Retour de Devoxx France : troisième journée</a></li>
-		
-		<li>01 - <a href="/2012/05/retour-de-devoxx-france-deuxieme.html">Retour de Devoxx France : deuxième journée</a></li>
-				</ul>
-				<h4>avril 2012</h4>
-				<ul>
-		
-		<li>24 - <a href="/2012/04/retour-de-devoxx-france-premiere.html">Retour de Devoxx France : première journée</a></li>
-				</ul>
-				<h4>février 2012</h4>
-				<ul>
-		
-		<li>22 - <a href="/2012/02/bench-de-moteurcsv.html">Bench de MoteurCsv</a></li>
-		
-		<li>20 - <a href="/2012/02/moteurcsv-le-jpa-du-csv.html">MoteurCsv le JPA du CSV</a></li>
-		
-		<li>08 - <a href="/2012/02/transports-rennes-resultat-des-votes.html">Transports Rennes - Résultat des votes</a></li>
-				</ul>
-				<h4>janvier 2012</h4>
-				<ul>
-		
-		<li>23 - <a href="/2012/01/transports-rennes-votez-pour-vos-icones.html">Transports Rennes - Votez pour vos icônes préférés.</a></li>
-	</ul>
+
+	<p><em>02 juin 2014</em></p>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/06/server-sent-events-avec-jetty.html" data-via="ybonnel" data-text="Server Sent Events avec Jetty" data-lang="fr">Tweeter</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/06/server-sent-events-avec-jetty.html"></div>
+
+	<p><p>Je vais aujourd'hui vous présenter comment faire du <a href="http://dev.w3.org/html5/eventsource/">Server-Sent-Events</a> (EventSource) avec Jetty.</p> <h2>C'est quoi</h2><p>Si vous avez déjà lu w3c, passez au chapitre suivant :)</p><p>La technologie Server Sent Events (ou EventSource du nom de l'API javascripts) est une technologie permettant de faire du push du serveur vers le client en gardant une connexion ouverte.</p><p>Un des gros avantages selon moi de cette technologie est sa simplicité, c'est du texte sur HTTP. Chaque événement est préfixé de "data: ", et on met deux retours à la ligne pour séparer les événements (je simplifie un peu).</p><br/> <h2>Comment je fait coté serveur avec Jetty</h2><p>Le plus simple est encore de vous montrer le code :)</p><script src="https://gist.github.com/ybonnel/85850107b392ceac43c7.js"></script><br/> <p>Demain, je vous montrerai que c'est quand même beaucoup plus simple d'utiliser SimpleWeb4j pour le faire :)</p>
+</p>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            var disqus_shortname = 'ybonnel';
+            var disqus_identifier = 'server-sent-events-avec-jetty';
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+
+	<hr>
 	
 		</div>
 		<div id="push"></div>
