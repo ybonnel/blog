@@ -1,4 +1,4 @@
-<#assign pagetitle = "Java dans le hard(ware) - ${content.title}">
+<#assign pagetitle = "JustAnOtherDevBlog - ${content.title}">
 <#include "header.ftl">
 	
 	<#include "menu.ftl">
@@ -8,6 +8,12 @@
 	</div>
 
 	<p><em>${content.date?string("dd MMMM yyyy")}</em></p>
+
+    <p>Tags :
+        <#list content.tags as tag>
+            <a href="/tags/${tag}.html">${tag}</a><#if tag_has_next>, </#if>
+        </#list>
+    </p>
         <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/${content.uri}" data-via="ybonnel" data-text="${content.title}" data-lang="fr">Tweeter</a>
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
         <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/${content.uri}"></div>

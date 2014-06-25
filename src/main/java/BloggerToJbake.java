@@ -23,10 +23,12 @@ import com.rometools.rome.feed.synd.SyndEntry;
 import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.FeedException;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -40,23 +42,18 @@ public class BloggerToJbake {
     private static final String baseUrl = "http://www.ybonnel.fr/";
     private static final String bloggerUrl = baseUrl + "/feeds/posts/default?max-results=1000";
 
-    private static final String jbakePath = "/Users/ybonnel/dev/projects/blog/src/jbake/content";
+    private static final String jbakePath = "/home/ybonnel/sources/blog/src/jbake/content";
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     public static void main(String[] args) throws IOException, FetcherException, FeedException {
+
         FeedFetcher feedFetcher = new HttpURLFeedFetcher();
         SyndFeed feed = feedFetcher.retrieveFeed(new URL(bloggerUrl));
         for (SyndEntry entry : feed.getEntries()) {
-            /**title=First Post
-                    date=2013-07-24
-            type=post
-            tags=blog
-            status=published
-            ~~~~~~*/
             String title = entry.getTitle();
             String type = "post";
             String tags = entry.getCategories().stream().map(SyndCategory::getName)
-                    .collect(Collectors.joining(", "));
+                    .collect(Collectors.joining(","));
             String status = "published";
             String content = entry.getContents().get(0).getValue();
             String date = dateFormat.format(entry.getPublishedDate());

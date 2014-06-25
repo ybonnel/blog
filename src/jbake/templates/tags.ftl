@@ -1,12 +1,12 @@
-<#assign pagetitle = "JustAnOtherDevBlog">
+<#assign pagetitle = "JustAnOtherDevBlog - tags">
 <#include "header.ftl">
 	
 	<#include "menu.ftl">
 
 	<div class="page-header">
             <div class="row">
-                <div class="col-xs-4 col-md-2"><img src="img/JustAnOtherDevBlog.png"></div>
-                <div class="col-xs-12 col-md-8"><h1>JustAnOtherDevBlog</h1></div>
+                <div class="col-xs-4 col-md-2"><img src="/img/JustAnOtherDevBlog.png"></div>
+                <div class="col-xs-12 col-md-8"><h1>Tag: ${tag}</h1></div>
             </div>
 	</div>
 
@@ -15,7 +15,7 @@
     <div class="col-sm-8">
 
         <#assign count=0>
-        <#list posts as post>
+        <#list tag_posts as post>
             <#if (post.status == "published")>
                 <a href="/${post.uri}"><h1>${post.title}</h1></a>
                 <p>${post.date?string("dd MMMM yyyy")}</p>
@@ -54,18 +54,18 @@
         </div>
 
         <div class="sidebar-module">
-            <ol class="list-unstyled" style="margin-left: 0px">
-                <#list "freemarker.core.CollectionAndSequence"?new(alltags)?sort as tag>
+                <ol class="list-unstyled" style="margin-left: 0px">
+                <#list "freemarker.core.CollectionAndSequence"?new(alltags)?sort as unTag>
                     <#assign count = 0>
                     <#list posts as post>
                         <#list post.tags as postTag>
-                            <#if postTag == tag>
+                            <#if postTag == unTag>
                                 <#assign count = count + 1>
                             </#if>
                         </#list>
                     </#list>
 
-                    <li><a href="/tags/${tag}.html">${tag}</a> (${count})</li>
+                    <li><a href="/tags/${unTag}.html">${unTag}</a> (${count})</li>
                 </#list>
                 </ol>
         </div>

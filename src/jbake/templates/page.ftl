@@ -1,4 +1,4 @@
-<#assign pagetitle = "Java dans le hard(ware) - ${content.title}">
+<#assign pagetitle = "JustAnOtherDevBlog - ${content.title}">
 <#include "header.ftl">
 
 	<#include "menu.ftl">
