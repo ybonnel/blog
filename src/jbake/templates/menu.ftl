@@ -13,7 +13,7 @@
           <div class="collapse navbar-collapse" id="navbar-menu">
             <ul class="nav navbar-nav">
               <li><a href="https://github.com/ybonnel" target="github:ybonnel">Github</a></li>
-              <li><a href="${config.feed_file}">Flux RSS</a></li>
+              <li><a href="<#if (content.rootpath)??>${content.rootpath}<#else><#if rootpath??>${rootpath}</#if></#if>${config.feed_file}">Flux RSS</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
