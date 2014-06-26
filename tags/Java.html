@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>JustAnOtherDevBlog - tags</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">    
+
+    <!-- Le styles -->
+    <link href="/css/yeti/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/asciidoctor.css" rel="stylesheet">
+    <link href="/css/base.css" rel="stylesheet">
+    <!-- link href="/css/bootstrap-theme.min.css" rel="stylesheet" -->
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.1.0/css/font-awesome.min.css">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="/favicon.ico">
+  </head>
+  <body>
+    <div id="wrap">
+	
+      <!-- Fixed navbar -->
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">JustAnOtherDevBlog</a>
+          </div>
+          <div class="collapse navbar-collapse" id="navbar-menu">
+            <ul class="nav navbar-nav">
+              <li><a href="https://github.com/ybonnel" target="github:ybonnel">Github</a></li>
+              <li><a href="/feeds/posts/default">Flux RSS</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+      <div class="container">
+
+	<div class="page-header">
+            <div class="row">
+                <div class="col-xs-4 col-md-2"><img src="/img/JustAnOtherDevBlog.png"></div>
+                <div class="col-xs-12 col-md-8"><h1>Tag: Java</h1></div>
+            </div>
+	</div>
+
+    <div class="row">
+
+    <div class="col-sm-8">
+
+                <a href="/2014/06/websocket-et-comment-on-teste.html"><h1>WebSocket, et comment on teste?</h1></a>
+                <p>18 juin 2014</p>
+
+                <p>Tags :
+                        <a href="/tags/Assertj.html">Assertj</a>, 
+                        <a href="/tags/Awaitility.html">Awaitility</a>, 
+                        <a href="/tags/Java.html">Java</a>, 
+                        <a href="/tags/Jetty.html">Jetty</a>, 
+                        <a href="/tags/SimpleWeb4j.html">SimpleWeb4j</a>, 
+                        <a href="/tags/websocket.html">websocket</a>
+                </p>
+
+                            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/06/websocket-et-comment-on-teste.html" data-text="WebSocket, et comment on teste?" data-via="ybonnel" data-lang="fr">Tweeter</a>
+                            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                            <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/06/websocket-et-comment-on-teste.html"></div>
+
+                <p><p>On a vu comment implémenter des websockets avec SimpleWeb4j dans un précédant <a href="http://www.ybonnel.fr/2014/06/websocket-et-simpleweb4j.html">article</a>, nous allons maintenant voir comment tester de manière automatisée la partie serveur websocket.</p><br/><h2>Librairies tierces</h2><p>Pour garder un code relativement propre, je vais utiliser trois librairies : <ul><li><a href="http://www.eclipse.org/jetty/documentation/current/jetty-websocket-client-api.html">websocket-client</a> : Client WebSocket en java.</li><li><a href="http://joel-costigliola.github.io/assertj/">assertj-core</a> : Librairie d'assertion "fluent"</li><li><a href="https://code.google.com/p/awaitility/">awaitility</a> : Librairie d'attente (pour gérer l'asynchrone)</li></ul></p><br/> <h2>Je veux faire quoi comme test?</h2><p>Je cherche à tester le code du billet précédant qui, pour rappel, était un système de chat. Le serveur de websocket reçoit donc des messages qu'il redistribue à tous les clients connectés.</p><p>Scénario de test : <ul><li>Ouverture d'une session 1.</li><li>Envoi d'un message par la session 1 (message 1).</li><li>Ouverture d'une session 2.</li><li>Envoi d'un message par la session 2 (message 2).</li><li>Envoi d'un message par la session 1 (message 3).</li><li>Fermeture de la session 1.</li><li>Envoi d'un message par la session 2 (message 4).</li><li>Fermeture de la session 2.</li>  </ul></p><p>Vérifications à faire : <ul><li>La session 1 a reçu 3 messages (les messages 1 à 3)</li><li>La session 2 a reçu 3 messages (les messages 2 à 4)</li></ul></p><br/> <h2>Code de test</h2><p>Assez parler, place au code. J'espère que les commentaires sont suffisants, si ce n'est pas le cas, n'hésitez pas à le dire j'en ajouterais.</p><script src="https://gist.github.com/ybonnel/fdc9348326e0667c52c7.js"></script>
+</p>
+                            <p><a href="/2014/06/websocket-et-comment-on-teste.html#disqus_thread">Commentaires</a></p>
+
+
+                <a href="/2014/05/services-rest-avec-simpleweb4j.html"><h1>Services REST avec SimpleWeb4J</h1></a>
+                <p>30 mai 2014</p>
+
+                <p>Tags :
+                        <a href="/tags/Java.html">Java</a>, 
+                        <a href="/tags/json.html">json</a>, 
+                        <a href="/tags/REST.html">REST</a>, 
+                        <a href="/tags/SimpleWeb4j.html">SimpleWeb4j</a>
+                </p>
+
+                            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/05/services-rest-avec-simpleweb4j.html" data-text="Services REST avec SimpleWeb4J" data-via="ybonnel" data-lang="fr">Tweeter</a>
+                            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                            <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/05/services-rest-avec-simpleweb4j.html"></div>
+
+                <p><p>Cet article est le deuxième article de la série sur <a href="http://www.ybonnel.fr/search/label/SimpleWeb4j">SimpleWeb4j</a></p> <p>Dans le <a href="http://www.ybonnel.fr/2014/05/simpleweb4j-quick-start.html">première article</a> on a vu comment démarrer SimpleWeb4j en une ligne de code, dans l'article d'aujourd'hui, nous allors voir comment exposer des services REST en json.</p> <h2>Premiers cas : exposer une String "Hello World"</h2> <p>J'espère que le code est suffisamment simple pour ne pas avoir besoin d'explication.</p> <script src="https://gist.github.com/ybonnel/bf0f34483d47d5ca8966.js"></script> <p>On peux voir qu le résultat est entouré de guillemets, ceci est du au fait que SimpleWeb4j transforme la chaîne de caractère en json.</p> <br/> <h2>Deuxième cas : utilisation d'une variable de route</h2> <script src="https://gist.github.com/ybonnel/b7b50206951e056a5403.js"></script> <p>Cet exemple mérite peut-être un peu plus d'explications. SimpleWeb4j permet d'ajouter des paramètres à la route, ces paramètres sont préfixés de ':'. Pour les récupérer on utilise le paramètre RouteParameters qui est le deuxième argument de notre lambda. Le premier argument quand à lui contient l'objet envoyé dans le request body de la requête, nous ne l'utilisons donc pas.</p> <br/> <h2>Troisième cas : objet complexe</h2> <p>Nous avons vu que renvoyer une chaîne de caractère était plutôt simple, voyons maintenant comment renvoyer un objet plus complexe.</p> <script src="https://gist.github.com/ybonnel/9116ffb1ef033e66af68.js"></script> <p>On peut donc voir que renvoyer un objet n'est pas plus compliqué, SimpleWeb4j s'occupe de transformer celui-ci en json</p> <br/><br/> <p>J'espère vous avoir donner envie de regarder SimpleWeb4j de plus près, si quelque chose vous manque, n'hésitez pas à le dire ou à faire une pull request sur <a href="https://github.com/ybonnel/SimpleWeb4j">github</a>.</p>
+</p>
+                            <p><a href="/2014/05/services-rest-avec-simpleweb4j.html#disqus_thread">Commentaires</a></p>
+
+
+                <a href="/2014/05/simpleweb4j-quick-start.html"><h1>SimpleWeb4J - quick start</h1></a>
+                <p>28 mai 2014</p>
+
+                <p>Tags :
+                        <a href="/tags/Java.html">Java</a>, 
+                        <a href="/tags/SimpleWeb4j.html">SimpleWeb4j</a>
+                </p>
+
+                            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/05/simpleweb4j-quick-start.html" data-text="SimpleWeb4J - quick start" data-via="ybonnel" data-lang="fr">Tweeter</a>
+                            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                            <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/05/simpleweb4j-quick-start.html"></div>
+
+                <p><p>Ceux qui me suivent connaissent sans doute déjà <a href="https://github.com/ybonnel/SimpleWeb4j">SimpleWeb4j</a>.  Il s'agit d'encore un framework web donc le but est de pouvoir faire du web en java de manière très simple.</p> <p>Je n'ai jamais écrit d'article sur SimpleWeb4j, je vais donc écrire une série d'articles sur ce sujet afin de vous montrer la simplicité de ce framework.</p> <p>Je vais commencer par le classique Quick Start, ou comment démarrer un serveur Web capable de servir des ressources statiques.</p> <h2>Dépendance maven</h2><p><script src="https://gist.github.com/ybonnel/c1168b5f71cb6076d733.js"></script></p> <h2>Ressources statiques</h2><p>Mettez vos ressources statiques au sein d'un package "public" dans votre classpath.</p> <h2>Classe main</h2><p>Il vous suffit ensuite de démarrer le serveur : <script src="https://gist.github.com/ybonnel/74d0fca77b718eb300c1.js"></script></p> <p>Et voilà, vous avez un serveur prêt sur http://localhost:9999, pas besoin de déclaration xml ou autre complexité, un simple appel à start suffit.</p>
+</p>
+                            <p><a href="/2014/05/simpleweb4j-quick-start.html#disqus_thread">Commentaires</a></p>
+
+
+                <a href="/2014/05/scheduler-en-java.html"><h1>Scheduler en Java</h1></a>
+                <p>27 mai 2014</p>
+
+                <p>Tags :
+                        <a href="/tags/ExecutorService.html">ExecutorService</a>, 
+                        <a href="/tags/Java.html">Java</a>, 
+                        <a href="/tags/simple.html">simple</a>
+                </p>
+
+                            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/05/scheduler-en-java.html" data-text="Scheduler en Java" data-via="ybonnel" data-lang="fr">Tweeter</a>
+                            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                            <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/05/scheduler-en-java.html"></div>
+
+                <p><p>Si je vous demande comment déclencher une tache récurrente en Java, je suis sûr que certains d'entre vous répondront Quartz...</p> <p>Ceux qui répondent ça ne connaissent sans doute pas les ExecutorService de Java, et plus particulièrement l'interface <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ScheduledExecutorService.html">ScheduledExecutorService</a> (apparue en Java 1.5...).</p> <p>Voici donc un petit exemple permettant d'afficher l'heure courante toute les secondes :</p><script src="https://gist.github.com/ybonnel/39b3e53dd3d914fab02a.js"></script> <p>Ne vous habituez pas à un article par jour, ça ne va pas durer :)</p>  
+</p>
+                            <p><a href="/2014/05/scheduler-en-java.html#disqus_thread">Commentaires</a></p>
+
+
+                <a href="/2014/05/un-cache-en-java.html"><h1>Un cache en java</h1></a>
+                <p>26 mai 2014</p>
+
+                <p>Tags :
+                        <a href="/tags/Java.html">Java</a>, 
+                        <a href="/tags/java8.html">java8</a>, 
+                        <a href="/tags/simple.html">simple</a>
+                </p>
+
+                            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/05/un-cache-en-java.html" data-text="Un cache en java" data-via="ybonnel" data-lang="fr">Tweeter</a>
+                            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                            <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/05/un-cache-en-java.html"></div>
+
+                <p><p>Après bientôt un an sans écrire d'article, je vais essayer de me remettre à écrire des trucs... Je ne garanti pas que ce soit intéressant :)</p><p>Le premiers de cette renaissance sera sur les caches simples en Java.</p>Je parle ici de cache non révocable (j'en ai eu besoin très récemment). Voici la classe permettant de faire ceci :  <script src="https://gist.github.com/ybonnel/795a9f1ef0e08c9a585f.js"></script> <p>Vous l'aurez compris, cet article cherche a vous présenter la méthode <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ConcurrentHashMap.html#computeIfAbsent-K-java.util.function.Function-">ConcurrentHashMap.computeIfAbsent</a>, cette méthode est apparue en Java 8.</p><p>Cette dernière permet donc de remplir notre Map si la clé est absente, et ce de manière Thread safe!</p> <p>J'espère pouvoir publier le prochain article dans moins d'un an, à bientôt donc :)<p>
+</p>
+                            <p><a href="/2014/05/un-cache-en-java.html#disqus_thread">Commentaires</a></p>
+
+
+        <hr />
+
+        <p>Billets plus anciens disponibles sur la page <a href="/archive.html">archive</a>.</p>
+
+    </div>
+
+    <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+        <div class="sidebar-module sidebar-module-inset">
+            <h4>Yan Bonnel</h4>
+            <p>Geek. Technos de prédilections : Java, Android, Git.</p>
+        </div>
+
+        <div class="sidebar-module">
+                <ol class="list-unstyled" style="margin-left: 0px">
+
+                    <li><a href="/tags/Android.html">Android</a> (2)</li>
+
+                    <li><a href="/tags/Assertj.html">Assertj</a> (1)</li>
+
+                    <li><a href="/tags/auto-hébergement.html">auto-hébergement</a> (1)</li>
+
+                    <li><a href="/tags/Awaitility.html">Awaitility</a> (1)</li>
+
+                    <li><a href="/tags/cloud.html">cloud</a> (1)</li>
+
+                    <li><a href="/tags/CodeStory.html">CodeStory</a> (5)</li>
+
+                    <li><a href="/tags/Comparatif.html">Comparatif</a> (1)</li>
+
+                    <li><a href="/tags/couchbase.html">couchbase</a> (1)</li>
+
+                    <li><a href="/tags/CSV.html">CSV</a> (3)</li>
+
+                    <li><a href="/tags/CsvEngine.html">CsvEngine</a> (1)</li>
+
+                    <li><a href="/tags/Devoxx.html">Devoxx</a> (5)</li>
+
+                    <li><a href="/tags/EventSource.html">EventSource</a> (4)</li>
+
+                    <li><a href="/tags/ExecutorService.html">ExecutorService</a> (1)</li>
+
+                    <li><a href="/tags/git.html">git</a> (1)</li>
+
+                    <li><a href="/tags/Google.html">Google</a> (1)</li>
+
+                    <li><a href="/tags/Groovy.html">Groovy</a> (1)</li>
+
+                    <li><a href="/tags/Jajascript.html">Jajascript</a> (1)</li>
+
+                    <li><a href="/tags/Java.html">Java</a> (15)</li>
+
+                    <li><a href="/tags/java8.html">java8</a> (6)</li>
+
+                    <li><a href="/tags/javascript.html">javascript</a> (2)</li>
+
+                    <li><a href="/tags/JEE.html">JEE</a> (1)</li>
+
+                    <li><a href="/tags/Jetty.html">Jetty</a> (3)</li>
+
+                    <li><a href="/tags/json.html">json</a> (1)</li>
+
+                    <li><a href="/tags/Logo.html">Logo</a> (2)</li>
+
+                    <li><a href="/tags/NoMock.html">NoMock</a> (1)</li>
+
+                    <li><a href="/tags/OneDay.html">OneDay</a> (1)</li>
+
+                    <li><a href="/tags/OnePost.html">OnePost</a> (1)</li>
+
+                    <li><a href="/tags/reactive.html">reactive</a> (1)</li>
+
+                    <li><a href="/tags/Rennes.html">Rennes</a> (2)</li>
+
+                    <li><a href="/tags/REST.html">REST</a> (1)</li>
+
+                    <li><a href="/tags/Scalaskel.html">Scalaskel</a> (1)</li>
+
+                    <li><a href="/tags/Server-Sent-Events.html">Server-Sent-Events</a> (4)</li>
+
+                    <li><a href="/tags/simple.html">simple</a> (3)</li>
+
+                    <li><a href="/tags/SimpleWeb4j.html">SimpleWeb4j</a> (6)</li>
+
+                    <li><a href="/tags/SSE.html">SSE</a> (4)</li>
+
+                    <li><a href="/tags/TDD.html">TDD</a> (2)</li>
+
+                    <li><a href="/tags/websocket.html">websocket</a> (2)</li>
+                </ol>
+        </div>
+    </div>
+
+    </div>
+
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted credit">L'ensemble des posts de ce blog sont publiés sous licence <em>Creative Commons by-nc-sa</em>. <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"/></a></p>
+        <p class="text-muted credit">&copy; 2013 | Mixed with <a href="http://twitter.github.com/bootstrap/">Bootstrap v3.0.2</a> | Baked with <a href="http://jbake.org">JBake v2.3.0</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- script src="/js/jquery-1.10.2.min.js"></script -->
+    <!-- script src="/js/bootstrap.min.js"></script -->
+    <script src="/js/run_prettify.js"></script>
+
+    <script type="text/javascript">
+        window.___gcfg = {lang: 'fr'};
+
+        (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/platform.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+    </script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-28563381-1', 'www.ybonnel.fr');
+      ga('send', 'pageview');
+
+    </script>
+    
+  </body>
+</html>

@@ -7,13 +7,23 @@
     <atom:link href="http://www.ybonnel.fr/feed.xml" rel="self" type="application/rss+xml" />
     <description>JustAnOtherDevBlog</description>
     <language>en-gb</language>
-    <pubDate>ven., 13 juin 2014 21:43:30 +0200</pubDate>
-    <lastBuildDate>ven., 13 juin 2014 21:43:30 +0200</lastBuildDate>
+    <pubDate>jeu., 26 juin 2014 09:46:49 +0200</pubDate>
+    <lastBuildDate>jeu., 26 juin 2014 09:46:49 +0200</lastBuildDate>
     <author>
       <name>Yan Bonnel</name>
       <email>ybonnel@gmail.com</email>
     </author>
 
+    <item>
+      <title>WebSocket, et comment on teste?</title>
+      <link>http://www.ybonnel.fr/2014/06/websocket-et-comment-on-teste.html</link>
+      <pubDate>mer., 18 juin 2014 00:00:00 +0200</pubDate>
+      <guid isPermaLink="false">http://www.ybonnel.fr/2014/06/websocket-et-comment-on-teste.html</guid>
+      	<description>
+	&lt;p&gt;On a vu comment implémenter des websockets avec SimpleWeb4j dans un précédant &lt;a href=&quot;http://www.ybonnel.fr/2014/06/websocket-et-simpleweb4j.html&quot;&gt;article&lt;/a&gt;, nous allons maintenant voir comment tester de manière automatisée la partie serveur websocket.&lt;/p&gt;&lt;br/&gt;&lt;h2&gt;Librairies tierces&lt;/h2&gt;&lt;p&gt;Pour garder un code relativement propre, je vais utiliser trois librairies : &lt;ul&gt;&lt;li&gt;&lt;a href=&quot;http://www.eclipse.org/jetty/documentation/current/jetty-websocket-client-api.html&quot;&gt;websocket-client&lt;/a&gt; : Client WebSocket en java.&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://joel-costigliola.github.io/assertj/&quot;&gt;assertj-core&lt;/a&gt; : Librairie d&apos;assertion &quot;fluent&quot;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://code.google.com/p/awaitility/&quot;&gt;awaitility&lt;/a&gt; : Librairie d&apos;attente (pour gérer l&apos;asynchrone)&lt;/li&gt;&lt;/ul&gt;&lt;/p&gt;&lt;br/&gt; &lt;h2&gt;Je veux faire quoi comme test?&lt;/h2&gt;&lt;p&gt;Je cherche à tester le code du billet précédant qui, pour rappel, était un système de chat. Le serveur de websocket reçoit donc des messages qu&apos;il redistribue à tous les clients connectés.&lt;/p&gt;&lt;p&gt;Scénario de test : &lt;ul&gt;&lt;li&gt;Ouverture d&apos;une session 1.&lt;/li&gt;&lt;li&gt;Envoi d&apos;un message par la session 1 (message 1).&lt;/li&gt;&lt;li&gt;Ouverture d&apos;une session 2.&lt;/li&gt;&lt;li&gt;Envoi d&apos;un message par la session 2 (message 2).&lt;/li&gt;&lt;li&gt;Envoi d&apos;un message par la session 1 (message 3).&lt;/li&gt;&lt;li&gt;Fermeture de la session 1.&lt;/li&gt;&lt;li&gt;Envoi d&apos;un message par la session 2 (message 4).&lt;/li&gt;&lt;li&gt;Fermeture de la session 2.&lt;/li&gt;  &lt;/ul&gt;&lt;/p&gt;&lt;p&gt;Vérifications à faire : &lt;ul&gt;&lt;li&gt;La session 1 a reçu 3 messages (les messages 1 à 3)&lt;/li&gt;&lt;li&gt;La session 2 a reçu 3 messages (les messages 2 à 4)&lt;/li&gt;&lt;/ul&gt;&lt;/p&gt;&lt;br/&gt; &lt;h2&gt;Code de test&lt;/h2&gt;&lt;p&gt;Assez parler, place au code. J&apos;espère que les commentaires sont suffisants, si ce n&apos;est pas le cas, n&apos;hésitez pas à le dire j&apos;en ajouterais.&lt;/p&gt;&lt;script src=&quot;https://gist.github.com/ybonnel/fdc9348326e0667c52c7.js&quot;&gt;&lt;/script&gt;
+
+	</description>
+    </item>
     <item>
       <title>WebSocket et SimpleWeb4j</title>
       <link>http://www.ybonnel.fr/2014/06/websocket-et-simpleweb4j.html</link>
