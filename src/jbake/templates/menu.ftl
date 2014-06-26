@@ -8,7 +8,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">JustAnOtherDevBlog</a>
+            <a class="navbar-brand" href="<#if (content.rootpath)??>${content.rootpath}<#else><#if rootpath??>${rootpath}</#if></#if>index.html">JustAnOtherDevBlog</a>
           </div>
           <div class="collapse navbar-collapse" id="navbar-menu">
             <ul class="nav navbar-nav">

@@ -11,7 +11,7 @@
 
     <p>Tags :
         <#list content.tags as tag>
-            <a href="/tags/${tag}.html">${tag}</a><#if tag_has_next>, </#if>
+            <a href="${content.rootpath}tags/${tag}.html">${tag}</a><#if tag_has_next>, </#if>
         </#list>
     </p>
         <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/${content.uri}" data-via="ybonnel" data-text="${content.title}" data-lang="fr">Tweeter</a>

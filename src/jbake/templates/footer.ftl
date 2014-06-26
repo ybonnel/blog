@@ -14,7 +14,23 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <!-- script src="/js/jquery-1.10.2.min.js"></script -->
     <!-- script src="/js/bootstrap.min.js"></script -->
-    <script src="/js/run_prettify.js"></script>
+    <script src="<#if (content.rootpath)??>${content.rootpath}<#else><#if rootpath??>${rootpath}</#if></#if>js/run_prettify.js"></script>
+
+    <script src='http://alexgorbatchev.com/pub/sh/3.0.83/scripts/shCore.js' type='text/javascript'></script>
+    <script src='http://alexgorbatchev.com/pub/sh/3.0.83/scripts/shBrushCss.js' type='text/javascript'></script>
+    <script src='http://alexgorbatchev.com/pub/sh/3.0.83/scripts/shBrushJava.js' type='text/javascript'></script>
+    <script src='http://alexgorbatchev.com/pub/sh/3.0.83/scripts/shBrushJScript.js' type='text/javascript'></script>
+    <script src='http://alexgorbatchev.com/pub/sh/3.0.83/scripts/shBrushSql.js' type='text/javascript'></script>
+    <script src='http://alexgorbatchev.com/pub/sh/3.0.83/scripts/shBrushVb.js' type='text/javascript'></script>
+    <script src='http://alexgorbatchev.com/pub/sh/3.0.83/scripts/shBrushXml.js' type='text/javascript'></script>
+    <script src='http://alexgorbatchev.com/pub/sh/3.0.83/scripts/shBrushBash.js' type='text/javascript'></script>
+
+
+    <script language='javascript'>
+        SyntaxHighlighter.config.bloggerMode = true;
+        SyntaxHighlighter.all();
+    </script>
+
 
     <script type="text/javascript">
         window.___gcfg = {lang: 'fr'};

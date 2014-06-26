@@ -1,11 +1,12 @@
 <#assign pagetitle = "JustAnOtherDevBlog - tags">
+<#assign rootpath = "../">
 <#include "header.ftl">
 	
 	<#include "menu.ftl">
 
 	<div class="page-header">
             <div class="row">
-                <div class="col-xs-4 col-md-2"><img src="/img/JustAnOtherDevBlog.png"></div>
+                <div class="col-xs-4 col-md-2"><img src="../img/JustAnOtherDevBlog.png"></div>
                 <div class="col-xs-12 col-md-8"><h1>Tag: ${tag}</h1></div>
             </div>
 	</div>
@@ -17,12 +18,12 @@
         <#assign count=0>
         <#list tag_posts as post>
             <#if (post.status == "published")>
-                <a href="/${post.uri}"><h1>${post.title}</h1></a>
+                <a href="${rootpath}${post.uri}"><h1>${post.title}</h1></a>
                 <p>${post.date?string("dd MMMM yyyy")}</p>
 
                 <p>Tags :
                     <#list post.tags as post_tag>
-                        <a href="/tags/${post_tag}.html">${post_tag}</a><#if post_tag_has_next>, </#if>
+                        <a href="${post_tag}.html">${post_tag}</a><#if post_tag_has_next>, </#if>
                     </#list>
                 </p>
 
@@ -31,7 +32,7 @@
                             <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/${post.uri}"></div>
 
                 <p>${post.body}</p>
-                            <p><a href="/${post.uri}#disqus_thread">Commentaires</a></p>
+                            <p><a href="${rootpath}${post.uri}#disqus_thread">Commentaires</a></p>
                 <#assign count= count + 1 >
             </#if>
 
@@ -43,7 +44,7 @@
 
         <hr />
 
-        <p>Billets plus anciens disponibles sur la page <a href="/${config.archive_file}">archive</a>.</p>
+        <p>Billets plus anciens disponibles sur la page <a href="${rootpath}${config.archive_file}">archive</a>.</p>
 
     </div>
 
@@ -65,7 +66,7 @@
                         </#list>
                     </#list>
 
-                    <li><a href="/tags/${unTag}.html">${unTag}</a> (${count})</li>
+                    <li><a href="${unTag}.html">${unTag}</a> (${count})</li>
                 </#list>
                 </ol>
         </div>
