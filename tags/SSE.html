@@ -9,11 +9,13 @@
     <meta name="keywords" content="">    
 
     <!-- Le styles -->
-    <link href="/css/yeti/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/asciidoctor.css" rel="stylesheet">
-    <link href="/css/base.css" rel="stylesheet">
+    <link href="../css/yeti/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/asciidoctor.css" rel="stylesheet">
+    <link href="../css/base.css" rel="stylesheet">
     <!-- link href="/css/bootstrap-theme.min.css" rel="stylesheet" -->
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.1.0/css/font-awesome.min.css">
+    <link href='http://alexgorbatchev.com/pub/sh/3.0.83/styles/shCore.css' rel='stylesheet' type='text/css'/>
+    <link href='http://alexgorbatchev.com/pub/sh/3.0.83/styles/shThemeDefault.css' rel='stylesheet' type='text/css'/>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -26,7 +28,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
-    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="shortcut icon" href="../favicon.ico">
   </head>
   <body>
     <div id="wrap">
@@ -41,7 +43,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">JustAnOtherDevBlog</a>
+            <a class="navbar-brand" href="../index.html">JustAnOtherDevBlog</a>
           </div>
           <div class="collapse navbar-collapse" id="navbar-menu">
             <ul class="nav navbar-nav">
@@ -55,7 +57,7 @@
 
 	<div class="page-header">
             <div class="row">
-                <div class="col-xs-4 col-md-2"><img src="/img/JustAnOtherDevBlog.png"></div>
+                <div class="col-xs-4 col-md-2"><img src="../img/JustAnOtherDevBlog.png"></div>
                 <div class="col-xs-12 col-md-8"><h1>Tag: SSE</h1></div>
             </div>
 	</div>
@@ -64,14 +66,14 @@
 
     <div class="col-sm-8">
 
-                <a href="/2014/06/server-sent-events-et-cote-client.html"><h1>Server Sent Events, et côté client?</h1></a>
+                <a href="../2014/06/server-sent-events-et-cote-client.html"><h1>Server Sent Events, et côté client?</h1></a>
                 <p>05 juin 2014</p>
 
                 <p>Tags :
-                        <a href="/tags/EventSource.html">EventSource</a>, 
-                        <a href="/tags/javascript.html">javascript</a>, 
-                        <a href="/tags/Server-Sent-Events.html">Server-Sent-Events</a>, 
-                        <a href="/tags/SSE.html">SSE</a>
+                        <a href="EventSource.html">EventSource</a>, 
+                        <a href="javascript.html">javascript</a>, 
+                        <a href="Server-Sent-Events.html">Server-Sent-Events</a>, 
+                        <a href="SSE.html">SSE</a>
                 </p>
 
                             <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/06/server-sent-events-et-cote-client.html" data-text="Server Sent Events, et côté client?" data-via="ybonnel" data-lang="fr">Tweeter</a>
@@ -80,19 +82,19 @@
 
                 <p><p>Aujourd'hui, je vais vous parler de Server Sent Events côté client javascript.</p> <p>Nous allons reprendre le serveur qui envoyait l'heure toutes les secondes codé <a href="http://www.ybonnel.fr/2014/06/server-sent-events-avec-simpleweb4j.html">ici</a>.<p> <p>L'utilisation d'un flux Server Sent Event se fait par l'intermédiaire de l'objet "EventSource" qui prend comme paramètre dans le constructeur l'url du flux. Cet objet possède une fonction "addEventListener" qui prend en paramètres le type de listener (message pour la réception de nouvelles données) ainsi que la callback.</p><p>Si vous êtes comme moi et que vous utilisez angular.js un peu partout, vous savez comment il peut s'avérer complexe de s'intégrer dans son dual binding, mais la méthode $scope.$apply est là pour ça!</p> <p>Voici donc le résultat final :</p><script src="https://gist.github.com/ybonnel/e385ac59e4cf00ebd2f7.js"></script> <br/><p>Et voilà, c'est pas bien compliqué de faire du temps réel :)</p><p>Petit précision, EventSource n'est pas supporté par IE, mais il existe un contournement : <a href="https://github.com/Yaffle/EventSource/">github.com/Yaffle/EventSource</a></p>
 </p>
-                            <p><a href="/2014/06/server-sent-events-et-cote-client.html#disqus_thread">Commentaires</a></p>
+                            <p><a href="../2014/06/server-sent-events-et-cote-client.html#disqus_thread">Commentaires</a></p>
 
 
-                <a href="/2014/06/server-sent-events-reactifs-avec.html"><h1>Server Sent Events réactifs avec SimpleWeb4j</h1></a>
+                <a href="../2014/06/server-sent-events-reactifs-avec.html"><h1>Server Sent Events réactifs avec SimpleWeb4j</h1></a>
                 <p>04 juin 2014</p>
 
                 <p>Tags :
-                        <a href="/tags/EventSource.html">EventSource</a>, 
-                        <a href="/tags/java8.html">java8</a>, 
-                        <a href="/tags/reactive.html">reactive</a>, 
-                        <a href="/tags/Server-Sent-Events.html">Server-Sent-Events</a>, 
-                        <a href="/tags/SimpleWeb4j.html">SimpleWeb4j</a>, 
-                        <a href="/tags/SSE.html">SSE</a>
+                        <a href="EventSource.html">EventSource</a>, 
+                        <a href="java8.html">java8</a>, 
+                        <a href="reactive.html">reactive</a>, 
+                        <a href="Server-Sent-Events.html">Server-Sent-Events</a>, 
+                        <a href="SimpleWeb4j.html">SimpleWeb4j</a>, 
+                        <a href="SSE.html">SSE</a>
                 </p>
 
                             <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/06/server-sent-events-reactifs-avec.html" data-text="Server Sent Events réactifs avec SimpleWeb4j" data-via="ybonnel" data-lang="fr">Tweeter</a>
@@ -101,18 +103,18 @@
 
                 <p><p>Nous avons vu <a href="http://www.ybonnel.fr/2014/06/server-sent-events-avec-simpleweb4j.html">hier</a> un exemple simple de Server Sent Events avec SimpleWeb4j, passons maintenant à plus complexe, un exemple dit "réactif", ce n'est pas le flux qui demande la valeur suivante, mais bien un "service" extérieure qui déclenche l'envoi à tous les flux ouverts.</p> <p>Pour l'exemple, nous allons créer trois générateurs d'événements, avec chacun un délai aléatoire entre les événements.</p><p>Nous allons donc tout d'abord créer une classe "Event", cette classe contient un nom, une valeur et l'heure de création. La valeur est créée de manière aléatoire.</p><p>Nous allons ensuite créer un générateur, qui est un Runnable infini, et envoi des événements aux handlers SimpleWeb4j.</p><p>Un handler SimpleWeb4j est une classe fournie par SimpleWeb4j qui contient une méthode "next" permettant d'envoyer les événements. Nous stockerons ces handlers dans un ConcurrentHashSet pour pouvoir tous les adresser (et pas seulement le dernier flux créé.</p><p>Une fois tous ces composants créés, il suffit de déclarer la route, voici donc le résultat final :</p><script src="https://gist.github.com/ybonnel/8f17b95b7c646f35b674.js"></script><br/><p>J'espère vous avoir montré l'intérêt de SimpleWeb4j sur ce cas beaucoup moins simple que le précédent.</p><p>Si le sujet vous intéresse, vous pouvez regarder ma présentation donnée au <a href="http://www.breizhcamp.org">Breizhcamp</a> sur <a href="http://www.parleys.com/play/538c8865e4b0a38a46cbec9e">parleys</a> :</p><iframe type="text/html" width="420" height="290" mozallowfullscreen="true" webkitallowfullscreen="true" src="http://www.parleys.com/share.html#play/538c8865e4b0a38a46cbec9e" frameborder="0">&lt;br /&gt;</iframe>
 </p>
-                            <p><a href="/2014/06/server-sent-events-reactifs-avec.html#disqus_thread">Commentaires</a></p>
+                            <p><a href="../2014/06/server-sent-events-reactifs-avec.html#disqus_thread">Commentaires</a></p>
 
 
-                <a href="/2014/06/server-sent-events-avec-simpleweb4j.html"><h1>Server Sent Events avec SimpleWeb4j</h1></a>
+                <a href="../2014/06/server-sent-events-avec-simpleweb4j.html"><h1>Server Sent Events avec SimpleWeb4j</h1></a>
                 <p>03 juin 2014</p>
 
                 <p>Tags :
-                        <a href="/tags/EventSource.html">EventSource</a>, 
-                        <a href="/tags/java8.html">java8</a>, 
-                        <a href="/tags/Server-Sent-Events.html">Server-Sent-Events</a>, 
-                        <a href="/tags/SimpleWeb4j.html">SimpleWeb4j</a>, 
-                        <a href="/tags/SSE.html">SSE</a>
+                        <a href="EventSource.html">EventSource</a>, 
+                        <a href="java8.html">java8</a>, 
+                        <a href="Server-Sent-Events.html">Server-Sent-Events</a>, 
+                        <a href="SimpleWeb4j.html">SimpleWeb4j</a>, 
+                        <a href="SSE.html">SSE</a>
                 </p>
 
                             <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/06/server-sent-events-avec-simpleweb4j.html" data-text="Server Sent Events avec SimpleWeb4j" data-via="ybonnel" data-lang="fr">Tweeter</a>
@@ -121,18 +123,18 @@
 
                 <p><p>Je vous ai montré <a href="http://www.ybonnel.fr/2014/06/server-sent-events-avec-jetty.html">hier</a> comment faire du SSE avec Jetty. Nous allons maintenant voir comment faire avec SimpleWeb4j.</p> <p>L'exemple avec jetty était une horloge déclenchée toutes les secondes à partir de l'accès à l'url, voyons donc comment coder cela avec SimpleWeb4j : <script src="https://gist.github.com/ybonnel/f508c8c511c3cd429742.js"></script>Simple, non? </p><br/> <p>Dans la vrai vie, on souhaite sans doute pouvoir déclencher simplement l'envoie d'un événement sans être dépendant d'un délai quelconque. Ce sera l'objet de l'article de demain :)</p>
 </p>
-                            <p><a href="/2014/06/server-sent-events-avec-simpleweb4j.html#disqus_thread">Commentaires</a></p>
+                            <p><a href="../2014/06/server-sent-events-avec-simpleweb4j.html#disqus_thread">Commentaires</a></p>
 
 
-                <a href="/2014/06/server-sent-events-avec-jetty.html"><h1>Server Sent Events avec Jetty</h1></a>
+                <a href="../2014/06/server-sent-events-avec-jetty.html"><h1>Server Sent Events avec Jetty</h1></a>
                 <p>02 juin 2014</p>
 
                 <p>Tags :
-                        <a href="/tags/EventSource.html">EventSource</a>, 
-                        <a href="/tags/java8.html">java8</a>, 
-                        <a href="/tags/Jetty.html">Jetty</a>, 
-                        <a href="/tags/Server-Sent-Events.html">Server-Sent-Events</a>, 
-                        <a href="/tags/SSE.html">SSE</a>
+                        <a href="EventSource.html">EventSource</a>, 
+                        <a href="java8.html">java8</a>, 
+                        <a href="Jetty.html">Jetty</a>, 
+                        <a href="Server-Sent-Events.html">Server-Sent-Events</a>, 
+                        <a href="SSE.html">SSE</a>
                 </p>
 
                             <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/06/server-sent-events-avec-jetty.html" data-text="Server Sent Events avec Jetty" data-via="ybonnel" data-lang="fr">Tweeter</a>
@@ -141,13 +143,13 @@
 
                 <p><p>Je vais aujourd'hui vous présenter comment faire du <a href="http://dev.w3.org/html5/eventsource/">Server-Sent-Events</a> (EventSource) avec Jetty.</p> <h2>C'est quoi</h2><p>Si vous avez déjà lu w3c, passez au chapitre suivant :)</p><p>La technologie Server Sent Events (ou EventSource du nom de l'API javascripts) est une technologie permettant de faire du push du serveur vers le client en gardant une connexion ouverte.</p><p>Un des gros avantages selon moi de cette technologie est sa simplicité, c'est du texte sur HTTP. Chaque événement est préfixé de "data: ", et on met deux retours à la ligne pour séparer les événements (je simplifie un peu).</p><br/> <h2>Comment je fait coté serveur avec Jetty</h2><p>Le plus simple est encore de vous montrer le code :)</p><script src="https://gist.github.com/ybonnel/85850107b392ceac43c7.js"></script><br/> <p>Demain, je vous montrerai que c'est quand même beaucoup plus simple d'utiliser SimpleWeb4j pour le faire :)</p>
 </p>
-                            <p><a href="/2014/06/server-sent-events-avec-jetty.html#disqus_thread">Commentaires</a></p>
+                            <p><a href="../2014/06/server-sent-events-avec-jetty.html#disqus_thread">Commentaires</a></p>
 
 
 
         <hr />
 
-        <p>Billets plus anciens disponibles sur la page <a href="/archive.html">archive</a>.</p>
+        <p>Billets plus anciens disponibles sur la page <a href="../archive.html">archive</a>.</p>
 
     </div>
 
@@ -160,79 +162,79 @@
         <div class="sidebar-module">
                 <ol class="list-unstyled" style="margin-left: 0px">
 
-                    <li><a href="/tags/Android.html">Android</a> (2)</li>
+                    <li><a href="Android.html">Android</a> (2)</li>
 
-                    <li><a href="/tags/Assertj.html">Assertj</a> (1)</li>
+                    <li><a href="Assertj.html">Assertj</a> (1)</li>
 
-                    <li><a href="/tags/auto-hébergement.html">auto-hébergement</a> (1)</li>
+                    <li><a href="auto-hébergement.html">auto-hébergement</a> (1)</li>
 
-                    <li><a href="/tags/Awaitility.html">Awaitility</a> (1)</li>
+                    <li><a href="Awaitility.html">Awaitility</a> (1)</li>
 
-                    <li><a href="/tags/cloud.html">cloud</a> (1)</li>
+                    <li><a href="cloud.html">cloud</a> (1)</li>
 
-                    <li><a href="/tags/CodeStory.html">CodeStory</a> (5)</li>
+                    <li><a href="CodeStory.html">CodeStory</a> (5)</li>
 
-                    <li><a href="/tags/Comparatif.html">Comparatif</a> (1)</li>
+                    <li><a href="Comparatif.html">Comparatif</a> (1)</li>
 
-                    <li><a href="/tags/couchbase.html">couchbase</a> (1)</li>
+                    <li><a href="couchbase.html">couchbase</a> (1)</li>
 
-                    <li><a href="/tags/CSV.html">CSV</a> (3)</li>
+                    <li><a href="CSV.html">CSV</a> (3)</li>
 
-                    <li><a href="/tags/CsvEngine.html">CsvEngine</a> (1)</li>
+                    <li><a href="CsvEngine.html">CsvEngine</a> (1)</li>
 
-                    <li><a href="/tags/Devoxx.html">Devoxx</a> (5)</li>
+                    <li><a href="Devoxx.html">Devoxx</a> (5)</li>
 
-                    <li><a href="/tags/EventSource.html">EventSource</a> (4)</li>
+                    <li><a href="EventSource.html">EventSource</a> (4)</li>
 
-                    <li><a href="/tags/ExecutorService.html">ExecutorService</a> (1)</li>
+                    <li><a href="ExecutorService.html">ExecutorService</a> (1)</li>
 
-                    <li><a href="/tags/git.html">git</a> (1)</li>
+                    <li><a href="git.html">git</a> (1)</li>
 
-                    <li><a href="/tags/Google.html">Google</a> (1)</li>
+                    <li><a href="Google.html">Google</a> (1)</li>
 
-                    <li><a href="/tags/Groovy.html">Groovy</a> (1)</li>
+                    <li><a href="Groovy.html">Groovy</a> (1)</li>
 
-                    <li><a href="/tags/Jajascript.html">Jajascript</a> (1)</li>
+                    <li><a href="Jajascript.html">Jajascript</a> (1)</li>
 
-                    <li><a href="/tags/Java.html">Java</a> (15)</li>
+                    <li><a href="Java.html">Java</a> (15)</li>
 
-                    <li><a href="/tags/java8.html">java8</a> (6)</li>
+                    <li><a href="java8.html">java8</a> (6)</li>
 
-                    <li><a href="/tags/javascript.html">javascript</a> (2)</li>
+                    <li><a href="javascript.html">javascript</a> (2)</li>
 
-                    <li><a href="/tags/JEE.html">JEE</a> (1)</li>
+                    <li><a href="JEE.html">JEE</a> (1)</li>
 
-                    <li><a href="/tags/Jetty.html">Jetty</a> (3)</li>
+                    <li><a href="Jetty.html">Jetty</a> (3)</li>
 
-                    <li><a href="/tags/json.html">json</a> (1)</li>
+                    <li><a href="json.html">json</a> (1)</li>
 
-                    <li><a href="/tags/Logo.html">Logo</a> (2)</li>
+                    <li><a href="Logo.html">Logo</a> (2)</li>
 
-                    <li><a href="/tags/NoMock.html">NoMock</a> (1)</li>
+                    <li><a href="NoMock.html">NoMock</a> (1)</li>
 
-                    <li><a href="/tags/OneDay.html">OneDay</a> (1)</li>
+                    <li><a href="OneDay.html">OneDay</a> (1)</li>
 
-                    <li><a href="/tags/OnePost.html">OnePost</a> (1)</li>
+                    <li><a href="OnePost.html">OnePost</a> (1)</li>
 
-                    <li><a href="/tags/reactive.html">reactive</a> (1)</li>
+                    <li><a href="reactive.html">reactive</a> (1)</li>
 
-                    <li><a href="/tags/Rennes.html">Rennes</a> (2)</li>
+                    <li><a href="Rennes.html">Rennes</a> (2)</li>
 
-                    <li><a href="/tags/REST.html">REST</a> (1)</li>
+                    <li><a href="REST.html">REST</a> (1)</li>
 
-                    <li><a href="/tags/Scalaskel.html">Scalaskel</a> (1)</li>
+                    <li><a href="Scalaskel.html">Scalaskel</a> (1)</li>
 
-                    <li><a href="/tags/Server-Sent-Events.html">Server-Sent-Events</a> (4)</li>
+                    <li><a href="Server-Sent-Events.html">Server-Sent-Events</a> (4)</li>
 
-                    <li><a href="/tags/simple.html">simple</a> (3)</li>
+                    <li><a href="simple.html">simple</a> (3)</li>
 
-                    <li><a href="/tags/SimpleWeb4j.html">SimpleWeb4j</a> (6)</li>
+                    <li><a href="SimpleWeb4j.html">SimpleWeb4j</a> (6)</li>
 
-                    <li><a href="/tags/SSE.html">SSE</a> (4)</li>
+                    <li><a href="SSE.html">SSE</a> (4)</li>
 
-                    <li><a href="/tags/TDD.html">TDD</a> (2)</li>
+                    <li><a href="TDD.html">TDD</a> (2)</li>
 
-                    <li><a href="/tags/websocket.html">websocket</a> (2)</li>
+                    <li><a href="websocket.html">websocket</a> (2)</li>
                 </ol>
         </div>
     </div>
@@ -255,7 +257,23 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <!-- script src="/js/jquery-1.10.2.min.js"></script -->
     <!-- script src="/js/bootstrap.min.js"></script -->
-    <script src="/js/run_prettify.js"></script>
+    <script src="../js/run_prettify.js"></script>
+
+    <script src='http://alexgorbatchev.com/pub/sh/3.0.83/scripts/shCore.js' type='text/javascript'></script>
+    <script src='http://alexgorbatchev.com/pub/sh/3.0.83/scripts/shBrushCss.js' type='text/javascript'></script>
+    <script src='http://alexgorbatchev.com/pub/sh/3.0.83/scripts/shBrushJava.js' type='text/javascript'></script>
+    <script src='http://alexgorbatchev.com/pub/sh/3.0.83/scripts/shBrushJScript.js' type='text/javascript'></script>
+    <script src='http://alexgorbatchev.com/pub/sh/3.0.83/scripts/shBrushSql.js' type='text/javascript'></script>
+    <script src='http://alexgorbatchev.com/pub/sh/3.0.83/scripts/shBrushVb.js' type='text/javascript'></script>
+    <script src='http://alexgorbatchev.com/pub/sh/3.0.83/scripts/shBrushXml.js' type='text/javascript'></script>
+    <script src='http://alexgorbatchev.com/pub/sh/3.0.83/scripts/shBrushBash.js' type='text/javascript'></script>
+
+
+    <script language='javascript'>
+        SyntaxHighlighter.config.bloggerMode = true;
+        SyntaxHighlighter.all();
+    </script>
+
 
     <script type="text/javascript">
         window.___gcfg = {lang: 'fr'};
