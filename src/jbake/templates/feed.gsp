@@ -5,7 +5,7 @@
     <link>${config.site_host}</link>
     <atom:link href="${config.site_host}/${config.feed_file}" rel="self" type="application/rss+xml" />
     <description>JustAnOtherDevBlog</description>
-    <language>fr-fr</language>
+    <language>en-gb</language>
       <pubDate>${new java.text.SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z", Locale.US).format(published_date)}</pubDate>
       <lastBuildDate>${new java.text.SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z", Locale.US).format(published_date)}</lastBuildDate>
 
@@ -14,7 +14,7 @@
           <title>${post.title}</title>
           <link>${config.site_host}/${post.uri}</link>
           <pubDate>${new java.text.SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z", Locale.US).format(post.date)}</pubDate>
-          <guid isPermaLink="false">${post.uri}</guid>
+          <guid isPermaLink="false">${config.site_host}/${post.uri}</guid>
           <description>
               ${post.body.replace("&", "&amp;").replace("<","&lt;").replace(">","&gt;").replace("\"", "&quot;").replace("'", "&apos;")}
           </description>
