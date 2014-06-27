@@ -58,21 +58,28 @@
 
 	
 	<div class="page-header">
-		<h1>WebSocket, et comment on teste?</h1>
+        <div class="row">
+            <div class="col-xs-4 col-md-2"><img src="../../img/JustAnOtherDevBlog.png"></div>
+            <div class="col-xs-12 col-md-8"><h1>WebSocket, et comment on teste?</h1></div>
+        </div>
 	</div>
 
-	<p><em>18 juin 2014</em></p>
+    <div class="row">
+
+        <div class="col-sm-8">
+
+        <p><em>18 juin 2014</em></p>
 
 
-    <p>Tags :
-    <a href="../../tags/Assertj.html">Assertj</a>, <a href="../../tags/Awaitility.html">Awaitility</a>, <a href="../../tags/Java.html">Java</a>, <a href="../../tags/Jetty.html">Jetty</a>, <a href="../../tags/SimpleWeb4j.html">SimpleWeb4j</a>, <a href="../../tags/websocket.html">websocket</a>
-    </p>
+        <p>Tags :
+        <a href="../../tags/Assertj.html">Assertj</a>, <a href="../../tags/Awaitility.html">Awaitility</a>, <a href="../../tags/Java.html">Java</a>, <a href="../../tags/Jetty.html">Jetty</a>, <a href="../../tags/SimpleWeb4j.html">SimpleWeb4j</a>, <a href="../../tags/websocket.html">websocket</a>
+        </p>
 
-    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/06/websocket-et-comment-on-teste.html" data-via="ybonnel" data-text="WebSocket, et comment on teste?" data-lang="fr">Tweeter</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-    <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/06/websocket-et-comment-on-teste.html"></div>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/06/websocket-et-comment-on-teste.html" data-via="ybonnel" data-text="WebSocket, et comment on teste?" data-lang="fr">Tweeter</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/06/websocket-et-comment-on-teste.html"></div>
 
-	<p><p>On a vu comment implémenter des websockets avec SimpleWeb4j dans un précédant <a href="http://www.ybonnel.fr/2014/06/websocket-et-simpleweb4j.html">article</a>, nous allons maintenant voir comment tester de manière automatisée la partie serveur websocket.</p><br/><h2>Librairies tierces</h2><p>Pour garder un code relativement propre, je vais utiliser trois librairies : <ul><li><a href="http://www.eclipse.org/jetty/documentation/current/jetty-websocket-client-api.html">websocket-client</a> : Client WebSocket en java.</li><li><a href="http://joel-costigliola.github.io/assertj/">assertj-core</a> : Librairie d'assertion "fluent"</li><li><a href="https://code.google.com/p/awaitility/">awaitility</a> : Librairie d'attente (pour gérer l'asynchrone)</li></ul></p><br/> <h2>Je veux faire quoi comme test?</h2><p>Je cherche à tester le code du billet précédant qui, pour rappel, était un système de chat. Le serveur de websocket reçoit donc des messages qu'il redistribue à tous les clients connectés.</p><p>Scénario de test : <ul><li>Ouverture d'une session 1.</li><li>Envoi d'un message par la session 1 (message 1).</li><li>Ouverture d'une session 2.</li><li>Envoi d'un message par la session 2 (message 2).</li><li>Envoi d'un message par la session 1 (message 3).</li><li>Fermeture de la session 1.</li><li>Envoi d'un message par la session 2 (message 4).</li><li>Fermeture de la session 2.</li>  </ul></p><p>Vérifications à faire : <ul><li>La session 1 a reçu 3 messages (les messages 1 à 3)</li><li>La session 2 a reçu 3 messages (les messages 2 à 4)</li></ul></p><br/> <h2>Code de test</h2><p>Assez parler, place au code. J'espère que les commentaires sont suffisants, si ce n'est pas le cas, n'hésitez pas à le dire j'en ajouterais.</p><script src="https://gist.github.com/ybonnel/fdc9348326e0667c52c7.js"></script>
+        <p><p>On a vu comment implémenter des websockets avec SimpleWeb4j dans un précédant <a href="http://www.ybonnel.fr/2014/06/websocket-et-simpleweb4j.html">article</a>, nous allons maintenant voir comment tester de manière automatisée la partie serveur websocket.</p><br/><h2>Librairies tierces</h2><p>Pour garder un code relativement propre, je vais utiliser trois librairies : <ul><li><a href="http://www.eclipse.org/jetty/documentation/current/jetty-websocket-client-api.html">websocket-client</a> : Client WebSocket en java.</li><li><a href="http://joel-costigliola.github.io/assertj/">assertj-core</a> : Librairie d'assertion "fluent"</li><li><a href="https://code.google.com/p/awaitility/">awaitility</a> : Librairie d'attente (pour gérer l'asynchrone)</li></ul></p><br/> <h2>Je veux faire quoi comme test?</h2><p>Je cherche à tester le code du billet précédant qui, pour rappel, était un système de chat. Le serveur de websocket reçoit donc des messages qu'il redistribue à tous les clients connectés.</p><p>Scénario de test : <ul><li>Ouverture d'une session 1.</li><li>Envoi d'un message par la session 1 (message 1).</li><li>Ouverture d'une session 2.</li><li>Envoi d'un message par la session 2 (message 2).</li><li>Envoi d'un message par la session 1 (message 3).</li><li>Fermeture de la session 1.</li><li>Envoi d'un message par la session 2 (message 4).</li><li>Fermeture de la session 2.</li>  </ul></p><p>Vérifications à faire : <ul><li>La session 1 a reçu 3 messages (les messages 1 à 3)</li><li>La session 2 a reçu 3 messages (les messages 2 à 4)</li></ul></p><br/> <h2>Code de test</h2><p>Assez parler, place au code. J'espère que les commentaires sont suffisants, si ce n'est pas le cas, n'hésitez pas à le dire j'en ajouterais.</p><script src="https://gist.github.com/ybonnel/fdc9348326e0667c52c7.js"></script>
 </p>
 
         <div id="disqus_thread"></div>
@@ -85,8 +92,146 @@
                 (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
             })();
         </script>
+    </div>
 
-	<hr>
+    <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+        <div class="sidebar-module sidebar-module-inset">
+            <h4>Yan Bonnel</h4>
+            <p>Geek. Technos de prédilections : Java, Android, Git.</p>
+        </div>
+
+        <div class="sidebar-module">
+            <a class="twitter-timeline"  href="https://twitter.com/ybonnel"  data-widget-id="482174196248608769">Tweets de @ybonnel</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+
+        <div class="sidebar-module">
+            <h4>Tags</h4>
+            <ol class="list-unstyled" style="margin-left: 0px">
+                
+
+                <li><a href="../../tags/Java.html">Java</a> (15)</li>
+                
+
+                <li><a href="../../tags/java8.html">java8</a> (6)</li>
+                
+
+                <li><a href="../../tags/SimpleWeb4j.html">SimpleWeb4j</a> (6)</li>
+                
+
+                <li><a href="../../tags/CodeStory.html">CodeStory</a> (5)</li>
+                
+
+                <li><a href="../../tags/Devoxx.html">Devoxx</a> (5)</li>
+                
+
+                <li><a href="../../tags/EventSource.html">EventSource</a> (4)</li>
+                
+
+                <li><a href="../../tags/Server-Sent-Events.html">Server-Sent-Events</a> (4)</li>
+                
+
+                <li><a href="../../tags/SSE.html">SSE</a> (4)</li>
+                
+
+                <li><a href="../../tags/CSV.html">CSV</a> (3)</li>
+                
+
+                <li><a href="../../tags/Jetty.html">Jetty</a> (3)</li>
+                
+
+                <li><a href="../../tags/simple.html">simple</a> (3)</li>
+                
+
+                <li><a href="../../tags/Android.html">Android</a> (2)</li>
+                
+
+                <li><a href="../../tags/javascript.html">javascript</a> (2)</li>
+                
+
+                <li><a href="../../tags/Logo.html">Logo</a> (2)</li>
+                
+
+                <li><a href="../../tags/Rennes.html">Rennes</a> (2)</li>
+                
+
+                <li><a href="../../tags/TDD.html">TDD</a> (2)</li>
+                
+
+                <li><a href="../../tags/websocket.html">websocket</a> (2)</li>
+                
+
+                <li><a href="../../tags/Assertj.html">Assertj</a> (1)</li>
+                
+
+                <li><a href="../../tags/auto-hébergement.html">auto-hébergement</a> (1)</li>
+                
+
+                <li><a href="../../tags/Awaitility.html">Awaitility</a> (1)</li>
+                
+
+                <li><a href="../../tags/blogger.html">blogger</a> (1)</li>
+                
+
+                <li><a href="../../tags/cloud.html">cloud</a> (1)</li>
+                
+
+                <li><a href="../../tags/Comparatif.html">Comparatif</a> (1)</li>
+                
+
+                <li><a href="../../tags/couchbase.html">couchbase</a> (1)</li>
+                
+
+                <li><a href="../../tags/CsvEngine.html">CsvEngine</a> (1)</li>
+                
+
+                <li><a href="../../tags/ExecutorService.html">ExecutorService</a> (1)</li>
+                
+
+                <li><a href="../../tags/git.html">git</a> (1)</li>
+                
+
+                <li><a href="../../tags/github.html">github</a> (1)</li>
+                
+
+                <li><a href="../../tags/Google.html">Google</a> (1)</li>
+                
+
+                <li><a href="../../tags/Groovy.html">Groovy</a> (1)</li>
+                
+
+                <li><a href="../../tags/Jajascript.html">Jajascript</a> (1)</li>
+                
+
+                <li><a href="../../tags/jbake.html">jbake</a> (1)</li>
+                
+
+                <li><a href="../../tags/JEE.html">JEE</a> (1)</li>
+                
+
+                <li><a href="../../tags/json.html">json</a> (1)</li>
+                
+
+                <li><a href="../../tags/NoMock.html">NoMock</a> (1)</li>
+                
+
+                <li><a href="../../tags/OneDay.html">OneDay</a> (1)</li>
+                
+
+                <li><a href="../../tags/OnePost.html">OnePost</a> (1)</li>
+                
+
+                <li><a href="../../tags/reactive.html">reactive</a> (1)</li>
+                
+
+                <li><a href="../../tags/REST.html">REST</a> (1)</li>
+                
+
+                <li><a href="../../tags/Scalaskel.html">Scalaskel</a> (1)</li>
+                
+            </ol>
+        </div>
+    </div>
 	
 		</div>
 		<div id="push"></div>

@@ -58,21 +58,28 @@
 
 	
 	<div class="page-header">
-		<h1>Server Sent Events avec Jetty</h1>
+        <div class="row">
+            <div class="col-xs-4 col-md-2"><img src="../../img/JustAnOtherDevBlog.png"></div>
+            <div class="col-xs-12 col-md-8"><h1>Server Sent Events avec Jetty</h1></div>
+        </div>
 	</div>
 
-	<p><em>02 juin 2014</em></p>
+    <div class="row">
+
+        <div class="col-sm-8">
+
+        <p><em>02 juin 2014</em></p>
 
 
-    <p>Tags :
-    <a href="../../tags/EventSource.html">EventSource</a>, <a href="../../tags/java8.html">java8</a>, <a href="../../tags/Jetty.html">Jetty</a>, <a href="../../tags/Server-Sent-Events.html">Server-Sent-Events</a>, <a href="../../tags/SSE.html">SSE</a>
-    </p>
+        <p>Tags :
+        <a href="../../tags/EventSource.html">EventSource</a>, <a href="../../tags/java8.html">java8</a>, <a href="../../tags/Jetty.html">Jetty</a>, <a href="../../tags/Server-Sent-Events.html">Server-Sent-Events</a>, <a href="../../tags/SSE.html">SSE</a>
+        </p>
 
-    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/06/server-sent-events-avec-jetty.html" data-via="ybonnel" data-text="Server Sent Events avec Jetty" data-lang="fr">Tweeter</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-    <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/06/server-sent-events-avec-jetty.html"></div>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/06/server-sent-events-avec-jetty.html" data-via="ybonnel" data-text="Server Sent Events avec Jetty" data-lang="fr">Tweeter</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/06/server-sent-events-avec-jetty.html"></div>
 
-	<p><p>Je vais aujourd'hui vous présenter comment faire du <a href="http://dev.w3.org/html5/eventsource/">Server-Sent-Events</a> (EventSource) avec Jetty.</p> <h2>C'est quoi</h2><p>Si vous avez déjà lu w3c, passez au chapitre suivant :)</p><p>La technologie Server Sent Events (ou EventSource du nom de l'API javascripts) est une technologie permettant de faire du push du serveur vers le client en gardant une connexion ouverte.</p><p>Un des gros avantages selon moi de cette technologie est sa simplicité, c'est du texte sur HTTP. Chaque événement est préfixé de "data: ", et on met deux retours à la ligne pour séparer les événements (je simplifie un peu).</p><br/> <h2>Comment je fait coté serveur avec Jetty</h2><p>Le plus simple est encore de vous montrer le code :)</p><script src="https://gist.github.com/ybonnel/85850107b392ceac43c7.js"></script><br/> <p>Demain, je vous montrerai que c'est quand même beaucoup plus simple d'utiliser SimpleWeb4j pour le faire :)</p>
+        <p><p>Je vais aujourd'hui vous présenter comment faire du <a href="http://dev.w3.org/html5/eventsource/">Server-Sent-Events</a> (EventSource) avec Jetty.</p> <h2>C'est quoi</h2><p>Si vous avez déjà lu w3c, passez au chapitre suivant :)</p><p>La technologie Server Sent Events (ou EventSource du nom de l'API javascripts) est une technologie permettant de faire du push du serveur vers le client en gardant une connexion ouverte.</p><p>Un des gros avantages selon moi de cette technologie est sa simplicité, c'est du texte sur HTTP. Chaque événement est préfixé de "data: ", et on met deux retours à la ligne pour séparer les événements (je simplifie un peu).</p><br/> <h2>Comment je fait coté serveur avec Jetty</h2><p>Le plus simple est encore de vous montrer le code :)</p><script src="https://gist.github.com/ybonnel/85850107b392ceac43c7.js"></script><br/> <p>Demain, je vous montrerai que c'est quand même beaucoup plus simple d'utiliser SimpleWeb4j pour le faire :)</p>
 </p>
 
         <div id="disqus_thread"></div>
@@ -85,8 +92,146 @@
                 (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
             })();
         </script>
+    </div>
 
-	<hr>
+    <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+        <div class="sidebar-module sidebar-module-inset">
+            <h4>Yan Bonnel</h4>
+            <p>Geek. Technos de prédilections : Java, Android, Git.</p>
+        </div>
+
+        <div class="sidebar-module">
+            <a class="twitter-timeline"  href="https://twitter.com/ybonnel"  data-widget-id="482174196248608769">Tweets de @ybonnel</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+
+        <div class="sidebar-module">
+            <h4>Tags</h4>
+            <ol class="list-unstyled" style="margin-left: 0px">
+                
+
+                <li><a href="../../tags/Java.html">Java</a> (15)</li>
+                
+
+                <li><a href="../../tags/java8.html">java8</a> (6)</li>
+                
+
+                <li><a href="../../tags/SimpleWeb4j.html">SimpleWeb4j</a> (6)</li>
+                
+
+                <li><a href="../../tags/CodeStory.html">CodeStory</a> (5)</li>
+                
+
+                <li><a href="../../tags/Devoxx.html">Devoxx</a> (5)</li>
+                
+
+                <li><a href="../../tags/EventSource.html">EventSource</a> (4)</li>
+                
+
+                <li><a href="../../tags/Server-Sent-Events.html">Server-Sent-Events</a> (4)</li>
+                
+
+                <li><a href="../../tags/SSE.html">SSE</a> (4)</li>
+                
+
+                <li><a href="../../tags/CSV.html">CSV</a> (3)</li>
+                
+
+                <li><a href="../../tags/Jetty.html">Jetty</a> (3)</li>
+                
+
+                <li><a href="../../tags/simple.html">simple</a> (3)</li>
+                
+
+                <li><a href="../../tags/Android.html">Android</a> (2)</li>
+                
+
+                <li><a href="../../tags/javascript.html">javascript</a> (2)</li>
+                
+
+                <li><a href="../../tags/Logo.html">Logo</a> (2)</li>
+                
+
+                <li><a href="../../tags/Rennes.html">Rennes</a> (2)</li>
+                
+
+                <li><a href="../../tags/TDD.html">TDD</a> (2)</li>
+                
+
+                <li><a href="../../tags/websocket.html">websocket</a> (2)</li>
+                
+
+                <li><a href="../../tags/Assertj.html">Assertj</a> (1)</li>
+                
+
+                <li><a href="../../tags/auto-hébergement.html">auto-hébergement</a> (1)</li>
+                
+
+                <li><a href="../../tags/Awaitility.html">Awaitility</a> (1)</li>
+                
+
+                <li><a href="../../tags/blogger.html">blogger</a> (1)</li>
+                
+
+                <li><a href="../../tags/cloud.html">cloud</a> (1)</li>
+                
+
+                <li><a href="../../tags/Comparatif.html">Comparatif</a> (1)</li>
+                
+
+                <li><a href="../../tags/couchbase.html">couchbase</a> (1)</li>
+                
+
+                <li><a href="../../tags/CsvEngine.html">CsvEngine</a> (1)</li>
+                
+
+                <li><a href="../../tags/ExecutorService.html">ExecutorService</a> (1)</li>
+                
+
+                <li><a href="../../tags/git.html">git</a> (1)</li>
+                
+
+                <li><a href="../../tags/github.html">github</a> (1)</li>
+                
+
+                <li><a href="../../tags/Google.html">Google</a> (1)</li>
+                
+
+                <li><a href="../../tags/Groovy.html">Groovy</a> (1)</li>
+                
+
+                <li><a href="../../tags/Jajascript.html">Jajascript</a> (1)</li>
+                
+
+                <li><a href="../../tags/jbake.html">jbake</a> (1)</li>
+                
+
+                <li><a href="../../tags/JEE.html">JEE</a> (1)</li>
+                
+
+                <li><a href="../../tags/json.html">json</a> (1)</li>
+                
+
+                <li><a href="../../tags/NoMock.html">NoMock</a> (1)</li>
+                
+
+                <li><a href="../../tags/OneDay.html">OneDay</a> (1)</li>
+                
+
+                <li><a href="../../tags/OnePost.html">OnePost</a> (1)</li>
+                
+
+                <li><a href="../../tags/reactive.html">reactive</a> (1)</li>
+                
+
+                <li><a href="../../tags/REST.html">REST</a> (1)</li>
+                
+
+                <li><a href="../../tags/Scalaskel.html">Scalaskel</a> (1)</li>
+                
+            </ol>
+        </div>
+    </div>
 	
 		</div>
 		<div id="push"></div>

@@ -58,21 +58,28 @@
 
 	
 	<div class="page-header">
-		<h1>ConcurrentHashMap et LongAdder</h1>
+        <div class="row">
+            <div class="col-xs-4 col-md-2"><img src="../../img/JustAnOtherDevBlog.png"></div>
+            <div class="col-xs-12 col-md-8"><h1>ConcurrentHashMap et LongAdder</h1></div>
+        </div>
 	</div>
 
-	<p><em>29 mai 2014</em></p>
+    <div class="row">
+
+        <div class="col-sm-8">
+
+        <p><em>29 mai 2014</em></p>
 
 
-    <p>Tags :
-    <a href="../../tags/java8.html">java8</a>
-    </p>
+        <p>Tags :
+        <a href="../../tags/java8.html">java8</a>
+        </p>
 
-    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/05/concurrenthashmap-et-longadder.html" data-via="ybonnel" data-text="ConcurrentHashMap et LongAdder" data-lang="fr">Tweeter</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-    <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/05/concurrenthashmap-et-longadder.html"></div>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/05/concurrenthashmap-et-longadder.html" data-via="ybonnel" data-text="ConcurrentHashMap et LongAdder" data-lang="fr">Tweeter</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/05/concurrenthashmap-et-longadder.html"></div>
 
-	<p><p>Le sujet du jour est de réaliser un petit filtre de Servlet pour stocker le nombre d'appels pour chaque url.</p> <p>Pour réaliser cela, il suffit de lire la javadoc de <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ConcurrentHashMap.html">ConcurrentHashMap</a> et plus particulièrement : <br/><i>A ConcurrentHashMap can be used as scalable frequency map (a form of histogram or multiset) by using LongAdder values and initializing via computeIfAbsent. For example, to add a count to a ConcurrentHashMap&lt;String,LongAdder&gt; freqs, you can use freqs.computeIfAbsent(k -> new LongAdder()).increment();</i></p> <p>L'implémentation est donc très simple : <script src="https://gist.github.com/ybonnel/e0054c49a29ae7953c32.js"></script></p> <p>L'affichage n'est pas plus compliqué : <script src="https://gist.github.com/ybonnel/80b1d3d2edbcd7272597.js"></script></p> <p>On a donc une gestion de stats thread safe et performante en une ligne de code :)</p>
+        <p><p>Le sujet du jour est de réaliser un petit filtre de Servlet pour stocker le nombre d'appels pour chaque url.</p> <p>Pour réaliser cela, il suffit de lire la javadoc de <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ConcurrentHashMap.html">ConcurrentHashMap</a> et plus particulièrement : <br/><i>A ConcurrentHashMap can be used as scalable frequency map (a form of histogram or multiset) by using LongAdder values and initializing via computeIfAbsent. For example, to add a count to a ConcurrentHashMap&lt;String,LongAdder&gt; freqs, you can use freqs.computeIfAbsent(k -> new LongAdder()).increment();</i></p> <p>L'implémentation est donc très simple : <script src="https://gist.github.com/ybonnel/e0054c49a29ae7953c32.js"></script></p> <p>L'affichage n'est pas plus compliqué : <script src="https://gist.github.com/ybonnel/80b1d3d2edbcd7272597.js"></script></p> <p>On a donc une gestion de stats thread safe et performante en une ligne de code :)</p>
 </p>
 
         <div id="disqus_thread"></div>
@@ -85,8 +92,146 @@
                 (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
             })();
         </script>
+    </div>
 
-	<hr>
+    <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+        <div class="sidebar-module sidebar-module-inset">
+            <h4>Yan Bonnel</h4>
+            <p>Geek. Technos de prédilections : Java, Android, Git.</p>
+        </div>
+
+        <div class="sidebar-module">
+            <a class="twitter-timeline"  href="https://twitter.com/ybonnel"  data-widget-id="482174196248608769">Tweets de @ybonnel</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+
+        <div class="sidebar-module">
+            <h4>Tags</h4>
+            <ol class="list-unstyled" style="margin-left: 0px">
+                
+
+                <li><a href="../../tags/Java.html">Java</a> (15)</li>
+                
+
+                <li><a href="../../tags/java8.html">java8</a> (6)</li>
+                
+
+                <li><a href="../../tags/SimpleWeb4j.html">SimpleWeb4j</a> (6)</li>
+                
+
+                <li><a href="../../tags/CodeStory.html">CodeStory</a> (5)</li>
+                
+
+                <li><a href="../../tags/Devoxx.html">Devoxx</a> (5)</li>
+                
+
+                <li><a href="../../tags/EventSource.html">EventSource</a> (4)</li>
+                
+
+                <li><a href="../../tags/Server-Sent-Events.html">Server-Sent-Events</a> (4)</li>
+                
+
+                <li><a href="../../tags/SSE.html">SSE</a> (4)</li>
+                
+
+                <li><a href="../../tags/CSV.html">CSV</a> (3)</li>
+                
+
+                <li><a href="../../tags/Jetty.html">Jetty</a> (3)</li>
+                
+
+                <li><a href="../../tags/simple.html">simple</a> (3)</li>
+                
+
+                <li><a href="../../tags/Android.html">Android</a> (2)</li>
+                
+
+                <li><a href="../../tags/javascript.html">javascript</a> (2)</li>
+                
+
+                <li><a href="../../tags/Logo.html">Logo</a> (2)</li>
+                
+
+                <li><a href="../../tags/Rennes.html">Rennes</a> (2)</li>
+                
+
+                <li><a href="../../tags/TDD.html">TDD</a> (2)</li>
+                
+
+                <li><a href="../../tags/websocket.html">websocket</a> (2)</li>
+                
+
+                <li><a href="../../tags/Assertj.html">Assertj</a> (1)</li>
+                
+
+                <li><a href="../../tags/auto-hébergement.html">auto-hébergement</a> (1)</li>
+                
+
+                <li><a href="../../tags/Awaitility.html">Awaitility</a> (1)</li>
+                
+
+                <li><a href="../../tags/blogger.html">blogger</a> (1)</li>
+                
+
+                <li><a href="../../tags/cloud.html">cloud</a> (1)</li>
+                
+
+                <li><a href="../../tags/Comparatif.html">Comparatif</a> (1)</li>
+                
+
+                <li><a href="../../tags/couchbase.html">couchbase</a> (1)</li>
+                
+
+                <li><a href="../../tags/CsvEngine.html">CsvEngine</a> (1)</li>
+                
+
+                <li><a href="../../tags/ExecutorService.html">ExecutorService</a> (1)</li>
+                
+
+                <li><a href="../../tags/git.html">git</a> (1)</li>
+                
+
+                <li><a href="../../tags/github.html">github</a> (1)</li>
+                
+
+                <li><a href="../../tags/Google.html">Google</a> (1)</li>
+                
+
+                <li><a href="../../tags/Groovy.html">Groovy</a> (1)</li>
+                
+
+                <li><a href="../../tags/Jajascript.html">Jajascript</a> (1)</li>
+                
+
+                <li><a href="../../tags/jbake.html">jbake</a> (1)</li>
+                
+
+                <li><a href="../../tags/JEE.html">JEE</a> (1)</li>
+                
+
+                <li><a href="../../tags/json.html">json</a> (1)</li>
+                
+
+                <li><a href="../../tags/NoMock.html">NoMock</a> (1)</li>
+                
+
+                <li><a href="../../tags/OneDay.html">OneDay</a> (1)</li>
+                
+
+                <li><a href="../../tags/OnePost.html">OnePost</a> (1)</li>
+                
+
+                <li><a href="../../tags/reactive.html">reactive</a> (1)</li>
+                
+
+                <li><a href="../../tags/REST.html">REST</a> (1)</li>
+                
+
+                <li><a href="../../tags/Scalaskel.html">Scalaskel</a> (1)</li>
+                
+            </ol>
+        </div>
+    </div>
 	
 		</div>
 		<div id="push"></div>

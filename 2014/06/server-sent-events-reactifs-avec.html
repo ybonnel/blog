@@ -58,21 +58,28 @@
 
 	
 	<div class="page-header">
-		<h1>Server Sent Events réactifs avec SimpleWeb4j</h1>
+        <div class="row">
+            <div class="col-xs-4 col-md-2"><img src="../../img/JustAnOtherDevBlog.png"></div>
+            <div class="col-xs-12 col-md-8"><h1>Server Sent Events réactifs avec SimpleWeb4j</h1></div>
+        </div>
 	</div>
 
-	<p><em>04 juin 2014</em></p>
+    <div class="row">
+
+        <div class="col-sm-8">
+
+        <p><em>04 juin 2014</em></p>
 
 
-    <p>Tags :
-    <a href="../../tags/EventSource.html">EventSource</a>, <a href="../../tags/java8.html">java8</a>, <a href="../../tags/reactive.html">reactive</a>, <a href="../../tags/Server-Sent-Events.html">Server-Sent-Events</a>, <a href="../../tags/SimpleWeb4j.html">SimpleWeb4j</a>, <a href="../../tags/SSE.html">SSE</a>
-    </p>
+        <p>Tags :
+        <a href="../../tags/EventSource.html">EventSource</a>, <a href="../../tags/java8.html">java8</a>, <a href="../../tags/reactive.html">reactive</a>, <a href="../../tags/Server-Sent-Events.html">Server-Sent-Events</a>, <a href="../../tags/SimpleWeb4j.html">SimpleWeb4j</a>, <a href="../../tags/SSE.html">SSE</a>
+        </p>
 
-    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/06/server-sent-events-reactifs-avec.html" data-via="ybonnel" data-text="Server Sent Events réactifs avec SimpleWeb4j" data-lang="fr">Tweeter</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-    <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/06/server-sent-events-reactifs-avec.html"></div>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/06/server-sent-events-reactifs-avec.html" data-via="ybonnel" data-text="Server Sent Events réactifs avec SimpleWeb4j" data-lang="fr">Tweeter</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/06/server-sent-events-reactifs-avec.html"></div>
 
-	<p><p>Nous avons vu <a href="http://www.ybonnel.fr/2014/06/server-sent-events-avec-simpleweb4j.html">hier</a> un exemple simple de Server Sent Events avec SimpleWeb4j, passons maintenant à plus complexe, un exemple dit "réactif", ce n'est pas le flux qui demande la valeur suivante, mais bien un "service" extérieure qui déclenche l'envoi à tous les flux ouverts.</p> <p>Pour l'exemple, nous allons créer trois générateurs d'événements, avec chacun un délai aléatoire entre les événements.</p><p>Nous allons donc tout d'abord créer une classe "Event", cette classe contient un nom, une valeur et l'heure de création. La valeur est créée de manière aléatoire.</p><p>Nous allons ensuite créer un générateur, qui est un Runnable infini, et envoi des événements aux handlers SimpleWeb4j.</p><p>Un handler SimpleWeb4j est une classe fournie par SimpleWeb4j qui contient une méthode "next" permettant d'envoyer les événements. Nous stockerons ces handlers dans un ConcurrentHashSet pour pouvoir tous les adresser (et pas seulement le dernier flux créé.</p><p>Une fois tous ces composants créés, il suffit de déclarer la route, voici donc le résultat final :</p><script src="https://gist.github.com/ybonnel/8f17b95b7c646f35b674.js"></script><br/><p>J'espère vous avoir montré l'intérêt de SimpleWeb4j sur ce cas beaucoup moins simple que le précédent.</p><p>Si le sujet vous intéresse, vous pouvez regarder ma présentation donnée au <a href="http://www.breizhcamp.org">Breizhcamp</a> sur <a href="http://www.parleys.com/play/538c8865e4b0a38a46cbec9e">parleys</a> :</p><iframe type="text/html" width="420" height="290" mozallowfullscreen="true" webkitallowfullscreen="true" src="http://www.parleys.com/share.html#play/538c8865e4b0a38a46cbec9e" frameborder="0">&lt;br /&gt;</iframe>
+        <p><p>Nous avons vu <a href="http://www.ybonnel.fr/2014/06/server-sent-events-avec-simpleweb4j.html">hier</a> un exemple simple de Server Sent Events avec SimpleWeb4j, passons maintenant à plus complexe, un exemple dit "réactif", ce n'est pas le flux qui demande la valeur suivante, mais bien un "service" extérieure qui déclenche l'envoi à tous les flux ouverts.</p> <p>Pour l'exemple, nous allons créer trois générateurs d'événements, avec chacun un délai aléatoire entre les événements.</p><p>Nous allons donc tout d'abord créer une classe "Event", cette classe contient un nom, une valeur et l'heure de création. La valeur est créée de manière aléatoire.</p><p>Nous allons ensuite créer un générateur, qui est un Runnable infini, et envoi des événements aux handlers SimpleWeb4j.</p><p>Un handler SimpleWeb4j est une classe fournie par SimpleWeb4j qui contient une méthode "next" permettant d'envoyer les événements. Nous stockerons ces handlers dans un ConcurrentHashSet pour pouvoir tous les adresser (et pas seulement le dernier flux créé.</p><p>Une fois tous ces composants créés, il suffit de déclarer la route, voici donc le résultat final :</p><script src="https://gist.github.com/ybonnel/8f17b95b7c646f35b674.js"></script><br/><p>J'espère vous avoir montré l'intérêt de SimpleWeb4j sur ce cas beaucoup moins simple que le précédent.</p><p>Si le sujet vous intéresse, vous pouvez regarder ma présentation donnée au <a href="http://www.breizhcamp.org">Breizhcamp</a> sur <a href="http://www.parleys.com/play/538c8865e4b0a38a46cbec9e">parleys</a> :</p><iframe type="text/html" width="420" height="290" mozallowfullscreen="true" webkitallowfullscreen="true" src="http://www.parleys.com/share.html#play/538c8865e4b0a38a46cbec9e" frameborder="0">&lt;br /&gt;</iframe>
 </p>
 
         <div id="disqus_thread"></div>
@@ -85,8 +92,146 @@
                 (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
             })();
         </script>
+    </div>
 
-	<hr>
+    <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+        <div class="sidebar-module sidebar-module-inset">
+            <h4>Yan Bonnel</h4>
+            <p>Geek. Technos de prédilections : Java, Android, Git.</p>
+        </div>
+
+        <div class="sidebar-module">
+            <a class="twitter-timeline"  href="https://twitter.com/ybonnel"  data-widget-id="482174196248608769">Tweets de @ybonnel</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+
+        <div class="sidebar-module">
+            <h4>Tags</h4>
+            <ol class="list-unstyled" style="margin-left: 0px">
+                
+
+                <li><a href="../../tags/Java.html">Java</a> (15)</li>
+                
+
+                <li><a href="../../tags/java8.html">java8</a> (6)</li>
+                
+
+                <li><a href="../../tags/SimpleWeb4j.html">SimpleWeb4j</a> (6)</li>
+                
+
+                <li><a href="../../tags/CodeStory.html">CodeStory</a> (5)</li>
+                
+
+                <li><a href="../../tags/Devoxx.html">Devoxx</a> (5)</li>
+                
+
+                <li><a href="../../tags/EventSource.html">EventSource</a> (4)</li>
+                
+
+                <li><a href="../../tags/Server-Sent-Events.html">Server-Sent-Events</a> (4)</li>
+                
+
+                <li><a href="../../tags/SSE.html">SSE</a> (4)</li>
+                
+
+                <li><a href="../../tags/CSV.html">CSV</a> (3)</li>
+                
+
+                <li><a href="../../tags/Jetty.html">Jetty</a> (3)</li>
+                
+
+                <li><a href="../../tags/simple.html">simple</a> (3)</li>
+                
+
+                <li><a href="../../tags/Android.html">Android</a> (2)</li>
+                
+
+                <li><a href="../../tags/javascript.html">javascript</a> (2)</li>
+                
+
+                <li><a href="../../tags/Logo.html">Logo</a> (2)</li>
+                
+
+                <li><a href="../../tags/Rennes.html">Rennes</a> (2)</li>
+                
+
+                <li><a href="../../tags/TDD.html">TDD</a> (2)</li>
+                
+
+                <li><a href="../../tags/websocket.html">websocket</a> (2)</li>
+                
+
+                <li><a href="../../tags/Assertj.html">Assertj</a> (1)</li>
+                
+
+                <li><a href="../../tags/auto-hébergement.html">auto-hébergement</a> (1)</li>
+                
+
+                <li><a href="../../tags/Awaitility.html">Awaitility</a> (1)</li>
+                
+
+                <li><a href="../../tags/blogger.html">blogger</a> (1)</li>
+                
+
+                <li><a href="../../tags/cloud.html">cloud</a> (1)</li>
+                
+
+                <li><a href="../../tags/Comparatif.html">Comparatif</a> (1)</li>
+                
+
+                <li><a href="../../tags/couchbase.html">couchbase</a> (1)</li>
+                
+
+                <li><a href="../../tags/CsvEngine.html">CsvEngine</a> (1)</li>
+                
+
+                <li><a href="../../tags/ExecutorService.html">ExecutorService</a> (1)</li>
+                
+
+                <li><a href="../../tags/git.html">git</a> (1)</li>
+                
+
+                <li><a href="../../tags/github.html">github</a> (1)</li>
+                
+
+                <li><a href="../../tags/Google.html">Google</a> (1)</li>
+                
+
+                <li><a href="../../tags/Groovy.html">Groovy</a> (1)</li>
+                
+
+                <li><a href="../../tags/Jajascript.html">Jajascript</a> (1)</li>
+                
+
+                <li><a href="../../tags/jbake.html">jbake</a> (1)</li>
+                
+
+                <li><a href="../../tags/JEE.html">JEE</a> (1)</li>
+                
+
+                <li><a href="../../tags/json.html">json</a> (1)</li>
+                
+
+                <li><a href="../../tags/NoMock.html">NoMock</a> (1)</li>
+                
+
+                <li><a href="../../tags/OneDay.html">OneDay</a> (1)</li>
+                
+
+                <li><a href="../../tags/OnePost.html">OnePost</a> (1)</li>
+                
+
+                <li><a href="../../tags/reactive.html">reactive</a> (1)</li>
+                
+
+                <li><a href="../../tags/REST.html">REST</a> (1)</li>
+                
+
+                <li><a href="../../tags/Scalaskel.html">Scalaskel</a> (1)</li>
+                
+            </ol>
+        </div>
+    </div>
 	
 		</div>
 		<div id="push"></div>

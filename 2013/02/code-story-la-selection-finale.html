@@ -58,21 +58,28 @@
 
 	
 	<div class="page-header">
-		<h1>Code Story : la sélection finale</h1>
+        <div class="row">
+            <div class="col-xs-4 col-md-2"><img src="../../img/JustAnOtherDevBlog.png"></div>
+            <div class="col-xs-12 col-md-8"><h1>Code Story : la sélection finale</h1></div>
+        </div>
 	</div>
 
-	<p><em>25 février 2013</em></p>
+    <div class="row">
+
+        <div class="col-sm-8">
+
+        <p><em>25 février 2013</em></p>
 
 
-    <p>Tags :
-    <a href="../../tags/CodeStory.html">CodeStory</a>, <a href="../../tags/Devoxx.html">Devoxx</a>, <a href="../../tags/Google.html">Google</a>, <a href="../../tags/Java.html">Java</a>
-    </p>
+        <p>Tags :
+        <a href="../../tags/CodeStory.html">CodeStory</a>, <a href="../../tags/Devoxx.html">Devoxx</a>, <a href="../../tags/Google.html">Google</a>, <a href="../../tags/Java.html">Java</a>
+        </p>
 
-    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2013/02/code-story-la-selection-finale.html" data-via="ybonnel" data-text="Code Story : la sélection finale" data-lang="fr">Tweeter</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-    <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2013/02/code-story-la-selection-finale.html"></div>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2013/02/code-story-la-selection-finale.html" data-via="ybonnel" data-text="Code Story : la sélection finale" data-lang="fr">Tweeter</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2013/02/code-story-la-selection-finale.html"></div>
 
-	<p><p>Si vous me suivez sur twitter, vous savez sans doute déjà que Jeudi dernier (21/02) avait lieu la finale de Code Story. Je vais tenter de vous raconter comment s'est passée cette soirée haute en stress</p> <h3>Le lieu</h3><p>Cette soirée s'est passée chez google à Paris. En tant que fanboy Google, ça suffisait déjà à faire de cette soirée une super soirée :)</p><p>Pour ceux qui ne connaissent pas les bureaux de Google, je peux vous dire un truc, c'est que ça fait envie. Pour vous faire baver, voici simplement la photo du "coin" fumeurs :</p><a href="http://4.bp.blogspot.com/-LNYFsSEdl_I/USsa3Iz2E1I/AAAAAAAAR-A/H7xqyc4RcbM/s1600/fumeurs_google.jpg" imageanchor="1" ><img border="0" src="http://4.bp.blogspot.com/-LNYFsSEdl_I/USsa3Iz2E1I/AAAAAAAAR-A/H7xqyc4RcbM/s320/fumeurs_google.jpg" /></a><br/><br/> <h3>Le déroulement</h3><p>Tout est expliqué sur le <a href="http://code-story.net/2013/02/21/concours-2013-phase-2.html">blog de Code Story</a>, voici cependant un petit résumé. On avait des <a href="http://code-story.net/data/codestory2013.json">données</a> avec pour chaque participant à Code Story, sa ville, trois trucs qu'il aime et deux trucs qu'il n'aime pas. Avec ça on devait construire un site internet from scratch permettant aux participants de connaître ceux avec qui ils ont des atomes crochus.</p><br/><h3>Notre participation</h3><p>Les participants étaient par binômes pour ce concours. J'étais pour ma part avec Alexandre Ardhuin (<a href="https://twitter.com/a14n">@a14n</a>).</p><p>Nous sommes arrivés les mains dans les poches sans rien avoir préparé (ce qui nous a sans doute fait défaut). La première étape a donc été de monter une stack Web et de publier ça pour que ce soit accessible sur Internet. Cette étape nous a pris à peu près 1 heure, à la moitié du temps nous avions donc un magnifique site web accessible sur Internet qui affichait "coucou"...</p><p>Pour afficher autre chose que "coucou", nous avons utilisé le framework Angular.js ce qui nous a permis d'afficher rapidement la liste des participants, le tout codé à l'arrache dans un seul fichier <a href="https://github.com/ybonnel/CodeStoryFinale/commit/baeb84020f14a608e3b114ef81bd8c51bd98e8f5">index.html</a></p><p>Alexandre est ensuite parti sur une présentation géographique des participants via Google Map, mais il n'a pas pu aller au bout à cause des quotas sur le geo-codage, dommage...</p><p>Je suis pour ma part parti sur le refactoring du code pour séparer Javascript, templates HTML et index.html afin de pouvoir mettre en place les routes Angular.js. Tout cela afin d'obtenir un lien par participant affichant les détails de celui-ci. Toutefois, je suis resté bloqué sur de la syntaxe Javascript pendant au moins 10 minutes :</p><p><pre class="brush:javascript"><br />angular.module('CodeStory');<br /></pre>différent de : <pre class="brush:javascript"><br />angular.module('CodeStory', []);<br /></pre>Dans le premiers cas, rien ne s'affiche, et l'erreur dans le console est : "Error: No module: CodeStory", en bref, un compilateur c'est pas si mal! </p><p>Ce refactoring m'a pris beaucoup de temps du coup (environ 20 minutes), et par conséquent il nous restait 25 minutes à peine pour faire la page de détail d'un participant. Nous avons mis environ 15 minutes à mettre en place une page affichant les personnes de la même ville, puis 7 minutes pour afficher les personnes ayant un "Like" en commun. Le "git push" permettant de déployer la dernière fonctionnalité a été fait sur le gong (heureusement qu'on avait un déploiement simplifié!).</p><p>Le code final est dispo sur <a href="https://github.com/ybonnel/CodeStoryFinale">github</a>.</p> <h3>Le résultat</h3><p>Une fois l'épreuve terminée, chaque binôme a eu 3 minutes pour présenter l'application aux jury. Nous sommes passés en premier, ce qui a permis de faire rapidement retomber le stress...</p><p>Au final c'est Xavier Hanin (<a href="https://twitter.com/xavierhanin">@Xavierhanin</a>) et Christophe Labouisse (<a href="https://twitter.com/XtlCnslt">@XtlCnslt</a>) qui ont gagné, et nous avons été second. Un grand bravo à eux, et je leur donne rendez-vous à Devoxx France pour les voir en action :)</p> <h3>Nos erreurs</h3><p>Notre première erreur a été de venir les mains dans les poches, il était prévisible que le Jury allait nous demander de coder une appli Web, si nous étions venus avec une stack Web prête à déployer, nous aurions gagné une heure...</p><p>N'ayant pas de stack web prête à déployer nous aurions dû partir sur un site directement hébergé sur github, n'ayant jamais utilisé le backend, cela aurait fait l'affaire, et nous aurions encore une fois gagné une heure...</p><p>Pour finir, voici : <ul><li>Ce que nous avons sorti à la fin du concours : <a href="http://serveur.ybonnel.fr:8080">http://serveur.ybonnel.fr:8080</a></li><li>Ce que nous aurions pu sortir avec l'heure de gagnée : <a href="http://ybonnel.github.com/CodeStoryFinale">http://ybonnel.github.com/CodeStoryFinale</a></li></ul>Pour les plus curieux le diff est dispo sur <a href="https://github.com/ybonnel/CodeStoryFinale/compare/f3b6d35e07172deae6d5322a8f4fab0059538a9d...gh-pages">github</a></p><br/><br/><p>Si vous avez eu le courage de lire jusque là, vous aurez peut-être le courage de regarder la <a href="http://www.youtube.com/watch?v=c26ORroLSAQ">vidéo</a>!</p> 
+        <p><p>Si vous me suivez sur twitter, vous savez sans doute déjà que Jeudi dernier (21/02) avait lieu la finale de Code Story. Je vais tenter de vous raconter comment s'est passée cette soirée haute en stress</p> <h3>Le lieu</h3><p>Cette soirée s'est passée chez google à Paris. En tant que fanboy Google, ça suffisait déjà à faire de cette soirée une super soirée :)</p><p>Pour ceux qui ne connaissent pas les bureaux de Google, je peux vous dire un truc, c'est que ça fait envie. Pour vous faire baver, voici simplement la photo du "coin" fumeurs :</p><a href="http://4.bp.blogspot.com/-LNYFsSEdl_I/USsa3Iz2E1I/AAAAAAAAR-A/H7xqyc4RcbM/s1600/fumeurs_google.jpg" imageanchor="1" ><img border="0" src="http://4.bp.blogspot.com/-LNYFsSEdl_I/USsa3Iz2E1I/AAAAAAAAR-A/H7xqyc4RcbM/s320/fumeurs_google.jpg" /></a><br/><br/> <h3>Le déroulement</h3><p>Tout est expliqué sur le <a href="http://code-story.net/2013/02/21/concours-2013-phase-2.html">blog de Code Story</a>, voici cependant un petit résumé. On avait des <a href="http://code-story.net/data/codestory2013.json">données</a> avec pour chaque participant à Code Story, sa ville, trois trucs qu'il aime et deux trucs qu'il n'aime pas. Avec ça on devait construire un site internet from scratch permettant aux participants de connaître ceux avec qui ils ont des atomes crochus.</p><br/><h3>Notre participation</h3><p>Les participants étaient par binômes pour ce concours. J'étais pour ma part avec Alexandre Ardhuin (<a href="https://twitter.com/a14n">@a14n</a>).</p><p>Nous sommes arrivés les mains dans les poches sans rien avoir préparé (ce qui nous a sans doute fait défaut). La première étape a donc été de monter une stack Web et de publier ça pour que ce soit accessible sur Internet. Cette étape nous a pris à peu près 1 heure, à la moitié du temps nous avions donc un magnifique site web accessible sur Internet qui affichait "coucou"...</p><p>Pour afficher autre chose que "coucou", nous avons utilisé le framework Angular.js ce qui nous a permis d'afficher rapidement la liste des participants, le tout codé à l'arrache dans un seul fichier <a href="https://github.com/ybonnel/CodeStoryFinale/commit/baeb84020f14a608e3b114ef81bd8c51bd98e8f5">index.html</a></p><p>Alexandre est ensuite parti sur une présentation géographique des participants via Google Map, mais il n'a pas pu aller au bout à cause des quotas sur le geo-codage, dommage...</p><p>Je suis pour ma part parti sur le refactoring du code pour séparer Javascript, templates HTML et index.html afin de pouvoir mettre en place les routes Angular.js. Tout cela afin d'obtenir un lien par participant affichant les détails de celui-ci. Toutefois, je suis resté bloqué sur de la syntaxe Javascript pendant au moins 10 minutes :</p><p><pre class="brush:javascript"><br />angular.module('CodeStory');<br /></pre>différent de : <pre class="brush:javascript"><br />angular.module('CodeStory', []);<br /></pre>Dans le premiers cas, rien ne s'affiche, et l'erreur dans le console est : "Error: No module: CodeStory", en bref, un compilateur c'est pas si mal! </p><p>Ce refactoring m'a pris beaucoup de temps du coup (environ 20 minutes), et par conséquent il nous restait 25 minutes à peine pour faire la page de détail d'un participant. Nous avons mis environ 15 minutes à mettre en place une page affichant les personnes de la même ville, puis 7 minutes pour afficher les personnes ayant un "Like" en commun. Le "git push" permettant de déployer la dernière fonctionnalité a été fait sur le gong (heureusement qu'on avait un déploiement simplifié!).</p><p>Le code final est dispo sur <a href="https://github.com/ybonnel/CodeStoryFinale">github</a>.</p> <h3>Le résultat</h3><p>Une fois l'épreuve terminée, chaque binôme a eu 3 minutes pour présenter l'application aux jury. Nous sommes passés en premier, ce qui a permis de faire rapidement retomber le stress...</p><p>Au final c'est Xavier Hanin (<a href="https://twitter.com/xavierhanin">@Xavierhanin</a>) et Christophe Labouisse (<a href="https://twitter.com/XtlCnslt">@XtlCnslt</a>) qui ont gagné, et nous avons été second. Un grand bravo à eux, et je leur donne rendez-vous à Devoxx France pour les voir en action :)</p> <h3>Nos erreurs</h3><p>Notre première erreur a été de venir les mains dans les poches, il était prévisible que le Jury allait nous demander de coder une appli Web, si nous étions venus avec une stack Web prête à déployer, nous aurions gagné une heure...</p><p>N'ayant pas de stack web prête à déployer nous aurions dû partir sur un site directement hébergé sur github, n'ayant jamais utilisé le backend, cela aurait fait l'affaire, et nous aurions encore une fois gagné une heure...</p><p>Pour finir, voici : <ul><li>Ce que nous avons sorti à la fin du concours : <a href="http://serveur.ybonnel.fr:8080">http://serveur.ybonnel.fr:8080</a></li><li>Ce que nous aurions pu sortir avec l'heure de gagnée : <a href="http://ybonnel.github.com/CodeStoryFinale">http://ybonnel.github.com/CodeStoryFinale</a></li></ul>Pour les plus curieux le diff est dispo sur <a href="https://github.com/ybonnel/CodeStoryFinale/compare/f3b6d35e07172deae6d5322a8f4fab0059538a9d...gh-pages">github</a></p><br/><br/><p>Si vous avez eu le courage de lire jusque là, vous aurez peut-être le courage de regarder la <a href="http://www.youtube.com/watch?v=c26ORroLSAQ">vidéo</a>!</p> 
 </p>
 
         <div id="disqus_thread"></div>
@@ -85,8 +92,146 @@
                 (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
             })();
         </script>
+    </div>
 
-	<hr>
+    <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+        <div class="sidebar-module sidebar-module-inset">
+            <h4>Yan Bonnel</h4>
+            <p>Geek. Technos de prédilections : Java, Android, Git.</p>
+        </div>
+
+        <div class="sidebar-module">
+            <a class="twitter-timeline"  href="https://twitter.com/ybonnel"  data-widget-id="482174196248608769">Tweets de @ybonnel</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+
+        <div class="sidebar-module">
+            <h4>Tags</h4>
+            <ol class="list-unstyled" style="margin-left: 0px">
+                
+
+                <li><a href="../../tags/Java.html">Java</a> (15)</li>
+                
+
+                <li><a href="../../tags/java8.html">java8</a> (6)</li>
+                
+
+                <li><a href="../../tags/SimpleWeb4j.html">SimpleWeb4j</a> (6)</li>
+                
+
+                <li><a href="../../tags/CodeStory.html">CodeStory</a> (5)</li>
+                
+
+                <li><a href="../../tags/Devoxx.html">Devoxx</a> (5)</li>
+                
+
+                <li><a href="../../tags/EventSource.html">EventSource</a> (4)</li>
+                
+
+                <li><a href="../../tags/Server-Sent-Events.html">Server-Sent-Events</a> (4)</li>
+                
+
+                <li><a href="../../tags/SSE.html">SSE</a> (4)</li>
+                
+
+                <li><a href="../../tags/CSV.html">CSV</a> (3)</li>
+                
+
+                <li><a href="../../tags/Jetty.html">Jetty</a> (3)</li>
+                
+
+                <li><a href="../../tags/simple.html">simple</a> (3)</li>
+                
+
+                <li><a href="../../tags/Android.html">Android</a> (2)</li>
+                
+
+                <li><a href="../../tags/javascript.html">javascript</a> (2)</li>
+                
+
+                <li><a href="../../tags/Logo.html">Logo</a> (2)</li>
+                
+
+                <li><a href="../../tags/Rennes.html">Rennes</a> (2)</li>
+                
+
+                <li><a href="../../tags/TDD.html">TDD</a> (2)</li>
+                
+
+                <li><a href="../../tags/websocket.html">websocket</a> (2)</li>
+                
+
+                <li><a href="../../tags/Assertj.html">Assertj</a> (1)</li>
+                
+
+                <li><a href="../../tags/auto-hébergement.html">auto-hébergement</a> (1)</li>
+                
+
+                <li><a href="../../tags/Awaitility.html">Awaitility</a> (1)</li>
+                
+
+                <li><a href="../../tags/blogger.html">blogger</a> (1)</li>
+                
+
+                <li><a href="../../tags/cloud.html">cloud</a> (1)</li>
+                
+
+                <li><a href="../../tags/Comparatif.html">Comparatif</a> (1)</li>
+                
+
+                <li><a href="../../tags/couchbase.html">couchbase</a> (1)</li>
+                
+
+                <li><a href="../../tags/CsvEngine.html">CsvEngine</a> (1)</li>
+                
+
+                <li><a href="../../tags/ExecutorService.html">ExecutorService</a> (1)</li>
+                
+
+                <li><a href="../../tags/git.html">git</a> (1)</li>
+                
+
+                <li><a href="../../tags/github.html">github</a> (1)</li>
+                
+
+                <li><a href="../../tags/Google.html">Google</a> (1)</li>
+                
+
+                <li><a href="../../tags/Groovy.html">Groovy</a> (1)</li>
+                
+
+                <li><a href="../../tags/Jajascript.html">Jajascript</a> (1)</li>
+                
+
+                <li><a href="../../tags/jbake.html">jbake</a> (1)</li>
+                
+
+                <li><a href="../../tags/JEE.html">JEE</a> (1)</li>
+                
+
+                <li><a href="../../tags/json.html">json</a> (1)</li>
+                
+
+                <li><a href="../../tags/NoMock.html">NoMock</a> (1)</li>
+                
+
+                <li><a href="../../tags/OneDay.html">OneDay</a> (1)</li>
+                
+
+                <li><a href="../../tags/OnePost.html">OnePost</a> (1)</li>
+                
+
+                <li><a href="../../tags/reactive.html">reactive</a> (1)</li>
+                
+
+                <li><a href="../../tags/REST.html">REST</a> (1)</li>
+                
+
+                <li><a href="../../tags/Scalaskel.html">Scalaskel</a> (1)</li>
+                
+            </ol>
+        </div>
+    </div>
 	
 		</div>
 		<div id="push"></div>

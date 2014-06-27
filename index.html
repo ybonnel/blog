@@ -70,6 +70,23 @@
 
             
                 
+                    <a href="2014/06/nouveau-blog.html"><h1>Nouveau blog</h1></a>
+                    <p>27 juin 2014</p>
+
+                    <p>Tags :
+                        <a href="tags/blogger.html">blogger</a>, <a href="tags/jbake.html">jbake</a>, <a href="tags/github.html">github</a>
+                    </p>
+
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/06/nouveau-blog.html" data-text="Nouveau blog" data-via="ybonnel" data-lang="fr">Tweeter</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                    <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/06/nouveau-blog.html"></div>
+
+                    <p><p>Vous l&rsquo;avez surement déjà vu, mon blog a changé de tête&hellip;</p><p>Si vous voulez voir la différence, allez voir <a href="http://ybonnel.blogspot.fr/">l&rsquo;ancien blog</a>.</p><h1>Jbake</h1><p>J&rsquo;avais envie de tester <a href="jbake.org">jbake</a> qui est un générateur de site statique, un peu à l&rsquo;image de jekyll mais en java.</p><p>J&rsquo;ai choisi jbake car j&rsquo;avais envie de pouvoir éditer et tester mon blog de manière offline, et il se trouve que jbake est à la mode actuellement.<br/>Autre avantge, l&rsquo;article que vous lisez est écrit en Markdown, en voici le <a href="https://github.com/ybonnel/blog/tree/master/src/jbake/content/2014/06/nouveau-blog.md">contenu</a>.</p><h1>Hébergement</h1><p>Vu que je passe sur une technologie avec des fichiers statiques, il est assez simple d&rsquo;héberger le résultat sur github.</p><p>Cédric explique assez bien la marche à suivre sur son <a href="http://melix.github.io/blog/2014/02/hosting-jbake-github.html">blog</a>.</p><h1>Vous en pensez quoi?</h1><p>Je ferez un article la semaine prochaine sur les détails de l&rsquo;implémentation et la migration depuis blogger.<br/>Je vous expliquerai également pouquoi j&rsquo;ai choisi les templates groovy</p><p>En attendant, n&rsquo;hésitez pas à me dire ce que vous en pensez.</p></p>
+                    <p><a href="2014/06/nouveau-blog.html#disqus_thread">Commentaires</a></p>
+                
+
+            
+                
                     <a href="2014/06/websocket-et-comment-on-teste.html"><h1>WebSocket, et comment on teste?</h1></a>
                     <p>18 juin 2014</p>
 
@@ -138,24 +155,6 @@
                     <p><p>Aujourd'hui, je vais vous parler de Server Sent Events côté client javascript.</p> <p>Nous allons reprendre le serveur qui envoyait l'heure toutes les secondes codé <a href="http://www.ybonnel.fr/2014/06/server-sent-events-avec-simpleweb4j.html">ici</a>.<p> <p>L'utilisation d'un flux Server Sent Event se fait par l'intermédiaire de l'objet "EventSource" qui prend comme paramètre dans le constructeur l'url du flux. Cet objet possède une fonction "addEventListener" qui prend en paramètres le type de listener (message pour la réception de nouvelles données) ainsi que la callback.</p><p>Si vous êtes comme moi et que vous utilisez angular.js un peu partout, vous savez comment il peut s'avérer complexe de s'intégrer dans son dual binding, mais la méthode $scope.$apply est là pour ça!</p> <p>Voici donc le résultat final :</p><script src="https://gist.github.com/ybonnel/e385ac59e4cf00ebd2f7.js"></script> <br/><p>Et voilà, c'est pas bien compliqué de faire du temps réel :)</p><p>Petit précision, EventSource n'est pas supporté par IE, mais il existe un contournement : <a href="https://github.com/Yaffle/EventSource/">github.com/Yaffle/EventSource</a></p>
 </p>
                     <p><a href="2014/06/server-sent-events-et-cote-client.html#disqus_thread">Commentaires</a></p>
-                
-
-            
-                
-                    <a href="2014/06/server-sent-events-reactifs-avec.html"><h1>Server Sent Events réactifs avec SimpleWeb4j</h1></a>
-                    <p>04 juin 2014</p>
-
-                    <p>Tags :
-                        <a href="tags/EventSource.html">EventSource</a>, <a href="tags/java8.html">java8</a>, <a href="tags/reactive.html">reactive</a>, <a href="tags/Server-Sent-Events.html">Server-Sent-Events</a>, <a href="tags/SimpleWeb4j.html">SimpleWeb4j</a>, <a href="tags/SSE.html">SSE</a>
-                    </p>
-
-                    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/06/server-sent-events-reactifs-avec.html" data-text="Server Sent Events réactifs avec SimpleWeb4j" data-via="ybonnel" data-lang="fr">Tweeter</a>
-                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                    <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/06/server-sent-events-reactifs-avec.html"></div>
-
-                    <p><p>Nous avons vu <a href="http://www.ybonnel.fr/2014/06/server-sent-events-avec-simpleweb4j.html">hier</a> un exemple simple de Server Sent Events avec SimpleWeb4j, passons maintenant à plus complexe, un exemple dit "réactif", ce n'est pas le flux qui demande la valeur suivante, mais bien un "service" extérieure qui déclenche l'envoi à tous les flux ouverts.</p> <p>Pour l'exemple, nous allons créer trois générateurs d'événements, avec chacun un délai aléatoire entre les événements.</p><p>Nous allons donc tout d'abord créer une classe "Event", cette classe contient un nom, une valeur et l'heure de création. La valeur est créée de manière aléatoire.</p><p>Nous allons ensuite créer un générateur, qui est un Runnable infini, et envoi des événements aux handlers SimpleWeb4j.</p><p>Un handler SimpleWeb4j est une classe fournie par SimpleWeb4j qui contient une méthode "next" permettant d'envoyer les événements. Nous stockerons ces handlers dans un ConcurrentHashSet pour pouvoir tous les adresser (et pas seulement le dernier flux créé.</p><p>Une fois tous ces composants créés, il suffit de déclarer la route, voici donc le résultat final :</p><script src="https://gist.github.com/ybonnel/8f17b95b7c646f35b674.js"></script><br/><p>J'espère vous avoir montré l'intérêt de SimpleWeb4j sur ce cas beaucoup moins simple que le précédent.</p><p>Si le sujet vous intéresse, vous pouvez regarder ma présentation donnée au <a href="http://www.breizhcamp.org">Breizhcamp</a> sur <a href="http://www.parleys.com/play/538c8865e4b0a38a46cbec9e">parleys</a> :</p><iframe type="text/html" width="420" height="290" mozallowfullscreen="true" webkitallowfullscreen="true" src="http://www.parleys.com/share.html#play/538c8865e4b0a38a46cbec9e" frameborder="0">&lt;br /&gt;</iframe>
-</p>
-                    <p><a href="2014/06/server-sent-events-reactifs-avec.html#disqus_thread">Commentaires</a></p>
                 
 
             
@@ -242,6 +241,9 @@
                         <li><a href="tags/Awaitility.html">Awaitility</a> (1)</li>
                     
 
+                        <li><a href="tags/blogger.html">blogger</a> (1)</li>
+                    
+
                         <li><a href="tags/cloud.html">cloud</a> (1)</li>
                     
 
@@ -260,6 +262,9 @@
                         <li><a href="tags/git.html">git</a> (1)</li>
                     
 
+                        <li><a href="tags/github.html">github</a> (1)</li>
+                    
+
                         <li><a href="tags/Google.html">Google</a> (1)</li>
                     
 
@@ -267,6 +272,9 @@
                     
 
                         <li><a href="tags/Jajascript.html">Jajascript</a> (1)</li>
+                    
+
+                        <li><a href="tags/jbake.html">jbake</a> (1)</li>
                     
 
                         <li><a href="tags/JEE.html">JEE</a> (1)</li>
