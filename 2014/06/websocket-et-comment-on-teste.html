@@ -10,8 +10,8 @@
 
     <!-- Le styles -->
     <link href="../../css/yeti/bootstrap.min.css" rel="stylesheet">
-    <link href="../../css/asciidoctor.css" rel="stylesheet">
     <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/asciidoctor.css" rel="stylesheet">
     <!-- link href="/css/bootstrap-theme.min.css" rel="stylesheet" -->
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.1.0/css/font-awesome.min.css">
     <link href='http://alexgorbatchev.com/pub/sh/3.0.83/styles/shCore.css' rel='stylesheet' type='text/css'/>
@@ -32,8 +32,9 @@
   </head>
   <body>
     <div id="wrap">
+
 	
-      <!-- Fixed navbar -->
+	      <!-- Fixed navbar -->
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container-fluid">
           <div class="navbar-header">
@@ -54,6 +55,7 @@
         </div>
       </div>
       <div class="container">
+
 	
 	<div class="page-header">
 		<h1>WebSocket, et comment on teste?</h1>
@@ -61,17 +63,14 @@
 
 	<p><em>18 juin 2014</em></p>
 
+
     <p>Tags :
-            <a href="../../tags/Assertj.html">Assertj</a>, 
-            <a href="../../tags/Awaitility.html">Awaitility</a>, 
-            <a href="../../tags/Java.html">Java</a>, 
-            <a href="../../tags/Jetty.html">Jetty</a>, 
-            <a href="../../tags/SimpleWeb4j.html">SimpleWeb4j</a>, 
-            <a href="../../tags/websocket.html">websocket</a>
+    <a href="../../tags/Assertj.html">Assertj</a>, <a href="../../tags/Awaitility.html">Awaitility</a>, <a href="../../tags/Java.html">Java</a>, <a href="../../tags/Jetty.html">Jetty</a>, <a href="../../tags/SimpleWeb4j.html">SimpleWeb4j</a>, <a href="../../tags/websocket.html">websocket</a>
     </p>
-        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/06/websocket-et-comment-on-teste.html" data-via="ybonnel" data-text="WebSocket, et comment on teste?" data-lang="fr">Tweeter</a>
-        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-        <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/06/websocket-et-comment-on-teste.html"></div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/06/websocket-et-comment-on-teste.html" data-via="ybonnel" data-text="WebSocket, et comment on teste?" data-lang="fr">Tweeter</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/06/websocket-et-comment-on-teste.html"></div>
 
 	<p><p>On a vu comment implémenter des websockets avec SimpleWeb4j dans un précédant <a href="http://www.ybonnel.fr/2014/06/websocket-et-simpleweb4j.html">article</a>, nous allons maintenant voir comment tester de manière automatisée la partie serveur websocket.</p><br/><h2>Librairies tierces</h2><p>Pour garder un code relativement propre, je vais utiliser trois librairies : <ul><li><a href="http://www.eclipse.org/jetty/documentation/current/jetty-websocket-client-api.html">websocket-client</a> : Client WebSocket en java.</li><li><a href="http://joel-costigliola.github.io/assertj/">assertj-core</a> : Librairie d'assertion "fluent"</li><li><a href="https://code.google.com/p/awaitility/">awaitility</a> : Librairie d'attente (pour gérer l'asynchrone)</li></ul></p><br/> <h2>Je veux faire quoi comme test?</h2><p>Je cherche à tester le code du billet précédant qui, pour rappel, était un système de chat. Le serveur de websocket reçoit donc des messages qu'il redistribue à tous les clients connectés.</p><p>Scénario de test : <ul><li>Ouverture d'une session 1.</li><li>Envoi d'un message par la session 1 (message 1).</li><li>Ouverture d'une session 2.</li><li>Envoi d'un message par la session 2 (message 2).</li><li>Envoi d'un message par la session 1 (message 3).</li><li>Fermeture de la session 1.</li><li>Envoi d'un message par la session 2 (message 4).</li><li>Fermeture de la session 2.</li>  </ul></p><p>Vérifications à faire : <ul><li>La session 1 a reçu 3 messages (les messages 1 à 3)</li><li>La session 2 a reçu 3 messages (les messages 2 à 4)</li></ul></p><br/> <h2>Code de test</h2><p>Assez parler, place au code. J'espère que les commentaires sont suffisants, si ce n'est pas le cas, n'hésitez pas à le dire j'en ajouterais.</p><script src="https://gist.github.com/ybonnel/fdc9348326e0667c52c7.js"></script>
 </p>
@@ -146,3 +145,4 @@
     
   </body>
 </html>
+

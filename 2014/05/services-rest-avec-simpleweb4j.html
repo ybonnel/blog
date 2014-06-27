@@ -10,8 +10,8 @@
 
     <!-- Le styles -->
     <link href="../../css/yeti/bootstrap.min.css" rel="stylesheet">
-    <link href="../../css/asciidoctor.css" rel="stylesheet">
     <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/asciidoctor.css" rel="stylesheet">
     <!-- link href="/css/bootstrap-theme.min.css" rel="stylesheet" -->
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.1.0/css/font-awesome.min.css">
     <link href='http://alexgorbatchev.com/pub/sh/3.0.83/styles/shCore.css' rel='stylesheet' type='text/css'/>
@@ -32,8 +32,9 @@
   </head>
   <body>
     <div id="wrap">
+
 	
-      <!-- Fixed navbar -->
+	      <!-- Fixed navbar -->
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container-fluid">
           <div class="navbar-header">
@@ -54,6 +55,7 @@
         </div>
       </div>
       <div class="container">
+
 	
 	<div class="page-header">
 		<h1>Services REST avec SimpleWeb4J</h1>
@@ -61,15 +63,14 @@
 
 	<p><em>30 mai 2014</em></p>
 
+
     <p>Tags :
-            <a href="../../tags/Java.html">Java</a>, 
-            <a href="../../tags/json.html">json</a>, 
-            <a href="../../tags/REST.html">REST</a>, 
-            <a href="../../tags/SimpleWeb4j.html">SimpleWeb4j</a>
+    <a href="../../tags/Java.html">Java</a>, <a href="../../tags/json.html">json</a>, <a href="../../tags/REST.html">REST</a>, <a href="../../tags/SimpleWeb4j.html">SimpleWeb4j</a>
     </p>
-        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/05/services-rest-avec-simpleweb4j.html" data-via="ybonnel" data-text="Services REST avec SimpleWeb4J" data-lang="fr">Tweeter</a>
-        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-        <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/05/services-rest-avec-simpleweb4j.html"></div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/05/services-rest-avec-simpleweb4j.html" data-via="ybonnel" data-text="Services REST avec SimpleWeb4J" data-lang="fr">Tweeter</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/05/services-rest-avec-simpleweb4j.html"></div>
 
 	<p><p>Cet article est le deuxième article de la série sur <a href="http://www.ybonnel.fr/search/label/SimpleWeb4j">SimpleWeb4j</a></p> <p>Dans le <a href="http://www.ybonnel.fr/2014/05/simpleweb4j-quick-start.html">première article</a> on a vu comment démarrer SimpleWeb4j en une ligne de code, dans l'article d'aujourd'hui, nous allors voir comment exposer des services REST en json.</p> <h2>Premiers cas : exposer une String "Hello World"</h2> <p>J'espère que le code est suffisamment simple pour ne pas avoir besoin d'explication.</p> <script src="https://gist.github.com/ybonnel/bf0f34483d47d5ca8966.js"></script> <p>On peux voir qu le résultat est entouré de guillemets, ceci est du au fait que SimpleWeb4j transforme la chaîne de caractère en json.</p> <br/> <h2>Deuxième cas : utilisation d'une variable de route</h2> <script src="https://gist.github.com/ybonnel/b7b50206951e056a5403.js"></script> <p>Cet exemple mérite peut-être un peu plus d'explications. SimpleWeb4j permet d'ajouter des paramètres à la route, ces paramètres sont préfixés de ':'. Pour les récupérer on utilise le paramètre RouteParameters qui est le deuxième argument de notre lambda. Le premier argument quand à lui contient l'objet envoyé dans le request body de la requête, nous ne l'utilisons donc pas.</p> <br/> <h2>Troisième cas : objet complexe</h2> <p>Nous avons vu que renvoyer une chaîne de caractère était plutôt simple, voyons maintenant comment renvoyer un objet plus complexe.</p> <script src="https://gist.github.com/ybonnel/9116ffb1ef033e66af68.js"></script> <p>On peut donc voir que renvoyer un objet n'est pas plus compliqué, SimpleWeb4j s'occupe de transformer celui-ci en json</p> <br/><br/> <p>J'espère vous avoir donner envie de regarder SimpleWeb4j de plus près, si quelque chose vous manque, n'hésitez pas à le dire ou à faire une pull request sur <a href="https://github.com/ybonnel/SimpleWeb4j">github</a>.</p>
 </p>
@@ -144,3 +145,4 @@
     
   </body>
 </html>
+

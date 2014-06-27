@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>JustAnOtherDevBlog - tags</title>
+    <title>JustAnOtherDevBlog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -10,8 +10,8 @@
 
     <!-- Le styles -->
     <link href="../css/yeti/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/asciidoctor.css" rel="stylesheet">
     <link href="../css/base.css" rel="stylesheet">
+    <link href="../css/asciidoctor.css" rel="stylesheet">
     <!-- link href="/css/bootstrap-theme.min.css" rel="stylesheet" -->
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.1.0/css/font-awesome.min.css">
     <link href='http://alexgorbatchev.com/pub/sh/3.0.83/styles/shCore.css' rel='stylesheet' type='text/css'/>
@@ -32,8 +32,9 @@
   </head>
   <body>
     <div id="wrap">
+
 	
-      <!-- Fixed navbar -->
+	      <!-- Fixed navbar -->
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container-fluid">
           <div class="navbar-header">
@@ -55,6 +56,7 @@
       </div>
       <div class="container">
 
+
 	<div class="page-header">
             <div class="row">
                 <div class="col-xs-4 col-md-2"><img src="../img/JustAnOtherDevBlog.png"></div>
@@ -65,106 +67,115 @@
     <div class="row">
 
     <div class="col-sm-8">
-
+        
+            
                 <a href="../2014/06/websocket-et-simpleweb4j.html"><h1>WebSocket et SimpleWeb4j</h1></a>
                 <p>11 juin 2014</p>
 
                 <p>Tags :
-                        <a href="java8.html">java8</a>, 
-                        <a href="javascript.html">javascript</a>, 
-                        <a href="SimpleWeb4j.html">SimpleWeb4j</a>, 
-                        <a href="websocket.html">websocket</a>
+                <a href="java8.html">java8</a>, <a href="javascript.html">javascript</a>, <a href="SimpleWeb4j.html">SimpleWeb4j</a>, <a href="websocket.html">websocket</a>
                 </p>
 
-                            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/06/websocket-et-simpleweb4j.html" data-text="WebSocket et SimpleWeb4j" data-via="ybonnel" data-lang="fr">Tweeter</a>
-                            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                            <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/06/websocket-et-simpleweb4j.html"></div>
+                <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/06/websocket-et-simpleweb4j.html" data-text="WebSocket et SimpleWeb4j" data-via="ybonnel" data-lang="fr">Tweeter</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/06/websocket-et-simpleweb4j.html"></div>
 
                 <p><p>Nous allons voir comment faire du websocket avec SimpleWeb4j.</p> <h2>WebSocket c'est quoi</h2><p><a href="http://fr.wikipedia.org/wiki/WebSocket">WebSocket</a> est un protocole permettant la communication de type push entre un browser et un serveur de manière bi-directionnelle.</p><br/> <h2>On fait quoi comme exemple?</h2><p>Comme je suis super original, on va partir sur un chat (le truc pour discuter, pas l'animal !), ça nous rappellera la grande époque de caramail :)</p><p>Pour mettre en place un chat, on a besoin d'un service côté serveur qui peut recevoir des messages en push depuis les clients, et quand il en reçoit un le redistribue à tous les clients.</p><br/> <h2>La partie serveur</h2><p>Nous allons commencer par créer notre objet métier représentant un message, celui-ci contient l'utilisateur, le texte et la date du message. Il servira pour les messages que l'on envoie aux clients (pour les flux client -> serveur, nous utiliserons une simple String).</p><script src="https://gist.github.com/ybonnel/387f265625b7f50b3fe1.js"></script> <p>Nous allons maintenant créer la route de la websocket avec la méthode <a href="https://simpleweb4j.ci.cloudbees.com/job/SimpleWeb4j-build/site/apidocs/fr/ybonnel/simpleweb4j/SimpleWeb4j.html#websocket-java.lang.String-fr.ybonnel.simpleweb4j.handlers.websocket.WebSocketAdapter-">SimpleWeb4j.websocket</a>, cette méthode prend en paramètre une String représentant l'url et un <a href="https://simpleweb4j.ci.cloudbees.com/job/SimpleWeb4j-build/site/apidocs/fr/ybonnel/simpleweb4j/handlers/websocket/WebSocketAdapter.html">WebSocketAdapter</a>. Un WebSocketAdapter et une factory qui contient une méthode prenant en paramètres les "RouteParameters" et qui construit un <a href="https://simpleweb4j.ci.cloudbees.com/job/SimpleWeb4j-build/site/apidocs/fr/ybonnel/simpleweb4j/handlers/websocket/WebSocketListener.html">WebSocketListenner</a>. On a donc le code suivant pour l'instant :</p><script src="https://gist.github.com/ybonnel/040e5d0fc44f185471f6.js"></script> <p>Voyons maintenant comment construire le "WebSocketListener", nous avons pour ça un builder. Nous souhaitons construire un listener en implémentant un comportement sur 3 événements : <ul><li><u>onConnect</u> : on ajoute la session dans un set pour connaître les sessions ouvertes.</li><li><u>onClose</u> : on supprime la session de notre set.</li><li><u>onMessage</u> : on envoi le message reçu à tout les clients.</li></ul>Voici donc le résultat final : </p><script src="https://gist.github.com/ybonnel/b4fe14c5f0cebeaccd90.js"></script><br/>  <h2>La partie cliente</h2><p>Pour la partie cliente, on a un objet javascript "WebSocket" qui prend l'url en paramètre du constructeur.</p><p>Il nous reste après à définir les callback "onmessage" et "onopen". Pour envoyer un message au serveur, il suffit d'utiliser la méthode WebSocket.send. Si vous voulez plus de détails, vous pouvez aller voir la page de <a href="https://developer.mozilla.org/fr-FR/docs/Web/API/WebSocket">mozilla</a>.</p><p>Voici donc la page html complète, comme d'habitude, j'utilise angular.js :) >/p><script src="https://gist.github.com/ybonnel/55b099746cbf87875110.js"></script><br/> <p>Alors, ça vous parait compliqué de faire du WebSocket?</p>
 </p>
-                            <p><a href="../2014/06/websocket-et-simpleweb4j.html#disqus_thread">Commentaires</a></p>
+                <p><a href="2014/06/websocket-et-simpleweb4j.html#disqus_thread">Commentaires</a></p>
+            
 
-
+        
+            
                 <a href="../2014/06/server-sent-events-reactifs-avec.html"><h1>Server Sent Events réactifs avec SimpleWeb4j</h1></a>
                 <p>04 juin 2014</p>
 
                 <p>Tags :
-                        <a href="EventSource.html">EventSource</a>, 
-                        <a href="java8.html">java8</a>, 
-                        <a href="reactive.html">reactive</a>, 
-                        <a href="Server-Sent-Events.html">Server-Sent-Events</a>, 
-                        <a href="SimpleWeb4j.html">SimpleWeb4j</a>, 
-                        <a href="SSE.html">SSE</a>
+                <a href="EventSource.html">EventSource</a>, <a href="java8.html">java8</a>, <a href="reactive.html">reactive</a>, <a href="Server-Sent-Events.html">Server-Sent-Events</a>, <a href="SimpleWeb4j.html">SimpleWeb4j</a>, <a href="SSE.html">SSE</a>
                 </p>
 
-                            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/06/server-sent-events-reactifs-avec.html" data-text="Server Sent Events réactifs avec SimpleWeb4j" data-via="ybonnel" data-lang="fr">Tweeter</a>
-                            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                            <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/06/server-sent-events-reactifs-avec.html"></div>
+                <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/06/server-sent-events-reactifs-avec.html" data-text="Server Sent Events réactifs avec SimpleWeb4j" data-via="ybonnel" data-lang="fr">Tweeter</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/06/server-sent-events-reactifs-avec.html"></div>
 
                 <p><p>Nous avons vu <a href="http://www.ybonnel.fr/2014/06/server-sent-events-avec-simpleweb4j.html">hier</a> un exemple simple de Server Sent Events avec SimpleWeb4j, passons maintenant à plus complexe, un exemple dit "réactif", ce n'est pas le flux qui demande la valeur suivante, mais bien un "service" extérieure qui déclenche l'envoi à tous les flux ouverts.</p> <p>Pour l'exemple, nous allons créer trois générateurs d'événements, avec chacun un délai aléatoire entre les événements.</p><p>Nous allons donc tout d'abord créer une classe "Event", cette classe contient un nom, une valeur et l'heure de création. La valeur est créée de manière aléatoire.</p><p>Nous allons ensuite créer un générateur, qui est un Runnable infini, et envoi des événements aux handlers SimpleWeb4j.</p><p>Un handler SimpleWeb4j est une classe fournie par SimpleWeb4j qui contient une méthode "next" permettant d'envoyer les événements. Nous stockerons ces handlers dans un ConcurrentHashSet pour pouvoir tous les adresser (et pas seulement le dernier flux créé.</p><p>Une fois tous ces composants créés, il suffit de déclarer la route, voici donc le résultat final :</p><script src="https://gist.github.com/ybonnel/8f17b95b7c646f35b674.js"></script><br/><p>J'espère vous avoir montré l'intérêt de SimpleWeb4j sur ce cas beaucoup moins simple que le précédent.</p><p>Si le sujet vous intéresse, vous pouvez regarder ma présentation donnée au <a href="http://www.breizhcamp.org">Breizhcamp</a> sur <a href="http://www.parleys.com/play/538c8865e4b0a38a46cbec9e">parleys</a> :</p><iframe type="text/html" width="420" height="290" mozallowfullscreen="true" webkitallowfullscreen="true" src="http://www.parleys.com/share.html#play/538c8865e4b0a38a46cbec9e" frameborder="0">&lt;br /&gt;</iframe>
 </p>
-                            <p><a href="../2014/06/server-sent-events-reactifs-avec.html#disqus_thread">Commentaires</a></p>
+                <p><a href="2014/06/server-sent-events-reactifs-avec.html#disqus_thread">Commentaires</a></p>
+            
 
-
+        
+            
                 <a href="../2014/06/server-sent-events-avec-simpleweb4j.html"><h1>Server Sent Events avec SimpleWeb4j</h1></a>
                 <p>03 juin 2014</p>
 
                 <p>Tags :
-                        <a href="EventSource.html">EventSource</a>, 
-                        <a href="java8.html">java8</a>, 
-                        <a href="Server-Sent-Events.html">Server-Sent-Events</a>, 
-                        <a href="SimpleWeb4j.html">SimpleWeb4j</a>, 
-                        <a href="SSE.html">SSE</a>
+                <a href="EventSource.html">EventSource</a>, <a href="java8.html">java8</a>, <a href="Server-Sent-Events.html">Server-Sent-Events</a>, <a href="SimpleWeb4j.html">SimpleWeb4j</a>, <a href="SSE.html">SSE</a>
                 </p>
 
-                            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/06/server-sent-events-avec-simpleweb4j.html" data-text="Server Sent Events avec SimpleWeb4j" data-via="ybonnel" data-lang="fr">Tweeter</a>
-                            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                            <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/06/server-sent-events-avec-simpleweb4j.html"></div>
+                <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/06/server-sent-events-avec-simpleweb4j.html" data-text="Server Sent Events avec SimpleWeb4j" data-via="ybonnel" data-lang="fr">Tweeter</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/06/server-sent-events-avec-simpleweb4j.html"></div>
 
                 <p><p>Je vous ai montré <a href="http://www.ybonnel.fr/2014/06/server-sent-events-avec-jetty.html">hier</a> comment faire du SSE avec Jetty. Nous allons maintenant voir comment faire avec SimpleWeb4j.</p> <p>L'exemple avec jetty était une horloge déclenchée toutes les secondes à partir de l'accès à l'url, voyons donc comment coder cela avec SimpleWeb4j : <script src="https://gist.github.com/ybonnel/f508c8c511c3cd429742.js"></script>Simple, non? </p><br/> <p>Dans la vrai vie, on souhaite sans doute pouvoir déclencher simplement l'envoie d'un événement sans être dépendant d'un délai quelconque. Ce sera l'objet de l'article de demain :)</p>
 </p>
-                            <p><a href="../2014/06/server-sent-events-avec-simpleweb4j.html#disqus_thread">Commentaires</a></p>
+                <p><a href="2014/06/server-sent-events-avec-simpleweb4j.html#disqus_thread">Commentaires</a></p>
+            
 
-
+        
+            
                 <a href="../2014/06/server-sent-events-avec-jetty.html"><h1>Server Sent Events avec Jetty</h1></a>
                 <p>02 juin 2014</p>
 
                 <p>Tags :
-                        <a href="EventSource.html">EventSource</a>, 
-                        <a href="java8.html">java8</a>, 
-                        <a href="Jetty.html">Jetty</a>, 
-                        <a href="Server-Sent-Events.html">Server-Sent-Events</a>, 
-                        <a href="SSE.html">SSE</a>
+                <a href="EventSource.html">EventSource</a>, <a href="java8.html">java8</a>, <a href="Jetty.html">Jetty</a>, <a href="Server-Sent-Events.html">Server-Sent-Events</a>, <a href="SSE.html">SSE</a>
                 </p>
 
-                            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/06/server-sent-events-avec-jetty.html" data-text="Server Sent Events avec Jetty" data-via="ybonnel" data-lang="fr">Tweeter</a>
-                            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                            <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/06/server-sent-events-avec-jetty.html"></div>
+                <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/06/server-sent-events-avec-jetty.html" data-text="Server Sent Events avec Jetty" data-via="ybonnel" data-lang="fr">Tweeter</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/06/server-sent-events-avec-jetty.html"></div>
 
                 <p><p>Je vais aujourd'hui vous présenter comment faire du <a href="http://dev.w3.org/html5/eventsource/">Server-Sent-Events</a> (EventSource) avec Jetty.</p> <h2>C'est quoi</h2><p>Si vous avez déjà lu w3c, passez au chapitre suivant :)</p><p>La technologie Server Sent Events (ou EventSource du nom de l'API javascripts) est une technologie permettant de faire du push du serveur vers le client en gardant une connexion ouverte.</p><p>Un des gros avantages selon moi de cette technologie est sa simplicité, c'est du texte sur HTTP. Chaque événement est préfixé de "data: ", et on met deux retours à la ligne pour séparer les événements (je simplifie un peu).</p><br/> <h2>Comment je fait coté serveur avec Jetty</h2><p>Le plus simple est encore de vous montrer le code :)</p><script src="https://gist.github.com/ybonnel/85850107b392ceac43c7.js"></script><br/> <p>Demain, je vous montrerai que c'est quand même beaucoup plus simple d'utiliser SimpleWeb4j pour le faire :)</p>
 </p>
-                            <p><a href="../2014/06/server-sent-events-avec-jetty.html#disqus_thread">Commentaires</a></p>
+                <p><a href="2014/06/server-sent-events-avec-jetty.html#disqus_thread">Commentaires</a></p>
+            
 
-
+        
+            
                 <a href="../2014/05/concurrenthashmap-et-longadder.html"><h1>ConcurrentHashMap et LongAdder</h1></a>
                 <p>29 mai 2014</p>
 
                 <p>Tags :
-                        <a href="java8.html">java8</a>
+                <a href="java8.html">java8</a>
                 </p>
 
-                            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/05/concurrenthashmap-et-longadder.html" data-text="ConcurrentHashMap et LongAdder" data-via="ybonnel" data-lang="fr">Tweeter</a>
-                            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                            <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/05/concurrenthashmap-et-longadder.html"></div>
+                <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/05/concurrenthashmap-et-longadder.html" data-text="ConcurrentHashMap et LongAdder" data-via="ybonnel" data-lang="fr">Tweeter</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/05/concurrenthashmap-et-longadder.html"></div>
 
                 <p><p>Le sujet du jour est de réaliser un petit filtre de Servlet pour stocker le nombre d'appels pour chaque url.</p> <p>Pour réaliser cela, il suffit de lire la javadoc de <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ConcurrentHashMap.html">ConcurrentHashMap</a> et plus particulièrement : <br/><i>A ConcurrentHashMap can be used as scalable frequency map (a form of histogram or multiset) by using LongAdder values and initializing via computeIfAbsent. For example, to add a count to a ConcurrentHashMap&lt;String,LongAdder&gt; freqs, you can use freqs.computeIfAbsent(k -> new LongAdder()).increment();</i></p> <p>L'implémentation est donc très simple : <script src="https://gist.github.com/ybonnel/e0054c49a29ae7953c32.js"></script></p> <p>L'affichage n'est pas plus compliqué : <script src="https://gist.github.com/ybonnel/80b1d3d2edbcd7272597.js"></script></p> <p>On a donc une gestion de stats thread safe et performante en une ligne de code :)</p>
 </p>
-                            <p><a href="../2014/05/concurrenthashmap-et-longadder.html#disqus_thread">Commentaires</a></p>
+                <p><a href="2014/05/concurrenthashmap-et-longadder.html#disqus_thread">Commentaires</a></p>
+            
 
+        
+            
+                <a href="../2014/05/un-cache-en-java.html"><h1>Un cache en java</h1></a>
+                <p>26 mai 2014</p>
 
-        <hr />
+                <p>Tags :
+                <a href="Java.html">Java</a>, <a href="java8.html">java8</a>, <a href="simple.html">simple</a>
+                </p>
 
-        <p>Billets plus anciens disponibles sur la page <a href="../archive.html">archive</a>.</p>
+                <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/05/un-cache-en-java.html" data-text="Un cache en java" data-via="ybonnel" data-lang="fr">Tweeter</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/05/un-cache-en-java.html"></div>
+
+                <p><p>Après bientôt un an sans écrire d'article, je vais essayer de me remettre à écrire des trucs... Je ne garanti pas que ce soit intéressant :)</p><p>Le premiers de cette renaissance sera sur les caches simples en Java.</p>Je parle ici de cache non révocable (j'en ai eu besoin très récemment). Voici la classe permettant de faire ceci :  <script src="https://gist.github.com/ybonnel/795a9f1ef0e08c9a585f.js"></script> <p>Vous l'aurez compris, cet article cherche a vous présenter la méthode <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ConcurrentHashMap.html#computeIfAbsent-K-java.util.function.Function-">ConcurrentHashMap.computeIfAbsent</a>, cette méthode est apparue en Java 8.</p><p>Cette dernière permet donc de remplir notre Map si la clé est absente, et ce de manière Thread safe!</p> <p>J'espère pouvoir publier le prochain article dans moins d'un an, à bientôt donc :)<p>
+</p>
+                <p><a href="2014/05/un-cache-en-java.html#disqus_thread">Commentaires</a></p>
+            
+
+        
 
     </div>
 
@@ -174,83 +185,123 @@
             <p>Geek. Technos de prédilections : Java, Android, Git.</p>
         </div>
 
+
         <div class="sidebar-module">
-                <ol class="list-unstyled" style="margin-left: 0px">
+            <h4>Tags</h4>
+            <ol class="list-unstyled" style="margin-left: 0px">
+                
 
-                    <li><a href="Android.html">Android</a> (2)</li>
+                <li><a href="Java.html">Java</a> (15)</li>
+                
 
-                    <li><a href="Assertj.html">Assertj</a> (1)</li>
+                <li><a href="java8.html">java8</a> (6)</li>
+                
 
-                    <li><a href="auto-hébergement.html">auto-hébergement</a> (1)</li>
+                <li><a href="SimpleWeb4j.html">SimpleWeb4j</a> (6)</li>
+                
 
-                    <li><a href="Awaitility.html">Awaitility</a> (1)</li>
+                <li><a href="CodeStory.html">CodeStory</a> (5)</li>
+                
 
-                    <li><a href="cloud.html">cloud</a> (1)</li>
+                <li><a href="Devoxx.html">Devoxx</a> (5)</li>
+                
 
-                    <li><a href="CodeStory.html">CodeStory</a> (5)</li>
+                <li><a href="EventSource.html">EventSource</a> (4)</li>
+                
 
-                    <li><a href="Comparatif.html">Comparatif</a> (1)</li>
+                <li><a href="Server-Sent-Events.html">Server-Sent-Events</a> (4)</li>
+                
 
-                    <li><a href="couchbase.html">couchbase</a> (1)</li>
+                <li><a href="SSE.html">SSE</a> (4)</li>
+                
 
-                    <li><a href="CSV.html">CSV</a> (3)</li>
+                <li><a href="CSV.html">CSV</a> (3)</li>
+                
 
-                    <li><a href="CsvEngine.html">CsvEngine</a> (1)</li>
+                <li><a href="Jetty.html">Jetty</a> (3)</li>
+                
 
-                    <li><a href="Devoxx.html">Devoxx</a> (5)</li>
+                <li><a href="simple.html">simple</a> (3)</li>
+                
 
-                    <li><a href="EventSource.html">EventSource</a> (4)</li>
+                <li><a href="Android.html">Android</a> (2)</li>
+                
 
-                    <li><a href="ExecutorService.html">ExecutorService</a> (1)</li>
+                <li><a href="javascript.html">javascript</a> (2)</li>
+                
 
-                    <li><a href="git.html">git</a> (1)</li>
+                <li><a href="Logo.html">Logo</a> (2)</li>
+                
 
-                    <li><a href="Google.html">Google</a> (1)</li>
+                <li><a href="Rennes.html">Rennes</a> (2)</li>
+                
 
-                    <li><a href="Groovy.html">Groovy</a> (1)</li>
+                <li><a href="TDD.html">TDD</a> (2)</li>
+                
 
-                    <li><a href="Jajascript.html">Jajascript</a> (1)</li>
+                <li><a href="websocket.html">websocket</a> (2)</li>
+                
 
-                    <li><a href="Java.html">Java</a> (15)</li>
+                <li><a href="Assertj.html">Assertj</a> (1)</li>
+                
 
-                    <li><a href="java8.html">java8</a> (6)</li>
+                <li><a href="auto-hébergement.html">auto-hébergement</a> (1)</li>
+                
 
-                    <li><a href="javascript.html">javascript</a> (2)</li>
+                <li><a href="Awaitility.html">Awaitility</a> (1)</li>
+                
 
-                    <li><a href="JEE.html">JEE</a> (1)</li>
+                <li><a href="cloud.html">cloud</a> (1)</li>
+                
 
-                    <li><a href="Jetty.html">Jetty</a> (3)</li>
+                <li><a href="Comparatif.html">Comparatif</a> (1)</li>
+                
 
-                    <li><a href="json.html">json</a> (1)</li>
+                <li><a href="couchbase.html">couchbase</a> (1)</li>
+                
 
-                    <li><a href="Logo.html">Logo</a> (2)</li>
+                <li><a href="CsvEngine.html">CsvEngine</a> (1)</li>
+                
 
-                    <li><a href="NoMock.html">NoMock</a> (1)</li>
+                <li><a href="ExecutorService.html">ExecutorService</a> (1)</li>
+                
 
-                    <li><a href="OneDay.html">OneDay</a> (1)</li>
+                <li><a href="git.html">git</a> (1)</li>
+                
 
-                    <li><a href="OnePost.html">OnePost</a> (1)</li>
+                <li><a href="Google.html">Google</a> (1)</li>
+                
 
-                    <li><a href="reactive.html">reactive</a> (1)</li>
+                <li><a href="Groovy.html">Groovy</a> (1)</li>
+                
 
-                    <li><a href="Rennes.html">Rennes</a> (2)</li>
+                <li><a href="Jajascript.html">Jajascript</a> (1)</li>
+                
 
-                    <li><a href="REST.html">REST</a> (1)</li>
+                <li><a href="JEE.html">JEE</a> (1)</li>
+                
 
-                    <li><a href="Scalaskel.html">Scalaskel</a> (1)</li>
+                <li><a href="json.html">json</a> (1)</li>
+                
 
-                    <li><a href="Server-Sent-Events.html">Server-Sent-Events</a> (4)</li>
+                <li><a href="NoMock.html">NoMock</a> (1)</li>
+                
 
-                    <li><a href="simple.html">simple</a> (3)</li>
+                <li><a href="OneDay.html">OneDay</a> (1)</li>
+                
 
-                    <li><a href="SimpleWeb4j.html">SimpleWeb4j</a> (6)</li>
+                <li><a href="OnePost.html">OnePost</a> (1)</li>
+                
 
-                    <li><a href="SSE.html">SSE</a> (4)</li>
+                <li><a href="reactive.html">reactive</a> (1)</li>
+                
 
-                    <li><a href="TDD.html">TDD</a> (2)</li>
+                <li><a href="REST.html">REST</a> (1)</li>
+                
 
-                    <li><a href="websocket.html">websocket</a> (2)</li>
-                </ol>
+                <li><a href="Scalaskel.html">Scalaskel</a> (1)</li>
+                
+            </ol>
         </div>
     </div>
 
@@ -313,3 +364,4 @@
     
   </body>
 </html>
+
