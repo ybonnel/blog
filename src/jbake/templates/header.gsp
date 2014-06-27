@@ -1,12 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="utf-8">
-    <title>JustAnOtherDevBlog<%if (content.title) {%> - ${content.title}<%}%></title>
+    <%
+        def pagetitle = null
+        if (content.title) {
+            pagetitle = content.title
+        } else if (content.type == "tag") {
+            pagetitle = "${tag}"
+
+        } else if (content.type == "archive") {
+            pagetitle = "Archives"
+        }
+    %>
+    <title>JustAnOtherDevBlog<%if (pagetitle) {%> - ${pagetitle}<%}%></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="keywords" content="">    
+    <meta name="description" content="<%
+        if (pagetitle) {
+            out << "JustAnOtherDevBlog : ${pagetitle}"
+        } else {
+            out << "JustAnOtherDevBlog : un nouveau blog de dev dont le but est de partager mes trouvailles. Mes sujets de prédilection : Java, Android, Git."
+        }
+    %>">
+    <meta name="og:title" content="<%
+        if (pagetitle) {
+            out << "JustAnOtherDevBlog - ${pagetitle}"
+        } else {
+            out << "JustAnOtherDevBlog"
+        }
+    %>">
+    <meta name="og:type" content="website">
+    <meta name="og:image" content="${config.site_host}/img/JustAnOtherDevBlog.png">
+    <meta name="og:url" content="<%
+        if (content.type == "archive") {
+            out << """${config.site_host}/archive.html"""
+        } else if (content.type == "tag") {
+            out << """${config.site_host}/tags/${tag}.html"""
+        } else {
+            out << config.site_host
+        }
+    %>">
+    <meta name="og:description" content="<%
+        if (pagetitle) {
+            out << "JustAnOtherDevBlog : ${pagetitle}"
+        } else {
+            out << "JustAnOtherDevBlog : un nouveau blog de dev dont le but est de partager mes trouvailles. Mes sujets de prédilection : Java, Android, Git."
+        }
+    %>">
+    <meta name="og:locale" content="fr_FR">
+    <meta name="og:site_name" content="JustAnOtherDevBlog">
 
     <!-- Le styles -->
     <link href="<%if (content.rootpath){%>${content.rootpath}<%}else{if (content.type == "tag"){%>../<%}}%>css/yeti/bootstrap.min.css" rel="stylesheet">
