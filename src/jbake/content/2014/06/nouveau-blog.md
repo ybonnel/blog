@@ -11,7 +11,7 @@ Si vous voulez voir la différence, allez voir [l'ancien blog](http://ybonnel.bl
 
 # Jbake
 
-J'avais envie de tester [jbake](jbake.org) qui est un générateur de site statique, un peu à l'image de jekyll mais en java.
+J'avais envie de tester [jbake](http://jbake.org/) qui est un générateur de site statique, un peu à l'image de jekyll mais en java.
 
 J'ai choisi jbake car j'avais envie de pouvoir éditer et tester mon blog de manière offline, et il se trouve que jbake est à la mode actuellement.
 Autre avantge, l'article que vous lisez est écrit en Markdown, en voici le [contenu](https://github.com/ybonnel/blog/tree/master/src/jbake/content/2014/06/nouveau-blog.md).
