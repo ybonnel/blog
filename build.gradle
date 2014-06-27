@@ -11,7 +11,7 @@ buildscript {
     // optional, if you use asciidoctor markup
     classpath 'org.asciidoctor:asciidoctor-java-integration:0.1.4'
 
-    classpath 'org.codehaus.groovy:groovy-all:2.3.0'
+    classpath 'org.codehaus.groovy:groovy-all:2.3.3'
     classpath 'org.pegdown:pegdown:1.4.2'
 
     // optional, if you use freemarker template engine
@@ -40,6 +40,7 @@ repositories {
 
 dependencies {
     compile 'com.rometools:rome-fetcher:1.5.0'
+    compile 'org.apache.commons:commons-lang3:3.3.2'
 }
 
 task publish(type: GradleBuild) {           
