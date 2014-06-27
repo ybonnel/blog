@@ -16,7 +16,7 @@
           <pubDate>${new java.text.SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z", Locale.US).format(post.date)}</pubDate>
           <guid isPermaLink="false">${post.uri}</guid>
           <description>
-              ${post.body.replace("&", "&amp;").replace("<","&lt").replace(">","&gt;").replace("\"", "&quot;").replace("'", "&apos;")}
+              ${post.body.replace("&", "&amp;").replace("<","&lt;").replace(">","&gt;").replace("\"", "&quot;").replace("'", "&apos;")}
           </description>
       </item>
       <%}%>
