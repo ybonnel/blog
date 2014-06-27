@@ -6,10 +6,13 @@ buildscript {
   }
 
   dependencies {
-    classpath 'me.champeau.gradle:jbake-gradle-plugin:0.1'
+    classpath 'me.champeau.gradle:jbake-gradle-plugin:0.2'
 
     // optional, if you use asciidoctor markup
     classpath 'org.asciidoctor:asciidoctor-java-integration:0.1.4'
+
+    classpath 'org.codehaus.groovy:groovy-all:2.3.0'
+    classpath 'org.pegdown:pegdown:1.4.2'
 
     // optional, if you use freemarker template engine
     classpath 'org.freemarker:freemarker:2.3.19'
@@ -22,7 +25,7 @@ buildscript {
   }
 }
 
-apply plugin: 'jbake'
+apply plugin: 'me.champeau.jbake'
 
 apply plugin: 'watch'
 

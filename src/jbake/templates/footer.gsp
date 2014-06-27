@@ -14,7 +14,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <!-- script src="/js/jquery-1.10.2.min.js"></script -->
     <!-- script src="/js/bootstrap.min.js"></script -->
-    <script src="<#if (content.rootpath)??>${content.rootpath}<#else><#if rootpath??>${rootpath}</#if></#if>js/run_prettify.js"></script>
+    <script src="<%if (content.rootpath){%>${content.rootpath}<%}else{if (content.type == "tag"){%>../<%}}%>js/run_prettify.js"></script>
 
     <script src='http://alexgorbatchev.com/pub/sh/3.0.83/scripts/shCore.js' type='text/javascript'></script>
     <script src='http://alexgorbatchev.com/pub/sh/3.0.83/scripts/shBrushCss.js' type='text/javascript'></script>
