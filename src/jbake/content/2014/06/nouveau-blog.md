@@ -24,7 +24,7 @@ Cédric explique assez bien la marche à suivre sur son [blog](http://melix.gith
  
 # Vous en pensez quoi?
 
-Je ferez un article la semaine prochaine sur les détails de l'implémentation et la migration depuis blogger.
+Je ferai un article la semaine prochaine sur les détails de l'implémentation et la migration depuis blogger.
 Je vous expliquerai également pouquoi j'ai choisi les templates groovy
 
 En attendant, n'hésitez pas à me dire ce que vous en pensez.
