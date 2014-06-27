@@ -3,7 +3,7 @@
   <channel>
     <title>JustAnOtherDevBlog</title>
     <link>${config.site_host}</link>
-    <atom:link href="${config.site_host}/${feed.file}" rel="self" type="application/rss+xml" />
+    <atom:link href="${config.site_host}/${config.feed.file}" rel="self" type="application/rss+xml" />
     <description>JustAnOtherDevBlog</description>
     <language>fr-fr</language>
       <pubDate>${new java.text.SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z", Locale.US).format(published_date)}</pubDate>
