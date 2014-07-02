@@ -28,9 +28,9 @@
         } else {
             out << "JustAnOtherDevBlog"
         }
-    %>">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="${config.site_host}/img/JustAnOtherDevBlog.png">
+    %>" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="${config.site_host}/img/JustAnOtherDevBlog.png" />
     <meta property="og:url" content="<%
         if (content.type == "archive") {
             out << """${config.site_host}/archive.html"""
@@ -39,16 +39,16 @@
         } else {
             out << config.site_host
         }
-    %>">
+    %>" />
     <meta property="og:description" content="<%
         if (pagetitle) {
             out << "JustAnOtherDevBlog : ${pagetitle}"
         } else {
             out << "JustAnOtherDevBlog : un nouveau blog de dev dont le but est de partager mes trouvailles. Mes sujets de prédilection : Java, Android, Git."
         }
-    %>">
-    <meta property="og:locale" content="fr_FR">
-    <meta property="og:site_name" content="JustAnOtherDevBlog">
+    %>" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="JustAnOtherDevBlog" />
 
     <!-- Le styles -->
     <link href="<%if (content.rootpath){%>${content.rootpath}<%}else{if (content.type == "tag"){%>../<%}}%>css/yeti/bootstrap.min.css" rel="stylesheet">
