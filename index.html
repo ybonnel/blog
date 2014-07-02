@@ -77,6 +77,25 @@
 
             
                 
+                    <a href="2014/07/migrate-blogger-to-jbake.html"><h1>Migration de blogger à jbake</h1></a>
+                    <p>02 juillet 2014</p>
+
+                    <p>Tags :
+                        <a href="tags/blogger.html">blogger</a>, <a href="tags/jbake.html">jbake</a>, <a href="tags/github.html">github</a>
+                    </p>
+
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/07/migrate-blogger-to-jbake.html" data-text="Migration de blogger à jbake" data-via="ybonnel" data-lang="fr">Tweeter</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                    <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/07/migrate-blogger-to-jbake.html"></div>
+
+                    <p><p>Je vous en ai parlé la semaine dernière dans cet <a href="http://www.ybonnel.fr/2014/06/nouveau-blog.html">article</a>, je suis passé de blogger à jbake.</p><p>Le but de l&rsquo;article d&rsquo;aujourd&rsquo;hui sera de de donner un certain nombre d&rsquo;astuces autour de cette migration, plus quelques astuces sur jbake.</p><h1>Mise en place de Jbake</h1><p>Quand j&rsquo;ai commencé, je me suis basé sur le post de <a href="http://melix.github.io/blog/2014/02/hosting-jbake-github.html">Cédric</a>, mais j&rsquo;ai finalement décidé d&rsquo;abandonner gradle pour passer à mon vieil ami Maven.</p><p>La raison de ce changement est assez simple, je connais bien maven :)</p><p>J&rsquo;utilise le plugin <a href="https://github.com/jbake-org/jbake-maven-plugin">jbake-maven-plugin</a> sur lequel j&rsquo;ai fait deux <a href="https://github.com/jbake-org/jbake-maven-plugin/pulls">pull request</a>.<br/>La première pull request est pour qu&rsquo;il supporte jbake 2.3.0, la deuxième est pour qu&rsquo;il démarre un serveur livrereload sur le goal inline.</p><p>Si ces pull request sont mergées, ou si vous utilisez mon <a href="https://github.com/ybonnel/jbake-maven-plugin">fork</a>, les tests sont plutôt simples, il suffit de lancer :<br/><code>
+mvn jbake:inline
+</code><br/>Ouvrez ensuite <a href="http://localhost:8080">http://localhost:8080</a>, si vous activez livereload, dès que vous faites une modification, un refresh est déclenché, plutôt cool, non?</p><p>Concernant la publication sur github, j&rsquo;utilise le plugin de github : <a href="http://github.github.com/maven-plugins/site-plugin/">github-site-plugin</a>.</p><p>Si vous voulez voir les détails, vous pouvez regarder mon <a href="https://github.com/ybonnel/blog/blob/master/pom.xml">pom.xml</a>.</p><h1>Migration des articles</h1><p>Je ne voulez pas réécrire les anciens articles à la main, il a donc fallu que je trouve une procédure automatisée.</p><p>Je suis parti du flux rss de blogger, et pour chaque article je crée un fichier html dans mes sources jbake.<br/>Ma classe permettant celà est disponible <a href="https://github.com/ybonnel/blog/blob/master/src/main/java/BloggerToJbake.java">ici</a>.</p><h1>Migration des commentaires</h1><p>Pour la migration des commentaires, j&rsquo;ai été surpris, ça marche tout seul avec <a href="https://help.disqus.com/customer/portal/articles/1218656-importing-comments-from-blogger-to-disqus">disqus</a>.</p><h1>Quelques astuces sur les templates</h1><h2>Tags</h2><p>J&rsquo;avais commencé avec des templates freemarker, mais j&rsquo;ai pas réussi à faire ce que je voulais avec.<br/>Je voulais afficher la liste des tags avec entre parenthèses le nombre d&rsquo;articles possédant ce tag, le tout ordonné par nombre d&rsquo;articles décroissant.<br/>Je n&rsquo;ai trouvé aucune solution (sans code java) pour faire ça avec freemarker, alors qu&rsquo;en groovy c&rsquo;est relativement simple :<br/><script src="https://gist.github.com/ybonnel/4ec6f22377331d8a47e8.js"></script></p><h2>Sitemap des tags</h2><p>Voici le petit bout de code qui me permet de positionner la date de mise à jour des pages de type tag (correspondant au dernier article sur ce tag) :<br/><script src="https://gist.github.com/ybonnel/deec4ef0f1dcc0d07b68.js"></script></p><h1>Open-source</h1><p>Pour finir, si vous voyez un truc qui pourrait être amélioré sur le blog, il est maintenent <a href="https://github.com/ybonnel/blog/">open-source</a>.</p></p>
+                    <p><a href="2014/07/migrate-blogger-to-jbake.html#disqus_thread">Commentaires</a></p>
+                
+
+            
+                
                     <a href="2014/06/nouveau-blog.html"><h1>Nouveau blog</h1></a>
                     <p>27 juin 2014</p>
 
@@ -147,24 +166,6 @@
                 
 
             
-                
-                    <a href="2014/06/server-sent-events-et-cote-client.html"><h1>Server Sent Events, et côté client?</h1></a>
-                    <p>05 juin 2014</p>
-
-                    <p>Tags :
-                        <a href="tags/EventSource.html">EventSource</a>, <a href="tags/javascript.html">javascript</a>, <a href="tags/Server-Sent-Events.html">Server-Sent-Events</a>, <a href="tags/SSE.html">SSE</a>
-                    </p>
-
-                    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/06/server-sent-events-et-cote-client.html" data-text="Server Sent Events, et côté client?" data-via="ybonnel" data-lang="fr">Tweeter</a>
-                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                    <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/06/server-sent-events-et-cote-client.html"></div>
-
-                    <p><p>Aujourd'hui, je vais vous parler de Server Sent Events côté client javascript.</p> <p>Nous allons reprendre le serveur qui envoyait l'heure toutes les secondes codé <a href="http://www.ybonnel.fr/2014/06/server-sent-events-avec-simpleweb4j.html">ici</a>.<p> <p>L'utilisation d'un flux Server Sent Event se fait par l'intermédiaire de l'objet "EventSource" qui prend comme paramètre dans le constructeur l'url du flux. Cet objet possède une fonction "addEventListener" qui prend en paramètres le type de listener (message pour la réception de nouvelles données) ainsi que la callback.</p><p>Si vous êtes comme moi et que vous utilisez angular.js un peu partout, vous savez comment il peut s'avérer complexe de s'intégrer dans son dual binding, mais la méthode $scope.$apply est là pour ça!</p> <p>Voici donc le résultat final :</p><script src="https://gist.github.com/ybonnel/e385ac59e4cf00ebd2f7.js"></script> <br/><p>Et voilà, c'est pas bien compliqué de faire du temps réel :)</p><p>Petit précision, EventSource n'est pas supporté par IE, mais il existe un contournement : <a href="https://github.com/Yaffle/EventSource/">github.com/Yaffle/EventSource</a></p>
-</p>
-                    <p><a href="2014/06/server-sent-events-et-cote-client.html#disqus_thread">Commentaires</a></p>
-                
-
-            
 
             <hr />
 
@@ -187,127 +188,87 @@
                 <h4>Tags</h4>
                 <ol class="list-unstyled" style="margin-left: 0px">
                     
-
                         <li><a href="tags/Java.html">Java</a> (15)</li>
                     
-
                         <li><a href="tags/java8.html">java8</a> (6)</li>
                     
-
                         <li><a href="tags/SimpleWeb4j.html">SimpleWeb4j</a> (6)</li>
                     
-
                         <li><a href="tags/CodeStory.html">CodeStory</a> (5)</li>
                     
-
                         <li><a href="tags/Devoxx.html">Devoxx</a> (5)</li>
                     
-
                         <li><a href="tags/EventSource.html">EventSource</a> (4)</li>
                     
-
                         <li><a href="tags/Server-Sent-Events.html">Server-Sent-Events</a> (4)</li>
                     
-
                         <li><a href="tags/SSE.html">SSE</a> (4)</li>
                     
-
                         <li><a href="tags/CSV.html">CSV</a> (3)</li>
                     
-
                         <li><a href="tags/Jetty.html">Jetty</a> (3)</li>
                     
-
                         <li><a href="tags/simple.html">simple</a> (3)</li>
                     
-
                         <li><a href="tags/Android.html">Android</a> (2)</li>
                     
-
+                        <li><a href="tags/blogger.html">blogger</a> (2)</li>
+                    
+                        <li><a href="tags/github.html">github</a> (2)</li>
+                    
                         <li><a href="tags/javascript.html">javascript</a> (2)</li>
                     
-
+                        <li><a href="tags/jbake.html">jbake</a> (2)</li>
+                    
                         <li><a href="tags/Logo.html">Logo</a> (2)</li>
                     
-
                         <li><a href="tags/Rennes.html">Rennes</a> (2)</li>
                     
-
                         <li><a href="tags/TDD.html">TDD</a> (2)</li>
                     
-
                         <li><a href="tags/websocket.html">websocket</a> (2)</li>
                     
-
                         <li><a href="tags/Assertj.html">Assertj</a> (1)</li>
                     
-
                         <li><a href="tags/auto-hébergement.html">auto-hébergement</a> (1)</li>
                     
-
                         <li><a href="tags/Awaitility.html">Awaitility</a> (1)</li>
                     
-
-                        <li><a href="tags/blogger.html">blogger</a> (1)</li>
-                    
-
                         <li><a href="tags/cloud.html">cloud</a> (1)</li>
                     
-
                         <li><a href="tags/Comparatif.html">Comparatif</a> (1)</li>
                     
-
                         <li><a href="tags/couchbase.html">couchbase</a> (1)</li>
                     
-
                         <li><a href="tags/CsvEngine.html">CsvEngine</a> (1)</li>
                     
-
                         <li><a href="tags/ExecutorService.html">ExecutorService</a> (1)</li>
                     
-
                         <li><a href="tags/git.html">git</a> (1)</li>
                     
-
-                        <li><a href="tags/github.html">github</a> (1)</li>
-                    
-
                         <li><a href="tags/Google.html">Google</a> (1)</li>
                     
-
                         <li><a href="tags/Groovy.html">Groovy</a> (1)</li>
                     
-
                         <li><a href="tags/Jajascript.html">Jajascript</a> (1)</li>
                     
-
-                        <li><a href="tags/jbake.html">jbake</a> (1)</li>
-                    
-
                         <li><a href="tags/JEE.html">JEE</a> (1)</li>
                     
-
                         <li><a href="tags/json.html">json</a> (1)</li>
                     
-
                         <li><a href="tags/NoMock.html">NoMock</a> (1)</li>
                     
-
                         <li><a href="tags/OneDay.html">OneDay</a> (1)</li>
                     
-
                         <li><a href="tags/OnePost.html">OnePost</a> (1)</li>
                     
-
                         <li><a href="tags/reactive.html">reactive</a> (1)</li>
                     
-
                         <li><a href="tags/REST.html">REST</a> (1)</li>
                     
-
                         <li><a href="tags/Scalaskel.html">Scalaskel</a> (1)</li>
                     
-                    </ol>
+                 </ol>
             </div>
         </div>
 
