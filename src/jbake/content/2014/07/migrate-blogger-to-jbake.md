@@ -30,7 +30,7 @@ Si vous voulez voir les détails, vous pouvez regarder mon [pom.xml](https://git
 
 # Migration des articles
 
-Je ne voulez pas réécrire les anciens articles à la main, il a donc fallu que je trouve une procédure automatisée.
+Je ne voulais pas réécrire les anciens articles à la main, il a donc fallu que je trouve une procédure automatisée.
 
 Je suis parti du flux rss de blogger, et pour chaque article je crée un fichier html dans mes sources jbake.
 Ma classe permettant celà est disponible [ici](https://github.com/ybonnel/blog/blob/master/src/main/java/BloggerToJbake.java).
