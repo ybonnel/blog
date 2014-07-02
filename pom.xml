@@ -8,7 +8,10 @@
 
     <properties>
         <jbake.inputDirectory>${project.basedir}/src/jbake</jbake.inputDirectory>
+        <maven.deploy.skip>true</maven.deploy.skip>
     </properties>
+
+    <url>https://github.com/ybonnel/blog</url>
 
     <build>
         <finalName>blog</finalName>
@@ -56,6 +59,34 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <!-- Deploy the web site -->
+                <groupId>com.github.github</groupId>
+                <artifactId>site-maven-plugin</artifactId>
+                <version>0.9</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                        <!-- select the Maven phase in which the plugin will be executed -->
+                        <phase>deploy</phase>
+                        <configuration>
+                            <!-- Plugin configuration ges here -->
+
+                            <server>github</server>
+
+                            <!-- The commit message -->
+                            <message>New version of blog</message>
+                            <!-- The location where the site is uploaded -->
+                            <outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
+                            <!-- Use merge or override the content -->
+                            <merge>true</merge>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
@@ -64,11 +95,6 @@
             <groupId>com.rometools</groupId>
             <artifactId>rome-fetcher</artifactId>
             <version>1.5.0</version>
-        </dependency>
-        <dependency>
-            <groupId>br.com.ingenieux</groupId>
-            <artifactId>jbake-maven-plugin</artifactId>
-            <version>0.0.7-SNAPSHOT</version>
         </dependency>
     </dependencies>
 </project>
