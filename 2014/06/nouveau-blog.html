@@ -73,12 +73,31 @@
 
     <div class="row">
 
-        <div class="col-sm-8">
+        <div class="col-sm-8" itemscope itemtype="http://schema.org/Blog">
 
-        <p><em>27 juin 2014</em></p>
+        <p>
+            <em>
+                <time itemprop="datePublished"
+                      datetime="2014-06-27">
+                    27 juin 2014
+                </time>
+            </em>
+        </p>
+
+        <meta itemprop="name" content="Nouveau blog"/>
+
+        <div itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <meta itemprop="name" content="Yan Bonnel"/>
+        </div>
+        <meta itemprop="license" content="http://creativecommons.org/licenses/by-nc-sa/4.0/"/>
+        <meta itemprop="inLanguage" content="fr-FR"/>
+        <meta itemprop="url" content="http://www.ybonnel.fr/2014/06/nouveau-blog.html"/>
+        <meta itemprop="discussionUrl" content="http://www.ybonnel.fr/2014/06/nouveau-blog.html#disqus_thread"/>
+
 
 
         <p>Tags :
+        <meta itemprop="keywords" content="blogger,jbake,github"/>
         <a href="../../tags/blogger.html">blogger</a>, <a href="../../tags/jbake.html">jbake</a>, <a href="../../tags/github.html">github</a>
         </p>
 
@@ -86,7 +105,9 @@
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
         <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/06/nouveau-blog.html"></div>
 
+        <div itemprop="blogPost">
         <p><p>Vous l&rsquo;avez surement déjà vu, mon blog a changé de tête&hellip;</p><p>Si vous voulez voir la différence, allez voir <a href="http://ybonnel.blogspot.fr/">l&rsquo;ancien blog</a>.</p><h1>Jbake</h1><p>J&rsquo;avais envie de tester <a href="http://jbake.org/">jbake</a> qui est un générateur de site statique, un peu à l&rsquo;image de jekyll mais en java.</p><p>J&rsquo;ai choisi jbake car j&rsquo;avais envie de pouvoir éditer et tester mon blog de manière offline, et il se trouve que jbake est à la mode actuellement.<br/>Autre avantge, l&rsquo;article que vous lisez est écrit en Markdown, en voici le <a href="https://github.com/ybonnel/blog/tree/master/src/jbake/content/2014/06/nouveau-blog.md">contenu</a>.</p><h1>Hébergement</h1><p>Vu que je passe sur une technologie avec des fichiers statiques, il est assez simple d&rsquo;héberger le résultat sur github.</p><p>Cédric explique assez bien la marche à suivre sur son <a href="http://melix.github.io/blog/2014/02/hosting-jbake-github.html">blog</a>.</p><h1>Vous en pensez quoi?</h1><p>Je ferai un article la semaine prochaine sur les détails de l&rsquo;implémentation et la migration depuis blogger.<br/>Je vous expliquerai également pouquoi j&rsquo;ai choisi les templates groovy</p><p>En attendant, n&rsquo;hésitez pas à me dire ce que vous en pensez.</p></p>
+        </div>
 
         <div id="disqus_thread"></div>
         <script type="text/javascript">

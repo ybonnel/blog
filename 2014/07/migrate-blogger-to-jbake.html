@@ -73,12 +73,31 @@
 
     <div class="row">
 
-        <div class="col-sm-8">
+        <div class="col-sm-8" itemscope itemtype="http://schema.org/Blog">
 
-        <p><em>02 juillet 2014</em></p>
+        <p>
+            <em>
+                <time itemprop="datePublished"
+                      datetime="2014-07-02">
+                    02 juillet 2014
+                </time>
+            </em>
+        </p>
+
+        <meta itemprop="name" content="Migration de blogger à jbake"/>
+
+        <div itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <meta itemprop="name" content="Yan Bonnel"/>
+        </div>
+        <meta itemprop="license" content="http://creativecommons.org/licenses/by-nc-sa/4.0/"/>
+        <meta itemprop="inLanguage" content="fr-FR"/>
+        <meta itemprop="url" content="http://www.ybonnel.fr/2014/07/migrate-blogger-to-jbake.html"/>
+        <meta itemprop="discussionUrl" content="http://www.ybonnel.fr/2014/07/migrate-blogger-to-jbake.html#disqus_thread"/>
+
 
 
         <p>Tags :
+        <meta itemprop="keywords" content="blogger,jbake,github"/>
         <a href="../../tags/blogger.html">blogger</a>, <a href="../../tags/jbake.html">jbake</a>, <a href="../../tags/github.html">github</a>
         </p>
 
@@ -86,9 +105,11 @@
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
         <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/07/migrate-blogger-to-jbake.html"></div>
 
+        <div itemprop="blogPost">
         <p><p>Je vous en ai parlé la semaine dernière dans cet <a href="http://www.ybonnel.fr/2014/06/nouveau-blog.html">article</a>, je suis passé de blogger à jbake.</p><p>Le but de l&rsquo;article d&rsquo;aujourd&rsquo;hui sera de de donner un certain nombre d&rsquo;astuces autour de cette migration, plus quelques astuces sur jbake.</p><h1>Mise en place de Jbake</h1><p>Quand j&rsquo;ai commencé, je me suis basé sur le post de <a href="http://melix.github.io/blog/2014/02/hosting-jbake-github.html">Cédric</a>, mais j&rsquo;ai finalement décidé d&rsquo;abandonner gradle pour passer à mon vieil ami Maven.</p><p>La raison de ce changement est assez simple, je connais bien maven :)</p><p>J&rsquo;utilise le plugin <a href="https://github.com/jbake-org/jbake-maven-plugin">jbake-maven-plugin</a> sur lequel j&rsquo;ai fait deux <a href="https://github.com/jbake-org/jbake-maven-plugin/pulls">pull request</a>.<br/>La première pull request est pour qu&rsquo;il supporte jbake 2.3.0, la deuxième est pour qu&rsquo;il démarre un serveur livrereload sur le goal inline.</p><p>Si ces pull request sont mergées, ou si vous utilisez mon <a href="https://github.com/ybonnel/jbake-maven-plugin">fork</a>, les tests sont plutôt simples, il suffit de lancer :<br/><code>
 mvn jbake:inline
 </code><br/>Ouvrez ensuite <a href="http://localhost:8080">http://localhost:8080</a>, si vous activez livereload, dès que vous faites une modification, un refresh est déclenché, plutôt cool, non?</p><p>Concernant la publication sur github, j&rsquo;utilise le plugin de github : <a href="http://github.github.com/maven-plugins/site-plugin/">github-site-plugin</a>.</p><p>Si vous voulez voir les détails, vous pouvez regarder mon <a href="https://github.com/ybonnel/blog/blob/master/pom.xml">pom.xml</a>.</p><h1>Migration des articles</h1><p>Je ne voulais pas réécrire les anciens articles à la main, il a donc fallu que je trouve une procédure automatisée.</p><p>Je suis parti du flux rss de blogger, et pour chaque article je crée un fichier html dans mes sources jbake.<br/>Ma classe permettant celà est disponible <a href="https://github.com/ybonnel/blog/blob/master/src/main/java/BloggerToJbake.java">ici</a>.</p><h1>Migration des commentaires</h1><p>Pour la migration des commentaires, j&rsquo;ai été surpris, ça marche tout seul avec <a href="https://help.disqus.com/customer/portal/articles/1218656-importing-comments-from-blogger-to-disqus">disqus</a>.</p><h1>Quelques astuces sur les templates</h1><h2>Tags</h2><p>J&rsquo;avais commencé avec des templates freemarker, mais j&rsquo;ai pas réussi à faire ce que je voulais avec.<br/>Je voulais afficher la liste des tags avec entre parenthèses le nombre d&rsquo;articles possédant ce tag, le tout ordonné par nombre d&rsquo;articles décroissant.<br/>Je n&rsquo;ai trouvé aucune solution (sans code java) pour faire ça avec freemarker, alors qu&rsquo;en groovy c&rsquo;est relativement simple :<br/><script src="https://gist.github.com/ybonnel/4ec6f22377331d8a47e8.js"></script></p><h2>Sitemap des tags</h2><p>Voici le petit bout de code qui me permet de positionner la date de mise à jour des pages de type tag (correspondant au dernier article sur ce tag) :<br/><script src="https://gist.github.com/ybonnel/deec4ef0f1dcc0d07b68.js"></script></p><h1>Open-source</h1><p>Pour finir, si vous voyez un truc qui pourrait être amélioré sur le blog, il est maintenent <a href="https://github.com/ybonnel/blog/">open-source</a>.</p></p>
+        </div>
 
         <div id="disqus_thread"></div>
         <script type="text/javascript">
