@@ -27,7 +27,6 @@
         <div itemprop="author" itemscope itemtype="http://schema.org/Person">
             <meta itemprop="name" content="Yan Bonnel"/>
         </div>
-        <meta itemprop="license" content="http://creativecommons.org/licenses/by-nc-sa/4.0/"/>
         <meta itemprop="inLanguage" content="fr-FR"/>
         <meta itemprop="url" content="${config.site_host}/${content.uri}"/>
         <meta itemprop="discussionUrl" content="${config.site_host}/${content.uri}#disqus_thread"/>

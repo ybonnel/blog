@@ -15,23 +15,40 @@
 
             <% posts.take(5).each { post -> %>
                 <%if (post.status == "published") {%>
-                    <a href="${post.uri}"><h1>${post.title}</h1></a>
-                    <p>${post.date.format("dd MMMM yyyy")}</p>
+                    <div  itemscope itemtype="http://schema.org/Blog">
+                        <div itemprop="author" itemscope itemtype="http://schema.org/Person">
+                            <meta itemprop="name" content="Yan Bonnel"/>
+                        </div>
+                        <meta itemprop="inLanguage" content="fr-FR"/>
+                        <a itemprop="url" href="${post.uri}">
+                            <h1 itemprop="name">${post.title}</h1>
+                        </a>
+                        <p>
+                            <time itemprop="datePublished"
+                                  datetime="${post.date.format("yyyy-MM-dd")}">
+                                ${post.date.format("dd MMMM yyyy")}
+                            </time>
+                        </p>
 
-                    <p>Tags :
-                        <%
-                            out << post.tags.collect { post_tag ->
-                                """<a href="tags/${post_tag}.html">${post_tag}</a>"""
-                            } .join(", ")
-                        %>
-                    </p>
+                        <p>Tags :
+                            <meta itemprop="keywords" content="${post.tags.join(",")}"/>
+                            <%
+                                out << post.tags.collect { post_tag ->
+                                    """<a href="tags/${post_tag}.html">${post_tag}</a>"""
+                                } .join(", ")
+                            %>
+                        </p>
 
-                    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/${post.uri}" data-text="${post.title}" data-via="ybonnel" data-lang="fr">Tweeter</a>
-                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                    <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/${post.uri}"></div>
+                        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/${post.uri}" data-text="${post.title}" data-via="ybonnel" data-lang="fr">Tweeter</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                        <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/${post.uri}"></div>
 
-                    <p>${post.body}</p>
-                    <p><a href="${post.uri}#disqus_thread">Commentaires</a></p>
+                        <div itemprop="blogPost">
+                            <p>${post.body}</p>
+                        </div>
+                        <p><a itemprop="discussionUrl" href="${post.uri}#disqus_thread">Commentaires</a></p>
+
+                    </div>
                 <%}%>
 
             <%}%>
