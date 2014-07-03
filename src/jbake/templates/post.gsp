@@ -11,12 +11,31 @@
 
     <div class="row">
 
-        <div class="col-sm-8">
+        <div class="col-sm-8" itemscope itemtype="http://schema.org/Blog">
 
-        <p><em>${content.date.format("dd MMMM yyyy")}</em></p>
+        <p>
+            <em>
+                <time itemprop="datePublished"
+                      datetime="${content.date.format("yyyy-MM-dd")}">
+                    ${content.date.format("dd MMMM yyyy")}
+                </time>
+            </em>
+        </p>
+
+        <meta itemprop="name" content="${content.title}"/>
+
+        <div itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <meta itemprop="name" content="Yan Bonnel"/>
+        </div>
+        <meta itemprop="license" content="http://creativecommons.org/licenses/by-nc-sa/4.0/"/>
+        <meta itemprop="inLanguage" content="fr-FR"/>
+        <meta itemprop="url" content="${config.site_host}/${content.uri}"/>
+        <meta itemprop="discussionUrl" content="${config.site_host}/${content.uri}#disqus_thread"/>
+
 
 
         <p>Tags :
+        <meta itemprop="keywords" content="${content.tags.join(",")}"/>
         <%
             out << content.tags.collect { post_tag ->
                 """<a href="${content.rootpath}tags/${post_tag}.html">${post_tag}</a>"""
@@ -28,7 +47,9 @@
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
         <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/${content.uri}"></div>
 
+        <div itemprop="blogPost">
         <p>${content.body}</p>
+        </div>
 
         <div id="disqus_thread"></div>
         <script type="text/javascript">
