@@ -82,6 +82,62 @@
                             <meta itemprop="name" content="Yan Bonnel"/>
                         </div>
                         <meta itemprop="inLanguage" content="fr-FR"/>
+                        <a itemprop="url" href="2014/07/completable-future.html">
+                            <h1 itemprop="name">Back to the (Completable)Future</h1>
+                        </a>
+                        <p>
+                            <time itemprop="datePublished"
+                                  datetime="2014-07-23">
+                                23 juillet 2014
+                            </time>
+                        </p>
+
+                        <p>Tags :
+                            <meta itemprop="keywords" content="java8,CompletableFuture"/>
+                            <a href="tags/java8.html">java8</a>, <a href="tags/CompletableFuture.html">CompletableFuture</a>
+                        </p>
+
+                        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/07/completable-future.html" data-text="Back to the (Completable)Future" data-via="ybonnel" data-lang="fr">Tweeter</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                        <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/07/completable-future.html"></div>
+
+                        <div itemprop="blogPost">
+                            <p><p>Je vais aujourd&rsquo;hui vous présenter les <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html">CompletableFuture</a> de java 8.</p><p>Pour l&rsquo;exemple, nous allons réaliser un petit programme Java permettant de récupérer le titre le plus long parmi les articles du blog.<br/>Pour faire cela, nous allons récupérer la page <a href="http://www.ybonnel.fr/archive.html">archive</a> du blog, pour ensuite récupérer chaque lien d&rsquo;article et pour finir récupérer le titre des articles.</p><h1>Méthode naïve</h1><p>Commençons par la méthode naïve sans java8 :<br/><script src="https://gist.github.com/ybonnel/fd339f7df77ea325a52e.js"></script></p><p>Cette méthode a l&rsquo;intérêt d&rsquo;être très facilement compréhensible, par contre c&rsquo;est beaucoup trop séquentiel, il faudrait pouvoir exécuter les requêtes en parallel et non de manière séquentiel.</p><h1>Méthode à base de Future</h1><p>Nous allons maintenant exécuter les requêtes en parallel à l&rsquo;aide d&rsquo;un bon vieux ExecutorService :<br/><script src="https://gist.github.com/ybonnel/58d0d23a348573ab101d.js"></script></p><p>Cette méthode est beaucoup plus performante, mais un truc me gène :</p>
+<pre><code>boolean allDone = false;
+while (!allDone) {
+    allDone = true;
+    for (Future&lt;String&gt; result : results) {
+        if (!result.isDone()) {
+            allDone = false;
+            break;
+        }
+    }
+    Thread.sleep(50);
+}
+</code></pre><p>Avoir du code technique de ce type là en plein milieu, ça me plait pas trop.</p><h1>Méthode à base de CompletableFuture</h1><p>Nous allons maintenant transformer notre code pour utiliser les CompletableFuture de java8 :<br/><script src="https://gist.github.com/ybonnel/a077022e9a2b504f7446.js"></script></p><p>Personnellement je trouve ce code beaucoup plus lisible et sans (ou très peu de) code technique.</p><p>Quelques détails sur l&rsquo;API :</p>
+<ul>
+  <li><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html#supplyAsync-java.util.function.Supplier-java.util.concurrent.Executor-">CompletableFuture.supplyAsync</a> : permet d&rsquo;exécuter un traitement en asynchrone, retourne le CompletableFuture correspondant.</li>
+  <li><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html#allOf-java.util.concurrent.CompletableFuture...-">CompletableFuture.allOf</a> : Permet de récupérer un CompletableFuture correspondant à la fin de tous les CompletableFuture passés en paramètres.</li>
+  <li><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html#thenApply-java.util.function.Function-">CompletableFuture.thenApply</a> : Execute un fonction une fois le CompletableFuture terminé. Cette fonction prend en paramètre l&rsquo;objet du CompletableFuture est renvoie un autre type.</li>
+</ul><h1>Performances</h1><p>Voici les résultats des trois méthodes en terme de performances :</p>
+<ul>
+  <li>Méthode naïve : 2243ms</li>
+  <li>Méthode à base de Future : 310ms</li>
+  <li>Méthode à base de CompletableFuture : 230ms</li>
+</ul><p>Pour les curieux, l&rsquo;ensemble de ma classe de test se trouve <a href="https://github.com/ybonnel/simpleweb4j-blog/blob/master/src/main/java/fr/ybonnel/blog/CompletableFutureTest.java">ici</a>.</p></p>
+                        </div>
+                        <p><a itemprop="discussionUrl" href="2014/07/completable-future.html#disqus_thread">Commentaires</a></p>
+
+                    </div>
+                
+
+            
+                
+                    <div  itemscope itemtype="http://schema.org/Blog">
+                        <div itemprop="author" itemscope itemtype="http://schema.org/Person">
+                            <meta itemprop="name" content="Yan Bonnel"/>
+                        </div>
+                        <meta itemprop="inLanguage" content="fr-FR"/>
                         <a itemprop="url" href="2014/07/migrate-blogger-to-jbake.html">
                             <h1 itemprop="name">Migration de blogger à jbake</h1>
                         </a>
@@ -216,41 +272,6 @@ mvn jbake:inline
                 
 
             
-                
-                    <div  itemscope itemtype="http://schema.org/Blog">
-                        <div itemprop="author" itemscope itemtype="http://schema.org/Person">
-                            <meta itemprop="name" content="Yan Bonnel"/>
-                        </div>
-                        <meta itemprop="inLanguage" content="fr-FR"/>
-                        <a itemprop="url" href="2014/06/la-fin-dun-article-par-jour.html">
-                            <h1 itemprop="name">La fin d'un article par jour</h1>
-                        </a>
-                        <p>
-                            <time itemprop="datePublished"
-                                  datetime="2014-06-06">
-                                06 juin 2014
-                            </time>
-                        </p>
-
-                        <p>Tags :
-                            <meta itemprop="keywords" content="OneDay,OnePost"/>
-                            <a href="tags/OneDay.html">OneDay</a>, <a href="tags/OnePost.html">OnePost</a>
-                        </p>
-
-                        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/06/la-fin-dun-article-par-jour.html" data-text="La fin d'un article par jour" data-via="ybonnel" data-lang="fr">Tweeter</a>
-                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                        <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/06/la-fin-dun-article-par-jour.html"></div>
-
-                        <div itemprop="blogPost">
-                            <p><p>Le dernier article de la semaine sera consacré à vous dire que j'arrête d'écrire tous les jours!</p> <p>Les raisons : <ul><li>La fréquentation de blog (entre 10 et 30 utilisateurs par jour)</li><li>La baisse de la fréquentation par article depuis que j'écris tous les jours</li><li>Le manque d'idée pour continuer à tenir ce rythme :)</li></ul></p> <p>N'hésitez pas à me faire vos retours sur cette expérience qui a duré 2 semaines.</p> <p>Je ne vais pas pour autant retourner à un article par an, mais plutôt un article par semaine.</p> <p>Bon WE!</p>
-</p>
-                        </div>
-                        <p><a itemprop="discussionUrl" href="2014/06/la-fin-dun-article-par-jour.html#disqus_thread">Commentaires</a></p>
-
-                    </div>
-                
-
-            
 
             <hr />
 
@@ -279,7 +300,7 @@ mvn jbake:inline
                     
                         <li><a href="tags/Java.html">Java</a> (15)</li>
                     
-                        <li><a href="tags/java8.html">java8</a> (6)</li>
+                        <li><a href="tags/java8.html">java8</a> (7)</li>
                     
                         <li><a href="tags/SimpleWeb4j.html">SimpleWeb4j</a> (6)</li>
                     
@@ -326,6 +347,8 @@ mvn jbake:inline
                         <li><a href="tags/cloud.html">cloud</a> (1)</li>
                     
                         <li><a href="tags/Comparatif.html">Comparatif</a> (1)</li>
+                    
+                        <li><a href="tags/CompletableFuture.html">CompletableFuture</a> (1)</li>
                     
                         <li><a href="tags/couchbase.html">couchbase</a> (1)</li>
                     

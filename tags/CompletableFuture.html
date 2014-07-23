@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8">
     
-    <title>JustAnOtherDevBlog - couchbase</title>
+    <title>JustAnOtherDevBlog - CompletableFuture</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="JustAnOtherDevBlog : couchbase">
-    <meta property="og:title" content="JustAnOtherDevBlog - couchbase" />
+    <meta name="description" content="JustAnOtherDevBlog : CompletableFuture">
+    <meta property="og:title" content="JustAnOtherDevBlog - CompletableFuture" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="http://www.ybonnel.fr/img/JustAnOtherDevBlog.png" />
-    <meta property="og:url" content="http://www.ybonnel.fr/tags/couchbase.html" />
-    <meta property="og:description" content="JustAnOtherDevBlog : couchbase" />
+    <meta property="og:url" content="http://www.ybonnel.fr/tags/CompletableFuture.html" />
+    <meta property="og:description" content="JustAnOtherDevBlog : CompletableFuture" />
     <meta property="og:locale" content="fr_FR" />
     <meta property="og:site_name" content="JustAnOtherDevBlog" />
 
@@ -67,7 +67,7 @@
 	<div class="page-header">
             <div class="row">
                 <div class="col-xs-4 col-md-2"><img src="../img/JustAnOtherDevBlog.png"></div>
-                <div class="col-xs-12 col-md-8"><h1>Tag: couchbase</h1></div>
+                <div class="col-xs-12 col-md-8"><h1>Tag: CompletableFuture</h1></div>
             </div>
 	</div>
 
@@ -76,20 +76,41 @@
     <div class="col-sm-8">
         
             
-                <a href="../2013/05/mes-premiers-pas-avec-couchbase.html"><h1>Mes premiers pas avec CouchBase</h1></a>
-                <p>28 mai 2013</p>
+                <a href="../2014/07/completable-future.html"><h1>Back to the (Completable)Future</h1></a>
+                <p>23 juillet 2014</p>
 
                 <p>Tags :
-                <a href="couchbase.html">couchbase</a>
+                <a href="java8.html">java8</a>, <a href="CompletableFuture.html">CompletableFuture</a>
                 </p>
 
-                <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2013/05/mes-premiers-pas-avec-couchbase.html" data-text="Mes premiers pas avec CouchBase" data-via="ybonnel" data-lang="fr">Tweeter</a>
+                <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/07/completable-future.html" data-text="Back to the (Completable)Future" data-via="ybonnel" data-lang="fr">Tweeter</a>
                 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2013/05/mes-premiers-pas-avec-couchbase.html"></div>
+                <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/07/completable-future.html"></div>
 
-                <p> Pour ceux qui ne connaissent pas, CouchBase est une base NoSQL orientée document (type MongoDB). Le but ici n'est pas de vous faire un cours sur les bases NoSQL, mais plutôt de vous faire un retour très concret sur mes premiers pas opérationnels avec celle-ci.<br/><br/><h1>Contexte</h1>Comme certains d'entre vous le savent sûrement je suis l'auteur d'un programme télé disponible en tant qu'<a href="https://play.google.com/store/apps/details?id=fr.ybo.ybotv.android">application Android</a> et en tant que <a href="http://ybo-tv.ybonnel.fr">site web</a>. Avant ma refonte vers CouchBase, le serveur fonctionnait avec un gros cache mémoire chargé à partir d'un fichier xml lui-même mis à jour toute les nuits. Depuis quelques semaines, j'avais des problèmes avec la source de mes données, il fallait donc que je change de source, j'en ai donc profité pour changer l'architecture.<br/><br/><br/> <h1>Nouvelle architecture</h1>J'ai un batch qui tourne toute les nuits pour récupérer les données et qui les insère dans la base CouchBase, le serveur se contente donc de requêter CouchBase<br/><br/><br/> <h1>Mise en place</h1> <h2>Installation de CouchBase</h2>C'est le point ultra positif de CouchBase: l'installation. J'ai rarement vu une installation aussi simple. Le produit dispose d'une interface d'administration plutôt sexy, ça évite d'avoir besoin d'une formation de 5 jours et d'une certification pour être capable d’administrer la chose! Je vous invite donc à aller consulter la doc sur ce point, elle est largement suffisante.<br/><br/> <h2>Mise en place du client java</h2>Premier reproche que je peux faire à CouchBase: le client java n'est pas disponible sur le central, ce qui oblige à ajouter le repository CouchBase à la main...<br/>Voici donc comment ajouter le client dans le pom.xml : <pre class="brush:xml"><br />&lt;dependencies&gt;<br />    &lt;dependency&gt;<br />        &lt;groupId&gt;couchbase&lt;/groupId&gt;<br />        &lt;artifactId&gt;couchbase-client&lt;/artifactId&gt;<br />        &lt;version&gt;1.1.4&lt;/version&gt;<br />    &lt;/dependency&gt;<br />&lt;/dependencies&gt;<br /><br />&lt;repositories&gt;<br />    &lt;repository&gt;<br />        &lt;id&gt;couchbase&lt;/id&gt;<br />        &lt;name&gt;Couchbase Maven Repository&lt;/name&gt;<br />        &lt;layout&gt;default&lt;/layout&gt;<br />        &lt;url&gt;http://files.couchbase.com/maven2/&lt;/url&gt;<br />        &lt;snapshots&gt;<br />            &lt;enabled&gt;false&lt;/enabled&gt;<br />        &lt;/snapshots&gt;<br />    &lt;/repository&gt;<br />&lt;/repositories&gt;<br /></pre><br/> <h2>Batch nocturne : insertion en masse</h2>La première partie qu'il a fallu mettre en place est le peuplement de cette base avec le programme télé courant.<br/>Voici donc le contenu de la méthode chargée de cette insertion : <pre class="brush:java"><br />/**<br /> * Insertion du programme télé.<br /> * @param tv programme télé contenant la liste<br /> *        des chaînes et la liste des programmes.<br /> */<br />private static void insertIntoCouchbase(TvForCouchBase tv)<br />        throws URISyntaxException, IOException,<br />               ExecutionException, InterruptedException {<br />    // Création de l'instance jackson pour la serialisation json<br />    ObjectMapper mapper = new ObjectMapper();<br />    mapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);<br /><br />    // Création du client CouchBase.<br />    CouchbaseClient client = new CouchbaseClient(<br />            newArrayList(new URI("http://127.0.0.1:8091/pools")), "default", "");<br /><br />    logger.info("Insert channels");<br />    // Transformation des chaines en json.<br />    String channelIntoJson = mapper.writeValueAsString(tv.getChannel());<br />    // Insertion des chaines<br />    client.set(<br />            "channels", // Clé unique pour la liste des chaines.<br />            (int) TimeUnit.DAYS.toSeconds(3), // Purger au bout de trois jours.<br />            channelIntoJson, // liste des chaînes<br />            PersistTo.ZERO // On attend pas que se soit persister sur disque.<br />    ).get();<br /><br />    logger.info("Insert programs");<br />    for (ProgrammeForCouchBase programme : tv.getProgramme()) {<br />        // Transformation d'un programme en json. <br />        String programmeIntoJson = mapper.writeValueAsString(programme);<br />        // Insertion du programme.<br />        client.set(<br />                "prg_" + programme.getId(), // Clé unique du programme<br />                (int) TimeUnit.DAYS.toSeconds(3), // Purger au bout de trois jours.<br />                programmeIntoJson, // Le programme<br />                PersistTo.ZERO // On attend pas que se soit persister sur disque.<br />        ).get();<br />    }<br /><br />    // On arrête le client.<br />    client.shutdown(30, TimeUnit.SECONDS);<br />}<br /></pre><br/> <h2>Serveur : les queries</h2>Une fois l'index créé sur la console d'administration de CouchBase, le requêtage est très simple. J'ai par exemple créé un index permettant de récupérer tout les programmes associés à une chaine. Le code de l'index (appelé "view" dans CouchBase) est du javascript très simple : <pre class="brush:js"><br />function (doc, meta) {<br />  if (doc.channel) {<br />    emit(doc.channel, null);<br />  }<br />}<br /></pre> Il faut ensuite récupérer les données côté client : <pre class="brush:java"><br />// Récupération du client CouchBase(singleton maison)<br />CouchbaseClient client = CouchBaseService.INSTANCE.getClient();<br />// Mapper permettant de transformer le json en objet.<br />ObjectMapper mapper = CouchBaseService.INSTANCE.getMapper();<br /><br />// Récupération de la vue.<br />View view = client.getView("programme", "by_channel");<br />// Création de la query<br />Query query = new Query();<br />query.setKey(ComplexKey.of(channel));<br />// On inclut les documents dans la réponse pour ne pas avoir à ré-appeler CouchBase.<br />query.setIncludeDocs(true);<br /><br />List&lt;Programme&gt; programmes = new ArrayList&lt;Programme&gt;();<br />for (ViewRow row : client.query(view, query)) {<br />    // Pour chaque ligne de la réponse de CouchBase,<br />    // on transforme le document en objet.<br />    programmes.add(mapper.readValue(<br />            (String) row.getDocument(), <br />            Programme.class));<br />}<br /></pre> Comme on le voit, l'intégration se fait tout en douceur, rien de bien compliqué.<br/><br/>  <h1>Conclusion</h1>Dans l'ensemble je suis très satisfait de CouchBase, les points positifs sont : api très simple, installation très simple, console d'administration réellement digne de ce nom.<br/>Seuls deux points m'ont un peu déçu.<br/>Le premier est le fait que la librairie Java ne soit pas déployée dans le central maven (je déteste ajouter des repository tierces dans mon pom.xml...). <br/>Le deuxième point ne concerne pas directement l'utilisation, il s'agit de la configuration choisie pour le build de la librairie Java. J'ai trouvé une anomalie dans le code de la librairie java, j'ai donc voulu faire une pull request pour la corriger. J'ai donc récupéré les sources, et me suis aperçu que le build est fait via "ant", étant allergique à "ant", je ne suis pas allé plus loin (l'anomalie a quand même été corrigée par l'équipe CouchBase). De même dans le README de la librairie, aucune info sur la contribution, que des infos sur l'utilisation...<br/>Malgré ces deux points, je reste ultra-satisfait de CouchBase, son utilisation est simple, et quand on montre la console d'administration, tout le monde est séduit!<br/><br/>En bref, essayer CouchBase c'est l'adopter!
-</p>
-                <p><a href="2013/05/mes-premiers-pas-avec-couchbase.html#disqus_thread">Commentaires</a></p>
+                <p><p>Je vais aujourd&rsquo;hui vous présenter les <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html">CompletableFuture</a> de java 8.</p><p>Pour l&rsquo;exemple, nous allons réaliser un petit programme Java permettant de récupérer le titre le plus long parmi les articles du blog.<br/>Pour faire cela, nous allons récupérer la page <a href="http://www.ybonnel.fr/archive.html">archive</a> du blog, pour ensuite récupérer chaque lien d&rsquo;article et pour finir récupérer le titre des articles.</p><h1>Méthode naïve</h1><p>Commençons par la méthode naïve sans java8 :<br/><script src="https://gist.github.com/ybonnel/fd339f7df77ea325a52e.js"></script></p><p>Cette méthode a l&rsquo;intérêt d&rsquo;être très facilement compréhensible, par contre c&rsquo;est beaucoup trop séquentiel, il faudrait pouvoir exécuter les requêtes en parallel et non de manière séquentiel.</p><h1>Méthode à base de Future</h1><p>Nous allons maintenant exécuter les requêtes en parallel à l&rsquo;aide d&rsquo;un bon vieux ExecutorService :<br/><script src="https://gist.github.com/ybonnel/58d0d23a348573ab101d.js"></script></p><p>Cette méthode est beaucoup plus performante, mais un truc me gène :</p>
+<pre><code>boolean allDone = false;
+while (!allDone) {
+    allDone = true;
+    for (Future&lt;String&gt; result : results) {
+        if (!result.isDone()) {
+            allDone = false;
+            break;
+        }
+    }
+    Thread.sleep(50);
+}
+</code></pre><p>Avoir du code technique de ce type là en plein milieu, ça me plait pas trop.</p><h1>Méthode à base de CompletableFuture</h1><p>Nous allons maintenant transformer notre code pour utiliser les CompletableFuture de java8 :<br/><script src="https://gist.github.com/ybonnel/a077022e9a2b504f7446.js"></script></p><p>Personnellement je trouve ce code beaucoup plus lisible et sans (ou très peu de) code technique.</p><p>Quelques détails sur l&rsquo;API :</p>
+<ul>
+  <li><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html#supplyAsync-java.util.function.Supplier-java.util.concurrent.Executor-">CompletableFuture.supplyAsync</a> : permet d&rsquo;exécuter un traitement en asynchrone, retourne le CompletableFuture correspondant.</li>
+  <li><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html#allOf-java.util.concurrent.CompletableFuture...-">CompletableFuture.allOf</a> : Permet de récupérer un CompletableFuture correspondant à la fin de tous les CompletableFuture passés en paramètres.</li>
+  <li><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html#thenApply-java.util.function.Function-">CompletableFuture.thenApply</a> : Execute un fonction une fois le CompletableFuture terminé. Cette fonction prend en paramètre l&rsquo;objet du CompletableFuture est renvoie un autre type.</li>
+</ul><h1>Performances</h1><p>Voici les résultats des trois méthodes en terme de performances :</p>
+<ul>
+  <li>Méthode naïve : 2243ms</li>
+  <li>Méthode à base de Future : 310ms</li>
+  <li>Méthode à base de CompletableFuture : 230ms</li>
+</ul><p>Pour les curieux, l&rsquo;ensemble de ma classe de test se trouve <a href="https://github.com/ybonnel/simpleweb4j-blog/blob/master/src/main/java/fr/ybonnel/blog/CompletableFutureTest.java">ici</a>.</p></p>
+                <p><a href="2014/07/completable-future.html#disqus_thread">Commentaires</a></p>
             
 
         

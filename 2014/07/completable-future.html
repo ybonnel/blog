@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8">
     
-    <title>JustAnOtherDevBlog - WebSocket, et comment on teste?</title>
+    <title>JustAnOtherDevBlog - Back to the (Completable)Future</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="JustAnOtherDevBlog : WebSocket, et comment on teste?">
-    <meta property="og:title" content="JustAnOtherDevBlog - WebSocket, et comment on teste?" />
+    <meta name="description" content="JustAnOtherDevBlog : Back to the (Completable)Future">
+    <meta property="og:title" content="JustAnOtherDevBlog - Back to the (Completable)Future" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="http://www.ybonnel.fr/img/JustAnOtherDevBlog.png" />
     <meta property="og:url" content="http://www.ybonnel.fr" />
-    <meta property="og:description" content="JustAnOtherDevBlog : WebSocket, et comment on teste?" />
+    <meta property="og:description" content="JustAnOtherDevBlog : Back to the (Completable)Future" />
     <meta property="og:locale" content="fr_FR" />
     <meta property="og:site_name" content="JustAnOtherDevBlog" />
 
@@ -67,7 +67,7 @@
 	<div class="page-header">
         <div class="row">
             <div class="col-xs-4 col-md-2"><img src="../../img/JustAnOtherDevBlog.png"></div>
-            <div class="col-xs-12 col-md-8"><h1>WebSocket, et comment on teste?</h1></div>
+            <div class="col-xs-12 col-md-8"><h1>Back to the (Completable)Future</h1></div>
         </div>
 	</div>
 
@@ -78,41 +78,62 @@
         <p>
             <em>
                 <time itemprop="datePublished"
-                      datetime="2014-06-18">
-                    18 juin 2014
+                      datetime="2014-07-23">
+                    23 juillet 2014
                 </time>
             </em>
         </p>
 
-        <meta itemprop="name" content="WebSocket, et comment on teste?"/>
+        <meta itemprop="name" content="Back to the (Completable)Future"/>
 
         <div itemprop="author" itemscope itemtype="http://schema.org/Person">
             <meta itemprop="name" content="Yan Bonnel"/>
         </div>
         <meta itemprop="inLanguage" content="fr-FR"/>
-        <meta itemprop="url" content="http://www.ybonnel.fr/2014/06/websocket-et-comment-on-teste.html"/>
-        <meta itemprop="discussionUrl" content="http://www.ybonnel.fr/2014/06/websocket-et-comment-on-teste.html#disqus_thread"/>
+        <meta itemprop="url" content="http://www.ybonnel.fr/2014/07/completable-future.html"/>
+        <meta itemprop="discussionUrl" content="http://www.ybonnel.fr/2014/07/completable-future.html#disqus_thread"/>
 
 
 
         <p>Tags :
-        <meta itemprop="keywords" content="Assertj,Awaitility,Java,Jetty,SimpleWeb4j,websocket"/>
-        <a href="../../tags/Assertj.html">Assertj</a>, <a href="../../tags/Awaitility.html">Awaitility</a>, <a href="../../tags/Java.html">Java</a>, <a href="../../tags/Jetty.html">Jetty</a>, <a href="../../tags/SimpleWeb4j.html">SimpleWeb4j</a>, <a href="../../tags/websocket.html">websocket</a>
+        <meta itemprop="keywords" content="java8,CompletableFuture"/>
+        <a href="../../tags/java8.html">java8</a>, <a href="../../tags/CompletableFuture.html">CompletableFuture</a>
         </p>
 
-        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/06/websocket-et-comment-on-teste.html" data-via="ybonnel" data-text="WebSocket, et comment on teste?" data-lang="fr">Tweeter</a>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.ybonnel.fr/2014/07/completable-future.html" data-via="ybonnel" data-text="Back to the (Completable)Future" data-lang="fr">Tweeter</a>
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-        <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/06/websocket-et-comment-on-teste.html"></div>
+        <div class="g-plusone" data-size="medium" data-href="http://www.ybonnel.fr/2014/07/completable-future.html"></div>
 
         <div itemprop="blogPost">
-        <p><p>On a vu comment implémenter des websockets avec SimpleWeb4j dans un précédant <a href="http://www.ybonnel.fr/2014/06/websocket-et-simpleweb4j.html">article</a>, nous allons maintenant voir comment tester de manière automatisée la partie serveur websocket.</p><br/><h2>Librairies tierces</h2><p>Pour garder un code relativement propre, je vais utiliser trois librairies : <ul><li><a href="http://www.eclipse.org/jetty/documentation/current/jetty-websocket-client-api.html">websocket-client</a> : Client WebSocket en java.</li><li><a href="http://joel-costigliola.github.io/assertj/">assertj-core</a> : Librairie d'assertion "fluent"</li><li><a href="https://code.google.com/p/awaitility/">awaitility</a> : Librairie d'attente (pour gérer l'asynchrone)</li></ul></p><br/> <h2>Je veux faire quoi comme test?</h2><p>Je cherche à tester le code du billet précédant qui, pour rappel, était un système de chat. Le serveur de websocket reçoit donc des messages qu'il redistribue à tous les clients connectés.</p><p>Scénario de test : <ul><li>Ouverture d'une session 1.</li><li>Envoi d'un message par la session 1 (message 1).</li><li>Ouverture d'une session 2.</li><li>Envoi d'un message par la session 2 (message 2).</li><li>Envoi d'un message par la session 1 (message 3).</li><li>Fermeture de la session 1.</li><li>Envoi d'un message par la session 2 (message 4).</li><li>Fermeture de la session 2.</li>  </ul></p><p>Vérifications à faire : <ul><li>La session 1 a reçu 3 messages (les messages 1 à 3)</li><li>La session 2 a reçu 3 messages (les messages 2 à 4)</li></ul></p><br/> <h2>Code de test</h2><p>Assez parler, place au code. J'espère que les commentaires sont suffisants, si ce n'est pas le cas, n'hésitez pas à le dire j'en ajouterais.</p><script src="https://gist.github.com/ybonnel/fdc9348326e0667c52c7.js"></script>
-</p>
+        <p><p>Je vais aujourd&rsquo;hui vous présenter les <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html">CompletableFuture</a> de java 8.</p><p>Pour l&rsquo;exemple, nous allons réaliser un petit programme Java permettant de récupérer le titre le plus long parmi les articles du blog.<br/>Pour faire cela, nous allons récupérer la page <a href="http://www.ybonnel.fr/archive.html">archive</a> du blog, pour ensuite récupérer chaque lien d&rsquo;article et pour finir récupérer le titre des articles.</p><h1>Méthode naïve</h1><p>Commençons par la méthode naïve sans java8 :<br/><script src="https://gist.github.com/ybonnel/fd339f7df77ea325a52e.js"></script></p><p>Cette méthode a l&rsquo;intérêt d&rsquo;être très facilement compréhensible, par contre c&rsquo;est beaucoup trop séquentiel, il faudrait pouvoir exécuter les requêtes en parallel et non de manière séquentiel.</p><h1>Méthode à base de Future</h1><p>Nous allons maintenant exécuter les requêtes en parallel à l&rsquo;aide d&rsquo;un bon vieux ExecutorService :<br/><script src="https://gist.github.com/ybonnel/58d0d23a348573ab101d.js"></script></p><p>Cette méthode est beaucoup plus performante, mais un truc me gène :</p>
+<pre><code>boolean allDone = false;
+while (!allDone) {
+    allDone = true;
+    for (Future&lt;String&gt; result : results) {
+        if (!result.isDone()) {
+            allDone = false;
+            break;
+        }
+    }
+    Thread.sleep(50);
+}
+</code></pre><p>Avoir du code technique de ce type là en plein milieu, ça me plait pas trop.</p><h1>Méthode à base de CompletableFuture</h1><p>Nous allons maintenant transformer notre code pour utiliser les CompletableFuture de java8 :<br/><script src="https://gist.github.com/ybonnel/a077022e9a2b504f7446.js"></script></p><p>Personnellement je trouve ce code beaucoup plus lisible et sans (ou très peu de) code technique.</p><p>Quelques détails sur l&rsquo;API :</p>
+<ul>
+  <li><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html#supplyAsync-java.util.function.Supplier-java.util.concurrent.Executor-">CompletableFuture.supplyAsync</a> : permet d&rsquo;exécuter un traitement en asynchrone, retourne le CompletableFuture correspondant.</li>
+  <li><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html#allOf-java.util.concurrent.CompletableFuture...-">CompletableFuture.allOf</a> : Permet de récupérer un CompletableFuture correspondant à la fin de tous les CompletableFuture passés en paramètres.</li>
+  <li><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html#thenApply-java.util.function.Function-">CompletableFuture.thenApply</a> : Execute un fonction une fois le CompletableFuture terminé. Cette fonction prend en paramètre l&rsquo;objet du CompletableFuture est renvoie un autre type.</li>
+</ul><h1>Performances</h1><p>Voici les résultats des trois méthodes en terme de performances :</p>
+<ul>
+  <li>Méthode naïve : 2243ms</li>
+  <li>Méthode à base de Future : 310ms</li>
+  <li>Méthode à base de CompletableFuture : 230ms</li>
+</ul><p>Pour les curieux, l&rsquo;ensemble de ma classe de test se trouve <a href="https://github.com/ybonnel/simpleweb4j-blog/blob/master/src/main/java/fr/ybonnel/blog/CompletableFutureTest.java">ici</a>.</p></p>
         </div>
 
         <div id="disqus_thread"></div>
         <script type="text/javascript">
             var disqus_shortname = 'ybonnel';
-            var disqus_identifier = 'websocket-et-comment-on-teste';
+            var disqus_identifier = 'completable-future';
             (function() {
                 var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
                 dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
