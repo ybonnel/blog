@@ -6,8 +6,8 @@
     <atom:link href="http://www.ybonnel.fr/feeds/posts/default.xml" rel="self" type="application/rss+xml" />
     <description>JustAnOtherDevBlog</description>
     <language>en-gb</language>
-      <pubDate>Fri, 8 Aug 2014 14:53:10 +0200</pubDate>
-      <lastBuildDate>Fri, 8 Aug 2014 14:53:10 +0200</lastBuildDate>
+      <pubDate>Fri, 8 Aug 2014 14:55:23 +0200</pubDate>
+      <lastBuildDate>Fri, 8 Aug 2014 14:55:23 +0200</lastBuildDate>
 
       
       <item>
@@ -28,7 +28,7 @@ while (!allDone) {
     }
     Thread.sleep(50);
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Avoir du code technique de ce type là en plein milieu, ça me plait pas trop.&lt;/p&gt;&lt;p&gt;UPDATE : Comme on me l&amp;rsquo;a fait remarquer sur twitter, il est tout a fait possible de supprimer ce bloc, l&amp;rsquo;attente étant gérer par le get.&lt;br/&gt;Cependant on ne voit plus de notion de &amp;ldquo;tout les traitements terminés&amp;rdquo;, ce qui dans un cas plus complexe peux être très utile.&lt;/p&gt;&lt;h1&gt;Méthode à base de CompletableFuture&lt;/h1&gt;&lt;p&gt;Nous allons maintenant transformer notre code pour utiliser les CompletableFuture de java8 :&lt;br/&gt;&lt;script src=&quot;https://gist.github.com/ybonnel/a077022e9a2b504f7446.js&quot;&gt;&lt;/script&gt;&lt;/p&gt;&lt;p&gt;Personnellement je trouve ce code beaucoup plus lisible et sans (ou très peu de) code technique.&lt;/p&gt;&lt;p&gt;Quelques détails sur l&amp;rsquo;API :&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Avoir du code technique de ce type là en plein milieu, ça me plait pas trop.&lt;/p&gt;&lt;p&gt;UPDATE : Comme on me l&amp;rsquo;a fait remarquer sur twitter, il est tout a fait possible de supprimer ce bloc, l&amp;rsquo;attente étant gérée par le get.&lt;br/&gt;Cependant on ne voit plus de notion de &amp;ldquo;tout les traitements terminés&amp;rdquo;, ce qui dans un cas plus complexe peux être très utile.&lt;/p&gt;&lt;h1&gt;Méthode à base de CompletableFuture&lt;/h1&gt;&lt;p&gt;Nous allons maintenant transformer notre code pour utiliser les CompletableFuture de java8 :&lt;br/&gt;&lt;script src=&quot;https://gist.github.com/ybonnel/a077022e9a2b504f7446.js&quot;&gt;&lt;/script&gt;&lt;/p&gt;&lt;p&gt;Personnellement je trouve ce code beaucoup plus lisible et sans (ou très peu de) code technique.&lt;/p&gt;&lt;p&gt;Quelques détails sur l&amp;rsquo;API :&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html#supplyAsync-java.util.function.Supplier-java.util.concurrent.Executor-&quot;&gt;CompletableFuture.supplyAsync&lt;/a&gt; : permet d&amp;rsquo;exécuter un traitement en asynchrone, retourne le CompletableFuture correspondant.&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html#allOf-java.util.concurrent.CompletableFuture...-&quot;&gt;CompletableFuture.allOf&lt;/a&gt; : Permet de récupérer un CompletableFuture correspondant à la fin de tous les CompletableFuture passés en paramètres.&lt;/li&gt;
