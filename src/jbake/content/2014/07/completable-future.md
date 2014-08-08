@@ -39,6 +39,9 @@ Cette méthode est beaucoup plus performante, mais un truc me gène :
 
 Avoir du code technique de ce type là en plein milieu, ça me plait pas trop.
 
+UPDATE : Comme on me l'a fait remarquer sur twitter, il est tout a fait possible de supprimer ce bloc, l'attente étant gérer par le get.
+Cependant on ne voit plus de notion de "tout les traitements terminés", ce qui dans un cas plus complexe peux être très utile.
+
 # Méthode à base de CompletableFuture
 
 Nous allons maintenant transformer notre code pour utiliser les CompletableFuture de java8 :
